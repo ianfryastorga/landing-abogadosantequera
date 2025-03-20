@@ -1,7 +1,7 @@
 'use client';
 
 import { Container, Row, Col } from 'react-bootstrap';
-import { antequeraConfig } from '../config';
+import { antequeraConfig } from '@/config';
 import { Envelope, Phone, GeoAlt, Clock } from 'react-bootstrap-icons';
 
 export const Footer = () => {

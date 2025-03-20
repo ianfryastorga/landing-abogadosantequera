@@ -1,7 +1,8 @@
 'use client';
 
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import { antequeraConfig } from '../config';
+import { antequeraConfig } from '@/config';
+import { useEffect, useState } from 'react';
 import { 
   CreditCard2Front,
   Briefcase, 

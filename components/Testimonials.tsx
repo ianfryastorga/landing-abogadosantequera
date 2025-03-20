@@ -1,9 +1,10 @@
 'use client';
 
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import { antequeraConfig } from '../config';
+import { antequeraConfig } from '@/config';
 import { Quote, StarFill } from 'react-bootstrap-icons';
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 export const Testimonials = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -26,7 +27,7 @@ export const Testimonials = () => {
       id="testimonials" 
       style={{
         padding: '100px 0',
-        backgroundImage: 'linear-gradient(rgba(42, 67, 101, 0.9), rgba(42, 67, 101, 0.9)), url(https://images.unsplash.com/photo-1568992688065-536aad8a12f6?q=80&w=2832&auto=format&fit=crop)',
+        backgroundImage: 'linear-gradient(rgba(42, 67, 101, 0.9), rgba(42, 67, 101, 0.9)), url(/images/testimonials-background.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',
@@ -111,7 +112,7 @@ export const Testimonials = () => {
                       }}
                     >
                       <img 
-                        src={testimonial.image} 
+                        src={`/images/testimonials/person-${index + 1}.jpg`}
                         alt={testimonial.name}
                         style={{
                           width: '100%',

@@ -1,8 +1,10 @@
 'use client';
 
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import { antequeraConfig } from '../config';
-import { Linkedin, EnvelopeFill } from 'react-bootstrap-icons';
+import { antequeraConfig } from '@/config';
+import { motion } from 'framer-motion';
+import { Facebook, Linkedin, Twitter } from 'react-bootstrap-icons';
+import { EnvelopeFill } from 'react-bootstrap-icons';
 
 export const Team = () => {
   return (
@@ -65,7 +67,7 @@ export const Team = () => {
                   }}
                 >
                   <img 
-                    src={member.image} 
+                    src={`/images/team/member-${index + 1}.jpg`}
                     alt={member.name}
                     style={{
                       width: '100%',

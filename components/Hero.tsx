@@ -1,7 +1,7 @@
 'use client';
 
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import { antequeraConfig } from '../config';
+import { antequeraConfig } from '@/config';
 import { ArrowDownCircle, Award, ShieldCheck } from 'react-bootstrap-icons';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
@@ -52,7 +52,7 @@ export const Hero = () => {
       id="hero" 
       className="hero-section"
       style={{
-        backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.6)), url(https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=2070&auto=format&fit=crop)',
+        backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.6)), url(/images/hero-background.jpg)',
         backgroundPosition: 'center center',
         backgroundSize: 'cover',
         position: 'relative',

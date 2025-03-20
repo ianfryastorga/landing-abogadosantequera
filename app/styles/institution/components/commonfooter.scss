@@ -1,0 +1,42 @@
+// Estilos para el footer común
+
+.common-footer {
+  background-color: #0F0F0F;
+  padding: 20px 0;
+  color: #777777;
+  
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    
+    @media (max-width: 768px) {
+      flex-direction: column;
+      text-align: center;
+      gap: 10px;
+    }
+  }
+  
+  &__privacy {
+    display: flex;
+    gap: 20px;
+    
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+  
+  &__link {
+    color: #777777;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    
+    &:hover {
+      color: #C41E3A;
+    }
+  }
+} 

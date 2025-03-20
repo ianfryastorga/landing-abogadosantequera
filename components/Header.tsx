@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Container, Navbar, Nav, Button } from 'react-bootstrap';
 import { Telephone, Envelope, GeoAlt } from 'react-bootstrap-icons';
-import { antequeraConfig } from '../config';
+import { antequeraConfig } from '@/config';
 import { motion } from 'framer-motion';
 
 export const Header = () => {
