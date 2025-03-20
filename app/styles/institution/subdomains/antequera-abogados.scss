@@ -1,0 +1,709 @@
+// Antequera Abogados - Estilos minimalistas y elegantes
+// Inspirado en principios de diseño de Steve Jobs: simplicidad, elegancia y claridad
+
+// Variables de colores (actualizadas según config.ts)
+$primary-color: #1A1A1A;     // Negro elegante
+$secondary-color: #0F0F0F;   // Negro más oscuro
+$accent-color: #C41E3A;      // Rojo borgoña elegante
+$text-color: #333333;        // Negro suave para texto
+$text-light: #777777;        // Gris para texto secundario
+$background-color: #FFFFFF;  // Fondo blanco puro
+$background-alt: #F7F7F7;    // Gris muy claro para secciones alternativas
+
+// Estilos para eliminar espacios blancos indeseados
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden !important;
+  min-height: 100% !important;
+  width: 100% !important;
+}
+
+// Variables para el footer común
+:root {
+  --color-dark-gray: #1A1A1A;
+  --color-text: #FFFFFF;
+  --color-gray: #999999;
+  --color-accent: #C41E3A;
+  --font-poppins: 'Poppins', sans-serif;
+}
+
+// Importar estilos del footer común
+@import '../../institution/components/commonfooter.scss';
+
+// Mixins para diseño responsive
+@mixin desktop {
+  @media (min-width: 992px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: 768px) and (max-width: 991px) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+// Animaciones
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes growFromCenter {
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+// Estilos globales
+.antequera-site {
+  font-family: 'Poppins', sans-serif;
+  color: $text-color;
+  overflow-x: hidden;
+  background-color: $primary-color !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
+    letter-spacing: -0.5px;
+  }
+  
+  p {
+    font-weight: 300;
+    line-height: 1.6;
+  }
+  
+  a {
+    transition: all 0.2s ease;
+    
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  
+  .btn {
+    border-radius: 4px;
+    letter-spacing: 0.3px;
+    font-weight: 400;
+    box-shadow: none;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+  }
+  
+  .btn-primary {
+    background-color: $primary-color !important;
+    border-color: $primary-color !important;
+    color: white !important;
+    
+    &:hover, &:focus, &:active {
+      background-color: darken($primary-color, 5%) !important;
+      border-color: darken($primary-color, 5%) !important;
+    }
+  }
+  
+  .btn-outline-light {
+    color: white !important;
+    border-color: white !important;
+    
+    &:hover {
+      background-color: rgba(255,255,255,0.1) !important;
+    }
+  }
+  
+  .btn-submit {
+    background-color: $primary-color !important;
+    border-color: $primary-color !important;
+    color: white !important;
+    padding: 0.8rem 2rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.3px !important;
+    transition: all 0.3s ease !important;
+    
+    &:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1) !important;
+    }
+  }
+  
+  section {
+    padding: 100px 0;
+  }
+  
+  .section-title {
+    color: $primary-color;
+    font-weight: 500;
+    margin-bottom: 1.2rem;
+    font-size: 2.4rem;
+    letter-spacing: -0.5px;
+    text-align: center;
+  }
+  
+  .section-subtitle {
+    color: $text-light;
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    font-weight: 300;
+    line-height: 1.6;
+    text-align: center;
+  }
+}
+
+// Estilos de la barra superior
+.top-bar {
+  background-color: $primary-color !important;
+  color: white !important;
+  padding: 0.6rem 0 !important;
+  font-size: 0.85rem !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
+  position: fixed !important;
+  width: 100% !important;
+  top: 0 !important;
+  z-index: 1031 !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  
+  a {
+    color: white !important;
+    text-decoration: none !important;
+    opacity: 0.95 !important;
+    transition: opacity 0.2s ease, transform 0.2s ease !important;
+    
+    &:hover {
+      opacity: 1 !important;
+      transform: translateY(-1px) !important;
+    }
+  }
+}
+
+// Estilos del encabezado
+.header {
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+  font-family: 'Poppins', sans-serif !important;
+  background-color: transparent !important;
+  
+  &.scrolled {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08) !important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    
+    .navbar-brand, .nav-link {
+      color: $primary-color !important;
+    }
+  }
+  
+  .navbar-brand {
+    font-size: 1.6rem !important;
+    font-weight: 600 !important;
+    color: white !important;
+    letter-spacing: -0.5px !important;
+    transition: all 0.3s ease !important;
+    
+    &:hover {
+      transform: translateY(-2px) !important;
+      text-shadow: 0 5px 15px rgba(255, 255, 255, 0.4) !important;
+    }
+  }
+  
+  .nav-link {
+    color: white !important;
+    font-weight: 500 !important;
+    font-size: 0.95rem !important;
+    letter-spacing: 0.3px !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    padding: 0.5rem 1rem !important;
+    margin: 0 0.2rem !important;
+    
+    &::after {
+      content: '' !important;
+      position: absolute !important;
+      width: 0 !important;
+      height: 2px !important;
+      bottom: 0 !important;
+      left: 50% !important;
+      background-color: $accent-color !important;
+      transition: all 0.3s ease !important;
+      transform: translateX(-50%) !important;
+    }
+    
+    &:hover {
+      color: rgba(255,255,255,1) !important;
+      transform: translateY(-2px) !important;
+      
+      &::after {
+        width: 30% !important;
+      }
+    }
+  }
+  
+  &.scrolled .nav-link:hover {
+    color: $accent-color !important;
+  }
+  
+  .btn-contact {
+    font-weight: 500 !important;
+    margin-left: 0.5rem !important;
+    padding: 0.6rem 1.5rem !important;
+    font-size: 0.9rem !important;
+    border-radius: 6px !important;
+    letter-spacing: 0.3px !important;
+    background-color: $accent-color !important;
+    border-color: $accent-color !important;
+    box-shadow: 0 4px 10px rgba($accent-color, 0.2) !important;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    
+    &:hover {
+      background-color: darken($accent-color, 5%) !important;
+      border-color: darken($accent-color, 5%) !important;
+      transform: translateY(-3px) !important;
+      box-shadow: 0 6px 15px rgba($accent-color, 0.3) !important;
+    }
+  }
+}
+
+// Estilos del Hero
+.hero-section {
+  background-size: cover !important;
+  background-position: center center !important;
+  height: 100vh !important; 
+  min-height: 800px !important;
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  position: relative !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: center !important;
+  overflow: hidden !important;
+  z-index: 1 !important;
+  border-bottom: none !important;
+}
+
+.hero-overlay {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.65) 100%) !important;
+  z-index: 1 !important;
+}
+
+.hero-section .container {
+  position: relative !important;
+  z-index: 3 !important;
+  padding-top: 110px !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+.hero-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  background-color: rgba($accent-color, 0.15) !important;
+  color: lighten($accent-color, 15%) !important;
+  padding: 0.5rem 1.25rem !important;
+  border-radius: 50px !important;
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+  margin-bottom: 2rem !important;
+  letter-spacing: 0.5px !important;
+  box-shadow: 0 5px 15px rgba($accent-color, 0.1) !important;
+}
+
+.hero-title {
+  font-size: 4.5rem !important;
+  line-height: 1.1 !important;
+  font-weight: 600 !important;
+  color: white !important;
+  margin-bottom: 1.5rem !important;
+  letter-spacing: -1px !important;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.2) !important;
+  
+  @include mobile {
+    font-size: 2.8rem !important;
+  }
+}
+
+.hero-slogan {
+  font-size: 1.4rem !important;
+  color: rgba(255,255,255,0.9) !important;
+  max-width: 700px !important;
+  margin: 0 auto 2.5rem !important;
+  line-height: 1.6 !important;
+  font-weight: 300 !important;
+  
+  @include mobile {
+    font-size: 1.2rem !important;
+  }
+}
+
+.hero-separator {
+  width: 100px !important;
+  margin: 0 auto 2.5rem !important;
+  height: 3px !important;
+  background: $accent-color !important;
+  border-radius: 3px !important;
+}
+
+.hero-features {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 1.5rem !important;
+  margin-bottom: 3rem !important;
+  
+  .hero-feature {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    background-color: rgba(255,255,255,0.1) !important;
+    padding: 0.5rem 1.25rem !important;
+    border-radius: 50px !important;
+    color: white !important;
+    font-size: 0.95rem !important;
+    font-weight: 400 !important;
+    transition: all 0.3s ease !important;
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+    
+    &:hover {
+      background-color: rgba(255,255,255,0.2) !important;
+      transform: translateY(-3px) !important;
+    }
+  }
+}
+
+.buttons-container {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 1.2rem !important;
+  margin-top: 2rem !important;
+  
+  .btn {
+    padding: 0.9rem 2.2rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.3px !important;
+    font-size: 1.05rem !important;
+    border-radius: 6px !important;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15) !important;
+    transition: all 0.3s ease !important;
+  }
+  
+  .btn-contact-hero {
+    background-color: $accent-color !important;
+    border-color: $accent-color !important;
+    
+    &:hover, &:focus {
+      background-color: darken($accent-color, 5%) !important;
+      border-color: darken($accent-color, 5%) !important;
+      transform: translateY(-3px) !important;
+      box-shadow: 0 8px 25px rgba($accent-color, 0.3) !important;
+    }
+  }
+  
+  .btn-services-hero {
+    color: white !important;
+    border: 2px solid rgba(255,255,255,0.6) !important;
+    
+    &:hover, &:focus {
+      background-color: rgba(255,255,255,0.1) !important;
+      border-color: white !important;
+      transform: translateY(-3px) !important;
+    }
+  }
+}
+
+.scroll-indicator {
+  position: absolute !important;
+  bottom: 40px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  color: white !important;
+  cursor: pointer !important;
+  z-index: 5 !important;
+  opacity: 0.8 !important;
+  transition: all 0.3s ease !important;
+  
+  &:hover {
+    opacity: 1 !important;
+    transform: translateX(-50%) translateY(-5px) !important;
+  }
+}
+
+// Estilos de las Áreas de Práctica
+.practice-areas {
+  padding: 100px 0 !important;
+  background-color: $background-alt !important;
+  margin-top: 0 !important;
+  position: relative !important;
+  z-index: 2 !important;
+  box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.1) !important;
+  
+  .section-preheading {
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    color: $accent-color !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  .section-title {
+    font-size: 2.8rem !important;
+    margin-bottom: 1.2rem !important;
+    color: $primary-color !important;
+    font-weight: 600 !important;
+    
+    @include mobile {
+      font-size: 2.2rem !important;
+    }
+  }
+  
+  .section-separator {
+    width: 60px !important;
+    height: 3px !important;
+    background-color: $accent-color !important;
+    margin: 0 auto 2rem !important;
+  }
+  
+  .section-subtitle {
+    color: $text-light !important;
+    font-size: 1.1rem !important;
+    max-width: 700px !important;
+    margin: 0 auto 3rem !important;
+    line-height: 1.7 !important;
+  }
+  
+  .area-card {
+    transition: all 0.3s ease !important;
+    border: none !important;
+    border-radius: 8px !important;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05) !important;
+    overflow: hidden !important;
+    height: 100% !important;
+    
+    &:hover {
+      transform: translateY(-10px) !important;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+      
+      .icon-container {
+        background-color: $accent-color !important;
+        color: white !important;
+      }
+      
+      .card-title {
+        color: $accent-color !important;
+      }
+      
+      .card-separator {
+        transform: scaleX(1) !important;
+        opacity: 1 !important;
+      }
+    }
+    
+    .icon-container {
+      width: 80px !important;
+      height: 80px !important;
+      background-color: rgba($accent-color, 0.1) !important;
+      border-radius: 50% !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      margin-bottom: 1.5rem !important;
+      color: $accent-color !important;
+      transition: all 0.3s ease !important;
+    }
+    
+    .card-title {
+      font-size: 1.4rem !important;
+      font-weight: 600 !important;
+      margin-bottom: 1rem !important;
+      color: $primary-color !important;
+      transition: all 0.3s ease !important;
+    }
+    
+    .card-separator {
+      width: 40px !important;
+      height: 3px !important;
+      background-color: $accent-color !important;
+      margin-bottom: 1.2rem !important;
+      transition: all 0.3s ease !important;
+      transform: scaleX(0.5) !important;
+      transform-origin: left !important;
+      opacity: 0.7 !important;
+    }
+    
+    .card-text {
+      color: $text-light !important;
+      font-size: 0.95rem !important;
+      line-height: 1.7 !important;
+    }
+  }
+  
+  .cta-container {
+    margin-top: 4rem !important;
+    padding: 2rem !important;
+    background-color: white !important;
+    border-radius: 8px !important;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.05) !important;
+  }
+  
+  .cta-text {
+    font-size: 1.2rem !important;
+    font-weight: 400 !important;
+    color: $primary-color !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .cta-button {
+    display: inline-block !important;
+    padding: 0.8rem 2rem !important;
+    background-color: $accent-color !important;
+    color: white !important;
+    font-weight: 500 !important;
+    border-radius: 4px !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 5px 15px rgba($accent-color, 0.2) !important;
+    
+    &:hover {
+      background-color: darken($accent-color, 5%) !important;
+      box-shadow: 0 8px 25px rgba($accent-color, 0.3) !important;
+    }
+  }
+}
+
+// Estilos de la sección de contacto
+.contact-section {
+  padding: 100px 0 !important;
+  background-color: $background-color !important;
+  
+  .form-label {
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    color: $text-color !important;
+  }
+  
+  .form-control {
+    padding: 0.75rem !important;
+    font-size: 0.95rem !important;
+    border-radius: 4px !important;
+    border-color: #e0e0e0 !important;
+    
+    &:focus {
+      border-color: $primary-color !important;
+      box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.05) !important;
+    }
+  }
+  
+  .contact-form {
+    background-color: white !important;
+    border-radius: 8px !important;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05) !important;
+    padding: 2rem !important;
+  }
+  
+  .contact-info-card {
+    background-color: $primary-color !important;
+    color: white !important;
+    border-radius: 8px !important;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05) !important;
+    padding: 2rem !important;
+    
+    h3 {
+      font-size: 1.4rem !important;
+      font-weight: 500 !important;
+      margin-bottom: 1.5rem !important;
+      color: white !important;
+    }
+    
+    p {
+      opacity: 0.9 !important;
+      margin-bottom: 2rem !important;
+      font-weight: 300 !important;
+      line-height: 1.6 !important;
+    }
+    
+    .contact-item {
+      display: flex !important;
+      align-items: flex-start !important;
+      margin-bottom: 1.2rem !important;
+      
+      .icon {
+        margin-right: 15px !important;
+        color: $accent-color !important;
+      }
+      
+      .text {
+        color: rgba(255,255,255,0.9) !important;
+        font-size: 0.95rem !important;
+        line-height: 1.5 !important;
+      }
+    }
+    
+    .whatsapp-button {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      background-color: #25D366 !important;
+      color: white !important;
+      padding: 0.8rem 1rem !important;
+      border-radius: 4px !important;
+      text-decoration: none !important;
+      font-weight: 500 !important;
+      font-size: 0.95rem !important;
+      margin-top: 2rem !important;
+      transition: all 0.3s ease !important;
+      
+      svg {
+        margin-right: 10px !important;
+      }
+      
+      &:hover {
+        transform: translateY(-3px) !important;
+        box-shadow: 0 5px 15px rgba(37,211,102,0.3) !important;
+      }
+    }
+  }
+}
+
+// Estilos del footer (mejorados)
