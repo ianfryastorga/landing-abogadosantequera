@@ -7,7 +7,7 @@ import { Hero } from '@/components/Hero';
 import { PracticeAreas } from '@/components/PracticeAreas';
 import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
-import { CommonFooter } from '@/sections/components/CommonFooter';
+import { CommonFooter } from '@/components/shared/CommonFooter';
 import ClientBootstrap from '@/app/ClientBootstrap';
 import '@/app/styles/institution/subdomains/antequera-abogados.scss';
 

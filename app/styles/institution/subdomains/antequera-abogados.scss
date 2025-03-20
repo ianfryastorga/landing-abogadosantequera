@@ -29,7 +29,7 @@ html, body {
 }
 
 // Importar estilos del footer común
-@import '../../institution/components/commonfooter.scss';
+@import '../../../styles/components/commonfooter.scss';
 
 // Mixins para diseño responsive
 @mixin desktop {
