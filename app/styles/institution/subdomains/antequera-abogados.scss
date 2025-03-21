@@ -67,6 +67,11 @@ html, body {
   }
 }
 
+@keyframes subtle-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
 @keyframes growFromCenter {
   from {
     transform: scaleX(0);
@@ -91,6 +96,7 @@ html, body {
   background-color: $primary-color !important;
   margin: 0 !important;
   padding: 0 !important;
+  letter-spacing: -0.2px;
   
   h1, h2, h3, h4, h5, h6 {
     font-weight: 500;
@@ -99,11 +105,11 @@ html, body {
   
   p {
     font-weight: 300;
-    line-height: 1.6;
+    line-height: 1.7;
   }
   
   a {
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
     
     &:hover {
       text-decoration: none;
@@ -111,15 +117,16 @@ html, body {
   }
   
   .btn {
-    border-radius: 4px;
+    border-radius: 6px;
     letter-spacing: 0.3px;
-    font-weight: 400;
+    font-weight: 500;
     box-shadow: none;
-    transition: all 0.3s ease;
+    padding: 12px 24px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     
     &:hover {
       transform: translateY(-2px);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
     }
   }
   
@@ -137,6 +144,7 @@ html, body {
   .btn-outline-light {
     color: white !important;
     border-color: white !important;
+    border-width: 1.5px;
     
     &:hover {
       background-color: rgba(255,255,255,0.1) !important;
@@ -159,25 +167,25 @@ html, body {
   }
   
   section {
-    padding: 100px 0;
+    padding: 120px 0;
   }
   
   .section-title {
     color: $primary-color;
-    font-weight: 500;
-    margin-bottom: 1.2rem;
-    font-size: 2.4rem;
-    letter-spacing: -0.5px;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    font-size: 2.6rem;
+    letter-spacing: -0.8px;
     text-align: center;
   }
   
   .section-subtitle {
     color: $text-light;
     font-size: 1.1rem;
-    max-width: 700px;
-    margin: 0 auto 3rem;
+    max-width: 600px;
+    margin: 0 auto 3.5rem;
     font-weight: 300;
-    line-height: 1.6;
+    line-height: 1.7;
     text-align: center;
   }
 }
@@ -305,13 +313,24 @@ html, body {
   width: 100% !important;
   display: flex !important;
   align-items: center !important;
+  justify-content: center !important;
   position: relative !important;
   margin: 0 !important;
   padding: 0 !important;
   text-align: center !important;
   overflow: hidden !important;
   z-index: 1 !important;
-  border-bottom: none !important;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    z-index: 2;
+  }
 }
 
 .hero-overlay {
@@ -339,36 +358,39 @@ html, body {
   align-items: center !important;
   background-color: rgba($accent-color, 0.15) !important;
   color: lighten($accent-color, 15%) !important;
-  padding: 0.5rem 1.25rem !important;
+  padding: 0.5rem 1.5rem !important;
   border-radius: 50px !important;
   font-size: 0.9rem !important;
   font-weight: 500 !important;
-  margin-bottom: 2rem !important;
+  margin-bottom: 2.5rem !important;
   letter-spacing: 0.5px !important;
   box-shadow: 0 5px 15px rgba($accent-color, 0.1) !important;
+  animation: subtle-float 3s infinite ease-in-out;
 }
 
 .hero-title {
-  font-size: 4.5rem !important;
+  font-size: 4.8rem !important;
   line-height: 1.1 !important;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
   color: white !important;
   margin-bottom: 1.5rem !important;
-  letter-spacing: -1px !important;
+  letter-spacing: -1.5px !important;
   text-shadow: 0 2px 5px rgba(0,0,0,0.2) !important;
   
   @include mobile {
-    font-size: 2.8rem !important;
+    font-size: 3rem !important;
+    letter-spacing: -1px !important;
   }
 }
 
 .hero-slogan {
-  font-size: 1.4rem !important;
-  color: rgba(255,255,255,0.9) !important;
+  font-size: 1.5rem !important;
+  color: rgba(255,255,255,0.95) !important;
   max-width: 700px !important;
   margin: 0 auto 2.5rem !important;
   line-height: 1.6 !important;
   font-weight: 300 !important;
+  letter-spacing: -0.2px !important;
   
   @include mobile {
     font-size: 1.2rem !important;
@@ -376,11 +398,12 @@ html, body {
 }
 
 .hero-separator {
-  width: 100px !important;
+  width: 80px !important;
   margin: 0 auto 2.5rem !important;
   height: 3px !important;
   background: $accent-color !important;
-  border-radius: 3px !important;
+  border-radius: 2px !important;
+  animation: growFromCenter 1.5s ease;
 }
 
 .hero-features {
@@ -416,16 +439,16 @@ html, body {
   flex-wrap: wrap !important;
   justify-content: center !important;
   gap: 1.2rem !important;
-  margin-top: 2rem !important;
+  margin-top: 2.5rem !important;
   
   .btn {
-    padding: 0.9rem 2.2rem !important;
+    padding: 1rem 2.5rem !important;
     font-weight: 500 !important;
     letter-spacing: 0.3px !important;
     font-size: 1.05rem !important;
-    border-radius: 6px !important;
+    border-radius: 8px !important;
     box-shadow: 0 5px 15px rgba(0,0,0,0.15) !important;
-    transition: all 0.3s ease !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
   
   .btn-contact-hero {
@@ -436,13 +459,13 @@ html, body {
       background-color: darken($accent-color, 5%) !important;
       border-color: darken($accent-color, 5%) !important;
       transform: translateY(-3px) !important;
-      box-shadow: 0 8px 25px rgba($accent-color, 0.3) !important;
+      box-shadow: 0 10px 25px rgba($accent-color, 0.3) !important;
     }
   }
   
   .btn-services-hero {
     color: white !important;
-    border: 2px solid rgba(255,255,255,0.6) !important;
+    border: 2px solid rgba(255,255,255,0.7) !important;
     
     &:hover, &:focus {
       background-color: rgba(255,255,255,0.1) !important;
@@ -462,6 +485,7 @@ html, body {
   z-index: 5 !important;
   opacity: 0.8 !important;
   transition: all 0.3s ease !important;
+  animation: subtle-float 2s infinite ease-in-out;
   
   &:hover {
     opacity: 1 !important;
@@ -471,12 +495,11 @@ html, body {
 
 // Estilos de las Áreas de Práctica
 .practice-areas {
-  padding: 100px 0 !important;
+  padding: 120px 0 !important;
   background-color: $background-alt !important;
   margin-top: 0 !important;
   position: relative !important;
   z-index: 2 !important;
-  box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.1) !important;
   
   .section-preheading {
     text-transform: uppercase !important;
@@ -485,16 +508,18 @@ html, body {
     font-weight: 500 !important;
     color: $accent-color !important;
     margin-bottom: 1rem !important;
+    opacity: 0.9;
   }
   
   .section-title {
-    font-size: 2.8rem !important;
+    font-size: 3rem !important;
     margin-bottom: 1.2rem !important;
     color: $primary-color !important;
     font-weight: 600 !important;
+    letter-spacing: -1px !important;
     
     @include mobile {
-      font-size: 2.2rem !important;
+      font-size: 2.4rem !important;
     }
   }
   
@@ -502,32 +527,38 @@ html, body {
     width: 60px !important;
     height: 3px !important;
     background-color: $accent-color !important;
-    margin: 0 auto 2rem !important;
+    margin: 0 auto 3rem !important;
+    border-radius: 2px !important;
   }
   
   .section-subtitle {
     color: $text-light !important;
-    font-size: 1.1rem !important;
+    font-size: 1.15rem !important;
     max-width: 700px !important;
-    margin: 0 auto 3rem !important;
-    line-height: 1.7 !important;
+    margin: 0 auto 4rem !important;
+    line-height: 1.8 !important;
+    font-weight: 300 !important;
+    letter-spacing: -0.1px !important;
   }
   
   .area-card {
-    transition: all 0.3s ease !important;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
     border: none !important;
-    border-radius: 8px !important;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05) !important;
+    border-radius: 10px !important;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.05) !important;
     overflow: hidden !important;
     height: 100% !important;
+    padding: 40px 30px !important;
+    background-color: white !important;
     
     &:hover {
-      transform: translateY(-10px) !important;
-      box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+      transform: translateY(-12px) !important;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.08) !important;
       
       .icon-container {
         background-color: $accent-color !important;
         color: white !important;
+        transform: scale(1.05) !important;
       }
       
       .card-title {
@@ -541,41 +572,44 @@ html, body {
     }
     
     .icon-container {
-      width: 80px !important;
-      height: 80px !important;
+      width: 85px !important;
+      height: 85px !important;
       background-color: rgba($accent-color, 0.1) !important;
       border-radius: 50% !important;
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
-      margin-bottom: 1.5rem !important;
+      margin-bottom: 2rem !important;
       color: $accent-color !important;
-      transition: all 0.3s ease !important;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
     
     .card-title {
-      font-size: 1.4rem !important;
+      font-size: 1.5rem !important;
       font-weight: 600 !important;
-      margin-bottom: 1rem !important;
+      margin-bottom: 1.2rem !important;
       color: $primary-color !important;
-      transition: all 0.3s ease !important;
+      letter-spacing: -0.5px !important;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
     
     .card-separator {
       width: 40px !important;
       height: 3px !important;
       background-color: $accent-color !important;
-      margin-bottom: 1.2rem !important;
-      transition: all 0.3s ease !important;
+      margin-bottom: 1.5rem !important;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
       transform: scaleX(0.5) !important;
       transform-origin: left !important;
       opacity: 0.7 !important;
+      border-radius: 2px !important;
     }
     
     .card-text {
       color: $text-light !important;
-      font-size: 0.95rem !important;
-      line-height: 1.7 !important;
+      font-size: 1rem !important;
+      line-height: 1.8 !important;
+      font-weight: 300 !important;
     }
   }
   
@@ -614,68 +648,78 @@ html, body {
 
 // Estilos de la sección de contacto
 .contact-section {
-  padding: 100px 0 !important;
+  padding: 120px 0 !important;
   background-color: $background-color !important;
   
   .form-label {
-    font-size: 0.9rem !important;
+    font-size: 0.95rem !important;
     font-weight: 500 !important;
     color: $text-color !important;
+    margin-bottom: 8px !important;
   }
   
   .form-control {
-    padding: 0.75rem !important;
-    font-size: 0.95rem !important;
-    border-radius: 4px !important;
-    border-color: #e0e0e0 !important;
+    padding: 12px 15px !important;
+    font-size: 1rem !important;
+    border-radius: 6px !important;
+    border: 1px solid #e0e0e0 !important;
+    background-color: #f9f9f9 !important;
+    transition: all 0.3s ease !important;
     
     &:focus {
       border-color: $primary-color !important;
-      box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.05) !important;
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05) !important;
+      background-color: white !important;
     }
   }
   
   .contact-form {
     background-color: white !important;
-    border-radius: 8px !important;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05) !important;
-    padding: 2rem !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.06) !important;
+    padding: 40px !important;
   }
   
   .contact-info-card {
     background-color: $primary-color !important;
     color: white !important;
-    border-radius: 8px !important;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05) !important;
-    padding: 2rem !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08) !important;
+    padding: 40px !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
     
     h3 {
-      font-size: 1.4rem !important;
-      font-weight: 500 !important;
-      margin-bottom: 1.5rem !important;
+      font-size: 1.6rem !important;
+      font-weight: 600 !important;
+      margin-bottom: 1.8rem !important;
       color: white !important;
+      letter-spacing: -0.5px !important;
     }
     
     p {
       opacity: 0.9 !important;
-      margin-bottom: 2rem !important;
+      margin-bottom: 2.5rem !important;
       font-weight: 300 !important;
-      line-height: 1.6 !important;
+      line-height: 1.7 !important;
+      font-size: 1.05rem !important;
     }
     
     .contact-item {
       display: flex !important;
       align-items: flex-start !important;
-      margin-bottom: 1.2rem !important;
+      margin-bottom: 1.5rem !important;
       
       .icon {
         margin-right: 15px !important;
         color: $accent-color !important;
+        font-size: 1.2rem !important;
       }
       
       .text {
         color: rgba(255,255,255,0.9) !important;
-        font-size: 0.95rem !important;
+        font-size: 1rem !important;
         line-height: 1.5 !important;
       }
     }
@@ -686,21 +730,23 @@ html, body {
       justify-content: center !important;
       background-color: #25D366 !important;
       color: white !important;
-      padding: 0.8rem 1rem !important;
-      border-radius: 4px !important;
+      padding: 15px 20px !important;
+      border-radius: 8px !important;
       text-decoration: none !important;
       font-weight: 500 !important;
-      font-size: 0.95rem !important;
-      margin-top: 2rem !important;
-      transition: all 0.3s ease !important;
+      font-size: 1rem !important;
+      margin-top: 2.5rem !important;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      align-self: flex-start !important;
+      box-shadow: 0 8px 20px rgba(37,211,102,0.2) !important;
       
       svg {
         margin-right: 10px !important;
       }
       
       &:hover {
-        transform: translateY(-3px) !important;
-        box-shadow: 0 5px 15px rgba(37,211,102,0.3) !important;
+        transform: translateY(-5px) !important;
+        box-shadow: 0 12px 25px rgba(37,211,102,0.3) !important;
       }
     }
   }

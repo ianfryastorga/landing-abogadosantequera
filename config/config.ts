@@ -3,7 +3,7 @@
 export const antequeraConfig = {
   // Información básica del bufete
   name: 'Antequera Abogados',
-  slogan: 'Excelencia jurídica con elegancia y precisión',
+  slogan: 'Excelencia jurídica',
   
   // Colores de marca (estilo minimalista - Steve Jobs)
   colors: {
@@ -19,15 +19,15 @@ export const antequeraConfig = {
   // Información de contacto
   contactInfo: {
     address: 'Paseo Ahumada 312, oficina 236, Santiago',
-    phone: '+56 9 99077518',
-    email: 'contacto@antequeraabogados.cl',
-    whatsapp: '+56999077518'
+    phone: '+56 9 9907 7518',
+    email: 'antequeraabogados@gmail.com',
+    whatsapp: '+56 9 9907 7518'
   },
   
   // Horarios de atención
   businessHours: {
-    weekdays: '9:00 - 18:00',
-    saturday: '9:00 - 13:00',
+    weekdays: '9:00 - 19:00',
+    saturday: 'Cerrado',
     sunday: 'Cerrado'
   },
   
@@ -65,7 +65,7 @@ export const antequeraConfig = {
     },
     {
       title: 'Derecho de Familia',
-      description: 'Divorcios, custodia, pensiones alimenticias y otros asuntos familiares con enfoque humano y profesional.',
+      description: 'Divorcios, cuidado personal, pensiones alimenticias y otros asuntos familiares con enfoque humano y profesional.',
       icon: 'people'
     }
   ],

@@ -1,42 +1,50 @@
-// Estilos para el footer común
+// Estilos para el footer común - Inspirado en el minimalismo de Steve Jobs
 
 .common-footer {
-  background-color: #0F0F0F;
-  padding: 20px 0;
-  color: #777777;
+  background-color: var(--color-dark-gray);
+  padding: 40px 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: var(--font-poppins);
   
   &__content {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    position: relative;
     
     @media (max-width: 768px) {
       flex-direction: column;
       text-align: center;
-      gap: 10px;
+      gap: 20px;
     }
   }
   
-  &__privacy {
-    display: flex;
-    gap: 20px;
+  &__logo {
+    position: absolute;
+    left: 20px;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--color-accent);
+    letter-spacing: -0.5px;
     
     @media (max-width: 768px) {
-      flex-direction: column;
-      gap: 10px;
+      position: static;
+      margin-bottom: 15px;
     }
   }
   
-  &__link {
-    color: #777777;
-    text-decoration: none;
-    transition: color 0.3s ease;
+  &__copyright {
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.2px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
     
     &:hover {
-      color: #C41E3A;
+      opacity: 1;
     }
   }
 } 
