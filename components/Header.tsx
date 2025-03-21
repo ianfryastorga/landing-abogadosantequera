@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Container, Navbar, Nav, Button } from 'react-bootstrap';
+import { Container, Navbar, Nav } from 'react-bootstrap';
 import { Telephone, Envelope, GeoAlt } from 'react-bootstrap-icons';
 import { antequeraConfig } from '@/config';
 import { motion } from 'framer-motion';
@@ -68,29 +68,78 @@ export const Header = () => {
     <>
       {/* Top Bar con información de contacto */}
       <motion.div 
-        className="top-bar"
         initial="hidden"
         animate="visible"
         variants={topBarVariants}
+        style={{
+          backgroundColor: '#000',
+          padding: '8px 0',
+          fontSize: '0.85rem',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          zIndex: 1030,
+          fontFamily: '"SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif'
+        }}
       >
         <Container>
-          <div className="d-flex flex-column flex-md-row justify-content-md-between align-items-md-center">
-            <div className="d-flex flex-column flex-md-row gap-2 gap-md-4 mb-2 mb-md-0">
+          <div 
+            style={{
+              display: 'flex',
+              flexDirection: isMobile ? 'column' : 'row',
+              justifyContent: 'space-between',
+              alignItems: isMobile ? 'flex-start' : 'center'
+            }}
+          >
+            <div 
+              style={{
+                display: 'flex',
+                flexDirection: isMobile ? 'column' : 'row',
+                gap: isMobile ? '6px' : '20px',
+                marginBottom: isMobile ? '6px' : 0
+              }}
+            >
               <a 
                 href={`tel:${antequeraConfig.contactInfo.phone}`} 
-                className="text-white text-decoration-none d-flex align-items-center gap-1"
+                style={{
+                  color: 'rgba(255,255,255,0.8)',
+                  textDecoration: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  transition: 'color 0.2s ease'
+                }}
+                onMouseOver={(e) => e.currentTarget.style.color = '#fff'}
+                onMouseOut={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'}
               >
-                <Telephone size={14} /> {antequeraConfig.contactInfo.phone}
+                <Telephone size={12} /> {antequeraConfig.contactInfo.phone}
               </a>
               <a 
                 href={`mailto:${antequeraConfig.contactInfo.email}`} 
-                className="text-white text-decoration-none d-flex align-items-center gap-1"
+                style={{
+                  color: 'rgba(255,255,255,0.8)',
+                  textDecoration: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  transition: 'color 0.2s ease'
+                }}
+                onMouseOver={(e) => e.currentTarget.style.color = '#fff'}
+                onMouseOut={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.8)'}
               >
-                <Envelope size={14} /> {antequeraConfig.contactInfo.email}
+                <Envelope size={12} /> {antequeraConfig.contactInfo.email}
               </a>
             </div>
-            <div className="d-none d-md-flex align-items-center" style={{ fontSize: '0.85rem', opacity: 0.9 }}>
-              <GeoAlt size={14} className="me-1" />
+            <div 
+              style={{
+                display: isMobile ? 'none' : 'flex',
+                alignItems: 'center',
+                color: 'rgba(255,255,255,0.7)',
+                fontSize: '0.8rem'
+              }}
+            >
+              <GeoAlt size={12} style={{ marginRight: '6px' }} />
               <span>{antequeraConfig.contactInfo.address}</span>
             </div>
           </div>
@@ -101,8 +150,15 @@ export const Header = () => {
       <Navbar 
         expand="lg" 
         fixed="top"
-        className={`header py-3 ${isScrolled ? 'scrolled' : ''}`}
-        style={{ marginTop: '40px', backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.95)' : 'transparent' }} 
+        style={{ 
+          marginTop: '36px',
+          background: isScrolled ? 'rgba(255, 255, 255, 0.95)' : 'transparent',
+          backdropFilter: isScrolled ? 'blur(10px)' : 'none',
+          boxShadow: isScrolled ? '0 1px 15px rgba(0,0,0,0.08)' : 'none',
+          transition: 'all 0.3s ease',
+          padding: '15px 0',
+          fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif',
+        }} 
       >
         <Container>
           <motion.div
@@ -110,14 +166,28 @@ export const Header = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <Navbar.Brand href="#hero" className="navbar-brand">
+            <Navbar.Brand 
+              href="#hero" 
+              style={{
+                color: isScrolled ? '#000' : '#fff',
+                fontSize: '1.5rem',
+                fontWeight: 500,
+                letterSpacing: '-0.5px',
+                transition: 'color 0.3s ease',
+                fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif',
+              }}
+            >
               {antequeraConfig.name}
             </Navbar.Brand>
           </motion.div>
           
           <Navbar.Toggle 
             aria-controls="navbar-nav" 
-            style={{ border: 'none', padding: '0.4rem' }}
+            style={{ 
+              border: 'none',
+              padding: '0.4rem',
+              color: isScrolled ? '#000' : '#fff' 
+            }}
           />
           
           <Navbar.Collapse id="navbar-nav">
@@ -127,12 +197,25 @@ export const Header = () => {
               initial="hidden"
               animate="visible"
             >
-              <Nav className="me-3">
+              <Nav className="me-4">
                 {navLinks.map((link, index) => (
                   <motion.div key={index} variants={navItemVariants}>
                     <Nav.Link 
                       href={link.url}
-                      className="nav-link px-3"
+                      style={{
+                        color: isScrolled ? 'rgba(0,0,0,0.8)' : 'rgba(255,255,255,0.8)',
+                        fontWeight: 400,
+                        fontSize: '0.95rem',
+                        padding: '0 1.2rem',
+                        transition: 'color 0.2s ease',
+                        letterSpacing: '0.2px'
+                      }}
+                      onMouseOver={(e) => {
+                        e.currentTarget.style.color = isScrolled ? '#000' : '#fff';
+                      }}
+                      onMouseOut={(e) => {
+                        e.currentTarget.style.color = isScrolled ? 'rgba(0,0,0,0.8)' : 'rgba(255,255,255,0.8)';
+                      }}
                     >
                       {link.name}
                     </Nav.Link>
@@ -143,8 +226,22 @@ export const Header = () => {
               <motion.div variants={navItemVariants}>
                 <motion.a 
                   href="#contact"
-                  className="btn btn-primary btn-contact"
-                  whileHover={{ scale: 1.05 }}
+                  style={{
+                    display: 'inline-block',
+                    background: '#C41E3A',
+                    color: '#fff',
+                    padding: '10px 20px',
+                    borderRadius: '30px',
+                    textDecoration: 'none',
+                    fontSize: '0.9rem',
+                    fontWeight: 500,
+                    boxShadow: '0 4px 15px rgba(196, 30, 58, 0.2)',
+                    transition: 'all 0.3s ease'
+                  }}
+                  whileHover={{ 
+                    scale: 1.05,
+                    boxShadow: '0 4px 20px rgba(196, 30, 58, 0.3)'
+                  }}
                   whileTap={{ scale: 0.95 }}
                 >
                   Consulta Gratuita
