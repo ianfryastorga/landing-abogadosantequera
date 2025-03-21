@@ -2,7 +2,7 @@
 
 import { Container, Row, Col } from 'react-bootstrap';
 import { antequeraConfig } from '@/config';
-import { Envelope, Phone, GeoAlt, Clock, Linkedin, Instagram, Facebook } from 'react-bootstrap-icons';
+import { Envelope, Phone, GeoAlt, Clock } from 'react-bootstrap-icons';
 import { motion } from 'framer-motion';
 
 export const Footer = () => {
@@ -74,83 +74,6 @@ export const Footer = () => {
               >
                 Somos un bufete de abogados comprometido con brindar servicios legales de la más alta calidad, enfocados en resolver las necesidades específicas de cada cliente con excelencia y precisión.
               </p>
-              
-              <div 
-                style={{
-                  display: 'flex',
-                  gap: '15px'
-                }}
-              >
-                <motion.a 
-                  href="#"
-                  style={{
-                    width: '40px',
-                    height: '40px',
-                    borderRadius: '50%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: 'rgba(255,255,255,0.05)',
-                    color: '#fff',
-                    border: '1px solid rgba(255,255,255,0.1)',
-                    transition: 'all 0.3s ease'
-                  }}
-                  whileHover={{ 
-                    scale: 1.1, 
-                    background: 'rgba(255,255,255,0.1)', 
-                    borderColor: 'rgba(255,255,255,0.2)' 
-                  }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <Linkedin size={16} />
-                </motion.a>
-                <motion.a 
-                  href="#"
-                  style={{
-                    width: '40px',
-                    height: '40px',
-                    borderRadius: '50%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: 'rgba(255,255,255,0.05)',
-                    color: '#fff',
-                    border: '1px solid rgba(255,255,255,0.1)',
-                    transition: 'all 0.3s ease'
-                  }}
-                  whileHover={{ 
-                    scale: 1.1, 
-                    background: 'rgba(255,255,255,0.1)', 
-                    borderColor: 'rgba(255,255,255,0.2)' 
-                  }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <Instagram size={16} />
-                </motion.a>
-                <motion.a 
-                  href="#"
-                  style={{
-                    width: '40px',
-                    height: '40px',
-                    borderRadius: '50%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: 'rgba(255,255,255,0.05)',
-                    color: '#fff',
-                    border: '1px solid rgba(255,255,255,0.1)',
-                    transition: 'all 0.3s ease'
-                  }}
-                  whileHover={{ 
-                    scale: 1.1, 
-                    background: 'rgba(255,255,255,0.1)', 
-                    borderColor: 'rgba(255,255,255,0.2)' 
-                  }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <Facebook size={16} />
-                </motion.a>
-              </div>
             </motion.div>
           </Col>
           

@@ -1,45 +1,11 @@
 'use client';
 
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import { antequeraConfig } from '@/config';
-import { GeoAlt, Telephone, Envelope, Clock, Whatsapp, Calendar2Check, Send } from 'react-bootstrap-icons';
-import { useState } from 'react';
+import { GeoAlt, Telephone, Envelope, Clock, Whatsapp, Calendar2Check } from 'react-bootstrap-icons';
 import { motion } from 'framer-motion';
 
 export const Contact = () => {
-  const [formData, setFormData] = useState({
-    nombre: '',
-    email: '',
-    telefono: '',
-    mensaje: '',
-    asunto: ''
-  });
-  
-  const [formSubmitted, setFormSubmitted] = useState(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // No realizar petición HTTP, solo simular el envío
-    console.log('Formulario enviado:', formData);
-    setFormSubmitted(true);
-    // Limpiar formulario
-    setFormData({
-      nombre: '',
-      email: '',
-      telefono: '',
-      mensaje: '',
-      asunto: ''
-    });
-  };
-
   // Variantes de animación
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -144,7 +110,7 @@ export const Contact = () => {
               fontWeight: 300
             }}
           >
-            Completa el formulario y uno de nuestros abogados especializados te contactará para evaluar tu caso sin compromiso
+            Contáctanos por WhatsApp y uno de nuestros abogados especializados te atenderá para evaluar tu caso sin compromiso
           </p>
         </motion.div>
         
@@ -154,289 +120,18 @@ export const Contact = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          <Row className="g-5">
-            <Col lg={7}>
-              <motion.div 
-                variants={itemVariants}
-                style={{
-                  background: '#fff',
-                  borderRadius: '16px',
-                  padding: '40px',
-                  boxShadow: '0 10px 40px rgba(0,0,0,0.05)',
-                  height: '100%'
-                }}
-              >
-                {formSubmitted ? (
-                  <div 
-                    style={{
-                      textAlign: 'center',
-                      padding: '40px 20px'
-                    }}
-                  >
-                    <div 
-                      style={{ 
-                        color: '#C41E3A', 
-                        fontSize: '4rem',
-                        marginBottom: '24px'
-                      }}
-                    >
-                      <Calendar2Check />
-                    </div>
-                    <h3 
-                      style={{
-                        fontSize: '1.8rem',
-                        fontWeight: 600,
-                        marginBottom: '20px',
-                        color: '#000'
-                      }}
-                    >
-                      ¡Gracias por contactarnos!
-                    </h3>
-                    <p 
-                      style={{
-                        fontSize: '1.1rem',
-                        color: 'rgba(0,0,0,0.6)',
-                        marginBottom: '30px',
-                        lineHeight: 1.6,
-                        maxWidth: '500px',
-                        margin: '0 auto 30px'
-                      }}
-                    >
-                      Hemos recibido tu solicitud de consulta. Nos pondremos en contacto contigo lo antes posible para agendar una reunión con uno de nuestros abogados especialistas.
-                    </p>
-                    <motion.button 
-                      onClick={() => setFormSubmitted(false)}
-                      style={{
-                        background: 'transparent',
-                        border: '1px solid #C41E3A',
-                        color: '#C41E3A',
-                        padding: '12px 24px',
-                        borderRadius: '30px',
-                        fontSize: '0.95rem',
-                        fontWeight: 500,
-                        cursor: 'pointer',
-                        transition: 'all 0.3s ease'
-                      }}
-                      whileHover={{ 
-                        scale: 1.05,
-                        boxShadow: '0 4px 15px rgba(196, 30, 58, 0.1)'
-                      }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      Enviar otra consulta
-                    </motion.button>
-                  </div>
-                ) : (
-                  <Form onSubmit={handleSubmit}>
-                    <Row>
-                      <Col md={6}>
-                        <Form.Group 
-                          style={{ marginBottom: '24px' }}
-                        >
-                          <Form.Label 
-                            style={{
-                              fontSize: '0.9rem',
-                              fontWeight: 500,
-                              color: 'rgba(0,0,0,0.7)',
-                              marginBottom: '8px'
-                            }}
-                          >
-                            Nombre completo
-                          </Form.Label>
-                          <Form.Control
-                            type="text"
-                            name="nombre"
-                            value={formData.nombre}
-                            onChange={handleChange}
-                            required
-                            placeholder="Ingresa tu nombre"
-                            style={{
-                              padding: '12px 16px',
-                              fontSize: '0.95rem',
-                              border: '1px solid rgba(0,0,0,0.1)',
-                              borderRadius: '8px',
-                              backgroundColor: 'rgba(0,0,0,0.01)'
-                            }}
-                          />
-                        </Form.Group>
-                      </Col>
-                      <Col md={6}>
-                        <Form.Group 
-                          style={{ marginBottom: '24px' }}
-                        >
-                          <Form.Label 
-                            style={{
-                              fontSize: '0.9rem',
-                              fontWeight: 500,
-                              color: 'rgba(0,0,0,0.7)',
-                              marginBottom: '8px'
-                            }}
-                          >
-                            Email
-                          </Form.Label>
-                          <Form.Control
-                            type="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            required
-                            placeholder="Ingresa tu email"
-                            style={{
-                              padding: '12px 16px',
-                              fontSize: '0.95rem',
-                              border: '1px solid rgba(0,0,0,0.1)',
-                              borderRadius: '8px',
-                              backgroundColor: 'rgba(0,0,0,0.01)'
-                            }}
-                          />
-                        </Form.Group>
-                      </Col>
-                    </Row>
-                    
-                    <Row>
-                      <Col md={6}>
-                        <Form.Group 
-                          style={{ marginBottom: '24px' }}
-                        >
-                          <Form.Label 
-                            style={{
-                              fontSize: '0.9rem',
-                              fontWeight: 500,
-                              color: 'rgba(0,0,0,0.7)',
-                              marginBottom: '8px'
-                            }}
-                          >
-                            Teléfono
-                          </Form.Label>
-                          <Form.Control
-                            type="tel"
-                            name="telefono"
-                            value={formData.telefono}
-                            onChange={handleChange}
-                            placeholder="Ingresa tu teléfono"
-                            style={{
-                              padding: '12px 16px',
-                              fontSize: '0.95rem',
-                              border: '1px solid rgba(0,0,0,0.1)',
-                              borderRadius: '8px',
-                              backgroundColor: 'rgba(0,0,0,0.01)'
-                            }}
-                          />
-                        </Form.Group>
-                      </Col>
-                      <Col md={6}>
-                        <Form.Group 
-                          style={{ marginBottom: '24px' }}
-                        >
-                          <Form.Label 
-                            style={{
-                              fontSize: '0.9rem',
-                              fontWeight: 500,
-                              color: 'rgba(0,0,0,0.7)',
-                              marginBottom: '8px'
-                            }}
-                          >
-                            Asunto
-                          </Form.Label>
-                          <Form.Select 
-                            name="asunto"
-                            value={formData.asunto}
-                            onChange={handleChange}
-                            required
-                            style={{
-                              padding: '12px 16px',
-                              fontSize: '0.95rem',
-                              border: '1px solid rgba(0,0,0,0.1)',
-                              borderRadius: '8px',
-                              backgroundColor: 'rgba(0,0,0,0.01)',
-                              height: 'auto'
-                            }}
-                          >
-                            <option value="">Selecciona un área legal</option>
-                            {antequeraConfig.practiceAreas.map((area, index) => (
-                              <option key={index} value={area.title}>
-                                {area.title}
-                              </option>
-                            ))}
-                          </Form.Select>
-                        </Form.Group>
-                      </Col>
-                    </Row>
-                    
-                    <Form.Group 
-                      style={{ marginBottom: '30px' }}
-                    >
-                      <Form.Label 
-                        style={{
-                          fontSize: '0.9rem',
-                          fontWeight: 500,
-                          color: 'rgba(0,0,0,0.7)',
-                          marginBottom: '8px'
-                        }}
-                      >
-                        Mensaje
-                      </Form.Label>
-                      <Form.Control
-                        as="textarea"
-                        rows={5}
-                        name="mensaje"
-                        value={formData.mensaje}
-                        onChange={handleChange}
-                        required
-                        placeholder="Describe brevemente tu consulta legal"
-                        style={{
-                          padding: '16px',
-                          fontSize: '0.95rem',
-                          border: '1px solid rgba(0,0,0,0.1)',
-                          borderRadius: '8px',
-                          backgroundColor: 'rgba(0,0,0,0.01)'
-                        }}
-                      />
-                    </Form.Group>
-                    
-                    <div style={{ textAlign: 'center' }}>
-                      <motion.button 
-                        type="submit"
-                        style={{
-                          background: '#C41E3A',
-                          color: '#fff',
-                          border: 'none',
-                          padding: '14px 32px',
-                          borderRadius: '30px',
-                          fontSize: '1rem',
-                          fontWeight: 500,
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          gap: '8px',
-                          cursor: 'pointer',
-                          boxShadow: '0 4px 15px rgba(196, 30, 58, 0.2)'
-                        }}
-                        whileHover={{ 
-                          scale: 1.05,
-                          boxShadow: '0 4px 20px rgba(196, 30, 58, 0.3)'
-                        }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <Send size={16} /> Enviar consulta
-                      </motion.button>
-                    </div>
-                  </Form>
-                )}
-              </motion.div>
-            </Col>
-            
-            <Col lg={5}>
+          <Row className="justify-content-center">
+            <Col lg={8} xl={7}>
               <motion.div 
                 variants={itemVariants}
                 style={{
                   borderRadius: '16px',
-                  padding: '40px',
-                  height: '100%',
+                  padding: '60px 40px',
                   background: '#000',
                   color: '#fff',
                   position: 'relative',
-                  overflow: 'hidden'
+                  overflow: 'hidden',
+                  textAlign: 'center'
                 }}
               >
                 <div 
@@ -444,265 +139,252 @@ export const Contact = () => {
                     position: 'absolute',
                     top: 0,
                     right: 0,
-                    width: '200px',
-                    height: '200px',
-                    borderRadius: '0 0 0 200px',
+                    width: '300px',
+                    height: '300px',
+                    borderRadius: '0 0 0 300px',
                     background: 'radial-gradient(circle at top right, rgba(196, 30, 58, 0.2), rgba(0,0,0,0) 70%)',
                     zIndex: 0
                   }}
                 ></div>
                 
-                <h3 
+                <div
                   style={{
-                    fontSize: '1.6rem',
-                    fontWeight: 600,
-                    marginBottom: '16px',
+                    marginBottom: '30px',
                     position: 'relative',
                     zIndex: 1
                   }}
                 >
-                  Información de Contacto
+                  <Calendar2Check size={50} style={{ color: '#C41E3A' }} />
+                </div>
+                
+                <h3 
+                  style={{
+                    fontSize: '2rem',
+                    fontWeight: 600,
+                    marginBottom: '20px',
+                    position: 'relative',
+                    zIndex: 1
+                  }}
+                >
+                  Consulta Gratuita por WhatsApp
                 </h3>
                 
                 <p 
                   style={{
-                    fontSize: '1rem',
-                    color: 'rgba(255,255,255,0.7)',
-                    marginBottom: '30px',
+                    fontSize: '1.1rem',
+                    color: 'rgba(255,255,255,0.8)',
+                    marginBottom: '40px',
                     lineHeight: 1.6,
+                    maxWidth: '600px',
+                    margin: '0 auto 40px',
                     position: 'relative',
                     zIndex: 1,
                     fontWeight: 300
                   }}
                 >
-                  Estamos ubicados en el centro de Santiago. No dude en contactarnos por cualquiera de estos medios para resolver sus consultas.
+                  Nuestras consultas gratuitas te permiten discutir brevemente tu caso con un abogado especializado y determinar los mejores pasos a seguir para tu situación legal.
                 </p>
                 
-                <div 
-                  style={{
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    marginBottom: '20px',
-                    position: 'relative',
-                    zIndex: 1
-                  }}
-                >
-                  <div 
-                    style={{
-                      width: '36px',
-                      height: '36px',
-                      borderRadius: '50%',
-                      background: 'rgba(196, 30, 58, 0.1)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginRight: '16px',
-                      flexShrink: 0,
-                      color: '#C41E3A'
-                    }}
-                  >
-                    <GeoAlt size={16} />
-                  </div>
-                  <span 
-                    style={{
-                      fontSize: '0.95rem',
-                      color: 'rgba(255,255,255,0.9)',
-                      lineHeight: 1.6
-                    }}
-                  >
-                    {antequeraConfig.contactInfo.address}
-                  </span>
-                </div>
-                
-                <div 
-                  style={{
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    marginBottom: '20px',
-                    position: 'relative',
-                    zIndex: 1
-                  }}
-                >
-                  <div 
-                    style={{
-                      width: '36px',
-                      height: '36px',
-                      borderRadius: '50%',
-                      background: 'rgba(196, 30, 58, 0.1)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginRight: '16px',
-                      flexShrink: 0,
-                      color: '#C41E3A'
-                    }}
-                  >
-                    <Telephone size={16} />
-                  </div>
-                  <a 
-                    href={`tel:${antequeraConfig.contactInfo.phone}`}
-                    style={{
-                      fontSize: '0.95rem',
-                      color: 'rgba(255,255,255,0.9)',
-                      textDecoration: 'none',
-                      transition: 'color 0.2s ease'
-                    }}
-                    onMouseOver={(e) => e.currentTarget.style.color = '#fff'}
-                    onMouseOut={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.9)'}
-                  >
-                    {antequeraConfig.contactInfo.phone}
-                  </a>
-                </div>
-                
-                <div 
-                  style={{
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    marginBottom: '20px',
-                    position: 'relative',
-                    zIndex: 1
-                  }}
-                >
-                  <div 
-                    style={{
-                      width: '36px',
-                      height: '36px',
-                      borderRadius: '50%',
-                      background: 'rgba(196, 30, 58, 0.1)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginRight: '16px',
-                      flexShrink: 0,
-                      color: '#C41E3A'
-                    }}
-                  >
-                    <Envelope size={16} />
-                  </div>
-                  <a 
-                    href={`mailto:${antequeraConfig.contactInfo.email}`}
-                    style={{
-                      fontSize: '0.95rem',
-                      color: 'rgba(255,255,255,0.9)',
-                      textDecoration: 'none',
-                      transition: 'color 0.2s ease'
-                    }}
-                    onMouseOver={(e) => e.currentTarget.style.color = '#fff'}
-                    onMouseOut={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.9)'}
-                  >
-                    {antequeraConfig.contactInfo.email}
-                  </a>
-                </div>
-                
-                <div 
-                  style={{
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    marginBottom: '30px',
-                    position: 'relative',
-                    zIndex: 1
-                  }}
-                >
-                  <div 
-                    style={{
-                      width: '36px',
-                      height: '36px',
-                      borderRadius: '50%',
-                      background: 'rgba(196, 30, 58, 0.1)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginRight: '16px',
-                      flexShrink: 0,
-                      color: '#C41E3A'
-                    }}
-                  >
-                    <Clock size={16} />
-                  </div>
-                  <span 
-                    style={{
-                      fontSize: '0.95rem',
-                      color: 'rgba(255,255,255,0.9)',
-                      lineHeight: 1.6
-                    }}
-                  >
-                    Lunes a Viernes: {antequeraConfig.businessHours.weekdays}<br />
-                    Sábado: {antequeraConfig.businessHours.saturday}<br />
-                    Domingo: {antequeraConfig.businessHours.sunday}
-                  </span>
-                </div>
-                
                 <motion.a 
-                  href="#contact" 
-                  onClick={(e) => {
-                    e.preventDefault();
-                    alert('Esta función estaría disponible en la versión completa del sitio.');
-                  }}
+                  href={`https://wa.me/${antequeraConfig.contactInfo.phone.replace(/\D/g, '')}`}
                   style={{
-                    display: 'flex',
+                    display: 'inline-flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    gap: '8px',
-                    padding: '12px 24px',
-                    background: 'rgba(255,255,255,0.1)',
-                    borderRadius: '30px',
+                    gap: '12px',
+                    padding: '16px 32px',
+                    background: '#C41E3A',
+                    borderRadius: '40px',
                     color: '#fff',
                     textDecoration: 'none',
-                    fontSize: '0.95rem',
+                    fontSize: '1.1rem',
                     fontWeight: 500,
-                    backdropFilter: 'blur(5px)',
-                    border: '1px solid rgba(255,255,255,0.05)',
+                    boxShadow: '0 4px 15px rgba(196, 30, 58, 0.3)',
                     position: 'relative',
                     zIndex: 1
                   }}
                   whileHover={{ 
-                    scale: 1.03,
-                    background: 'rgba(255,255,255,0.15)'
+                    scale: 1.05,
+                    boxShadow: '0 4px 25px rgba(196, 30, 58, 0.4)'
                   }}
                   whileTap={{ scale: 0.97 }}
                 >
-                  <Whatsapp size={18} /> Consulta por WhatsApp
+                  <Whatsapp size={22} /> Contactar por WhatsApp
                 </motion.a>
                 
                 <div 
                   style={{
-                    marginTop: '30px',
-                    padding: '24px',
-                    borderRadius: '12px',
-                    background: 'rgba(196, 30, 58, 0.1)',
+                    marginTop: '60px',
                     position: 'relative',
                     zIndex: 1
                   }}
                 >
-                  <div 
-                    style={{
-                      color: '#C41E3A',
-                      marginBottom: '10px',
-                      fontSize: '1.1rem'
-                    }}
-                  >
-                    <Calendar2Check size={18} />
-                  </div>
                   <h4 
                     style={{
-                      fontSize: '1.1rem',
+                      fontSize: '1.3rem',
                       fontWeight: 600,
-                      marginBottom: '8px'
+                      marginBottom: '30px',
+                      position: 'relative'
                     }}
                   >
-                    ¿Por qué agendar una consulta?
+                    Información de Contacto
                   </h4>
-                  <p 
+                  
+                  <div 
                     style={{
-                      fontSize: '0.9rem',
-                      color: 'rgba(255,255,255,0.8)',
-                      marginBottom: 0,
-                      lineHeight: 1.6,
-                      fontWeight: 300
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '20px',
+                      maxWidth: '400px',
+                      margin: '0 auto'
                     }}
                   >
-                    Nuestras consultas gratuitas de 15 minutos le permiten discutir brevemente su caso con un abogado especializado y determinar los mejores pasos a seguir para su situación legal.
-                  </p>
+                    <div 
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '15px'
+                      }}
+                    >
+                      <div 
+                        style={{
+                          width: '40px',
+                          height: '40px',
+                          borderRadius: '50%',
+                          background: 'rgba(196, 30, 58, 0.1)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          flexShrink: 0,
+                          color: '#C41E3A'
+                        }}
+                      >
+                        <GeoAlt size={18} />
+                      </div>
+                      <span 
+                        style={{
+                          fontSize: '1rem',
+                          color: 'rgba(255,255,255,0.9)',
+                          lineHeight: 1.6,
+                          textAlign: 'left'
+                        }}
+                      >
+                        {antequeraConfig.contactInfo.address}
+                      </span>
+                    </div>
+                    
+                    <div 
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '15px'
+                      }}
+                    >
+                      <div 
+                        style={{
+                          width: '40px',
+                          height: '40px',
+                          borderRadius: '50%',
+                          background: 'rgba(196, 30, 58, 0.1)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          flexShrink: 0,
+                          color: '#C41E3A'
+                        }}
+                      >
+                        <Telephone size={18} />
+                      </div>
+                      <a 
+                        href={`tel:${antequeraConfig.contactInfo.phone}`}
+                        style={{
+                          fontSize: '1rem',
+                          color: 'rgba(255,255,255,0.9)',
+                          textDecoration: 'none',
+                          transition: 'color 0.2s ease',
+                          textAlign: 'left'
+                        }}
+                        onMouseOver={(e) => e.currentTarget.style.color = '#fff'}
+                        onMouseOut={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.9)'}
+                      >
+                        {antequeraConfig.contactInfo.phone}
+                      </a>
+                    </div>
+                    
+                    <div 
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '15px'
+                      }}
+                    >
+                      <div 
+                        style={{
+                          width: '40px',
+                          height: '40px',
+                          borderRadius: '50%',
+                          background: 'rgba(196, 30, 58, 0.1)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          flexShrink: 0,
+                          color: '#C41E3A'
+                        }}
+                      >
+                        <Envelope size={18} />
+                      </div>
+                      <a 
+                        href={`mailto:${antequeraConfig.contactInfo.email}`}
+                        style={{
+                          fontSize: '1rem',
+                          color: 'rgba(255,255,255,0.9)',
+                          textDecoration: 'none',
+                          transition: 'color 0.2s ease',
+                          textAlign: 'left'
+                        }}
+                        onMouseOver={(e) => e.currentTarget.style.color = '#fff'}
+                        onMouseOut={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.9)'}
+                      >
+                        {antequeraConfig.contactInfo.email}
+                      </a>
+                    </div>
+                    
+                    <div 
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '15px'
+                      }}
+                    >
+                      <div 
+                        style={{
+                          width: '40px',
+                          height: '40px',
+                          borderRadius: '50%',
+                          background: 'rgba(196, 30, 58, 0.1)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          flexShrink: 0,
+                          color: '#C41E3A'
+                        }}
+                      >
+                        <Clock size={18} />
+                      </div>
+                      <span 
+                        style={{
+                          fontSize: '1rem',
+                          color: 'rgba(255,255,255,0.9)',
+                          lineHeight: 1.6,
+                          textAlign: 'left'
+                        }}
+                      >
+                        Lunes a Viernes: {antequeraConfig.businessHours.weekdays}<br />
+                        Sábado: {antequeraConfig.businessHours.saturday}<br />
+                        Domingo: {antequeraConfig.businessHours.sunday}
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             </Col>

@@ -2,7 +2,7 @@
 
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { antequeraConfig } from '@/config';
-import { ArrowDownCircle, Award, ShieldCheck } from 'react-bootstrap-icons';
+import { Award, ShieldCheck } from 'react-bootstrap-icons';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
@@ -52,46 +52,91 @@ export const Hero = () => {
       id="hero" 
       className="hero-section"
       style={{
-        background: '#000',
         position: 'relative',
         height: '100vh',
-        minHeight: '100vh',
+        minHeight: isMobile ? '600px' : '100vh',
         width: '100%',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         margin: 0,
         padding: 0,
-        overflow: 'hidden'
+        overflow: 'hidden',
+        background: '#000'
       }}
     >
-      <div 
+      {/* Capa de fondo con animación de degradado */}
+      <motion.div 
+        className="hero-background"
         style={{
           position: 'absolute',
           top: 0,
           left: 0,
           width: '100%',
           height: '100%',
-          background: 'linear-gradient(to right, rgba(0,0,0,0.95), rgba(0,0,0,0.8))',
+          background: 'radial-gradient(circle at 20% 30%, rgba(40,40,40,0.7) 0%, rgba(0,0,0,0.95) 70%)',
           zIndex: 1
         }}
-      ></div>
+        animate={{
+          background: [
+            'radial-gradient(circle at 20% 30%, rgba(40,40,40,0.7) 0%, rgba(0,0,0,0.95) 70%)',
+            'radial-gradient(circle at 80% 30%, rgba(40,40,40,0.7) 0%, rgba(0,0,0,0.95) 70%)',
+            'radial-gradient(circle at 80% 70%, rgba(40,40,40,0.7) 0%, rgba(0,0,0,0.95) 70%)',
+            'radial-gradient(circle at 20% 70%, rgba(40,40,40,0.7) 0%, rgba(0,0,0,0.95) 70%)',
+            'radial-gradient(circle at 20% 30%, rgba(40,40,40,0.7) 0%, rgba(0,0,0,0.95) 70%)'
+          ]
+        }}
+        transition={{
+          duration: 12,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
       
-      <div
+      {/* Overlay con efecto de color */}
+      <motion.div 
         style={{
           position: 'absolute',
-          right: -300,
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          background: 'radial-gradient(circle at 70% 40%, rgba(196, 30, 58, 0.08) 0%, rgba(0,0,0,0) 60%)',
+          zIndex: 2,
+          pointerEvents: 'none'
+        }}
+        animate={{
+          opacity: [0.5, 0.8, 0.5],
+          background: [
+            'radial-gradient(circle at 70% 40%, rgba(196, 30, 58, 0.08) 0%, rgba(0,0,0,0) 60%)',
+            'radial-gradient(circle at 30% 60%, rgba(196, 30, 58, 0.08) 0%, rgba(0,0,0,0) 60%)',
+            'radial-gradient(circle at 70% 40%, rgba(196, 30, 58, 0.08) 0%, rgba(0,0,0,0) 60%)'
+          ]
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+      
+      {/* Partículas decorativas */}
+      <div 
+        style={{
+          position: 'absolute',
+          right: -150,
           top: '50%',
           transform: 'translateY(-50%)',
           width: '800px',
           height: '800px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(196, 30, 58, 0.1) 0%, rgba(0,0,0,0) 70%)',
-          zIndex: 2
+          background: 'radial-gradient(circle, rgba(196, 30, 58, 0.15) 0%, rgba(0,0,0,0) 70%)',
+          zIndex: 3,
+          pointerEvents: 'none'
         }}
       ></div>
       
-      <Container className="h-100 d-flex flex-column justify-content-center" style={{ position: 'relative', zIndex: 5 }}>
+      <Container className="h-100 d-flex flex-column justify-content-center" style={{ position: 'relative', zIndex: 10 }}>
         <Row className="justify-content-center align-items-center h-100 m-0">
           <Col lg={10} xl={8} className="text-center">
             <motion.div
@@ -119,7 +164,7 @@ export const Hero = () => {
               <motion.h1 
                 variants={itemVariants} 
                 style={{
-                  fontSize: isMobile ? '3rem' : '4.5rem',
+                  fontSize: isMobile ? '2.5rem' : '4.5rem',
                   fontWeight: 700,
                   letterSpacing: '-1px',
                   marginBottom: '1.5rem',
@@ -133,13 +178,14 @@ export const Hero = () => {
               <motion.p 
                 variants={itemVariants} 
                 style={{
-                  fontSize: '1.5rem',
+                  fontSize: isMobile ? '1.2rem' : '1.5rem',
                   fontWeight: 300,
                   color: 'rgba(255,255,255,0.8)',
                   maxWidth: '800px',
                   margin: '0 auto 2rem',
                   lineHeight: 1.4,
-                  fontFamily: '"SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif'
+                  fontFamily: '"SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif',
+                  padding: isMobile ? '0 15px' : 0
                 }}
               >
                 {antequeraConfig.slogan}
@@ -161,9 +207,10 @@ export const Hero = () => {
                 style={{
                   display: 'flex',
                   justifyContent: 'center',
-                  gap: '2rem',
+                  gap: isMobile ? '1rem' : '2rem',
                   marginBottom: '3rem',
-                  flexWrap: 'wrap'
+                  flexWrap: 'wrap',
+                  padding: isMobile ? '0 10px' : 0
                 }}
               >
                 <motion.div 
@@ -171,8 +218,9 @@ export const Hero = () => {
                     display: 'flex',
                     alignItems: 'center',
                     color: 'rgba(255,255,255,0.8)',
-                    fontSize: '1rem',
-                    fontWeight: 300
+                    fontSize: isMobile ? '0.9rem' : '1rem',
+                    fontWeight: 300,
+                    margin: isMobile ? '5px 0' : 0
                   }}
                   whileHover={{ color: '#fff', scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
@@ -184,8 +232,9 @@ export const Hero = () => {
                     display: 'flex',
                     alignItems: 'center',
                     color: 'rgba(255,255,255,0.8)',
-                    fontSize: '1rem',
-                    fontWeight: 300
+                    fontSize: isMobile ? '0.9rem' : '1rem',
+                    fontWeight: 300,
+                    margin: isMobile ? '5px 0' : 0
                   }}
                   whileHover={{ color: '#fff', scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
@@ -197,8 +246,9 @@ export const Hero = () => {
                     display: 'flex',
                     alignItems: 'center',
                     color: 'rgba(255,255,255,0.8)',
-                    fontSize: '1rem',
-                    fontWeight: 300
+                    fontSize: isMobile ? '0.9rem' : '1rem',
+                    fontWeight: 300,
+                    margin: isMobile ? '5px 0' : 0
                   }}
                   whileHover={{ color: '#fff', scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
@@ -212,7 +262,7 @@ export const Hero = () => {
                 style={{
                   display: 'flex',
                   justifyContent: 'center',
-                  gap: '1.5rem',
+                  gap: isMobile ? '1rem' : '1.5rem',
                   flexWrap: 'wrap'
                 }}
               >
@@ -226,8 +276,8 @@ export const Hero = () => {
                       background: '#C41E3A',
                       color: '#fff',
                       border: 'none',
-                      padding: '12px 24px',
-                      fontSize: '1rem',
+                      padding: isMobile ? '10px 20px' : '12px 24px',
+                      fontSize: isMobile ? '0.9rem' : '1rem',
                       fontWeight: 500,
                       borderRadius: '30px',
                       boxShadow: '0 4px 15px rgba(196, 30, 58, 0.3)',
@@ -247,8 +297,8 @@ export const Hero = () => {
                       background: 'transparent',
                       color: '#fff',
                       border: '1px solid rgba(255,255,255,0.3)',
-                      padding: '12px 24px',
-                      fontSize: '1rem',
+                      padding: isMobile ? '10px 20px' : '12px 24px',
+                      fontSize: isMobile ? '0.9rem' : '1rem',
                       fontWeight: 500,
                       borderRadius: '30px',
                       transition: 'all 0.3s ease'
@@ -262,28 +312,6 @@ export const Hero = () => {
           </Col>
         </Row>
       </Container>
-      <motion.div 
-        style={{
-          position: 'absolute',
-          bottom: '30px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          color: 'rgba(255,255,255,0.6)',
-          cursor: 'pointer',
-          zIndex: 10
-        }}
-        onClick={() => document.getElementById('practice-areas')?.scrollIntoView({ behavior: 'smooth' })}
-        animate={{ 
-          y: [0, 10, 0],
-          opacity: [0.6, 1, 0.6]
-        }}
-        transition={{ 
-          repeat: Infinity, 
-          duration: 2
-        }}
-      >
-        <ArrowDownCircle size={35} />
-      </motion.div>
     </section>
   );
 }; 

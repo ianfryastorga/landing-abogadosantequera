@@ -9,6 +9,7 @@ import { motion } from 'framer-motion';
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,6 +62,12 @@ export const Header = () => {
       opacity: 1, 
       y: 0,
       transition: { duration: 0.5, ease: "easeOut" }
+    }
+  };
+  
+  const handleNavClick = () => {
+    if (isMobile) {
+      setIsExpanded(false);
     }
   };
 
@@ -150,11 +157,13 @@ export const Header = () => {
       <Navbar 
         expand="lg" 
         fixed="top"
+        expanded={isExpanded}
+        onToggle={(expanded) => setIsExpanded(expanded)}
         style={{ 
           marginTop: '36px',
-          background: isScrolled ? 'rgba(255, 255, 255, 0.95)' : 'transparent',
-          backdropFilter: isScrolled ? 'blur(10px)' : 'none',
-          boxShadow: isScrolled ? '0 1px 15px rgba(0,0,0,0.08)' : 'none',
+          background: isScrolled || isExpanded ? 'rgba(255, 255, 255, 0.95)' : 'transparent',
+          backdropFilter: isScrolled || isExpanded ? 'blur(10px)' : 'none',
+          boxShadow: isScrolled || isExpanded ? '0 1px 15px rgba(0,0,0,0.08)' : 'none',
           transition: 'all 0.3s ease',
           padding: '15px 0',
           fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif',
@@ -169,7 +178,7 @@ export const Header = () => {
             <Navbar.Brand 
               href="#hero" 
               style={{
-                color: isScrolled ? '#000' : '#fff',
+                color: isScrolled || isExpanded ? '#000' : '#fff',
                 fontSize: '1.5rem',
                 fontWeight: 500,
                 letterSpacing: '-0.5px',
@@ -186,7 +195,7 @@ export const Header = () => {
             style={{ 
               border: 'none',
               padding: '0.4rem',
-              color: isScrolled ? '#000' : '#fff' 
+              color: isScrolled || isExpanded ? '#000' : '#fff' 
             }}
           />
           
@@ -202,19 +211,20 @@ export const Header = () => {
                   <motion.div key={index} variants={navItemVariants}>
                     <Nav.Link 
                       href={link.url}
+                      onClick={handleNavClick}
                       style={{
-                        color: isScrolled ? 'rgba(0,0,0,0.8)' : 'rgba(255,255,255,0.8)',
+                        color: isScrolled || isExpanded ? 'rgba(0,0,0,0.8)' : 'rgba(255,255,255,0.8)',
                         fontWeight: 400,
                         fontSize: '0.95rem',
-                        padding: '0 1.2rem',
+                        padding: '0.5rem 1.2rem',
                         transition: 'color 0.2s ease',
                         letterSpacing: '0.2px'
                       }}
                       onMouseOver={(e) => {
-                        e.currentTarget.style.color = isScrolled ? '#000' : '#fff';
+                        e.currentTarget.style.color = isScrolled || isExpanded ? '#000' : '#fff';
                       }}
                       onMouseOut={(e) => {
-                        e.currentTarget.style.color = isScrolled ? 'rgba(0,0,0,0.8)' : 'rgba(255,255,255,0.8)';
+                        e.currentTarget.style.color = isScrolled || isExpanded ? 'rgba(0,0,0,0.8)' : 'rgba(255,255,255,0.8)';
                       }}
                     >
                       {link.name}
@@ -226,6 +236,7 @@ export const Header = () => {
               <motion.div variants={navItemVariants}>
                 <motion.a 
                   href="#contact"
+                  onClick={handleNavClick}
                   style={{
                     display: 'inline-block',
                     background: '#C41E3A',
@@ -236,7 +247,8 @@ export const Header = () => {
                     fontSize: '0.9rem',
                     fontWeight: 500,
                     boxShadow: '0 4px 15px rgba(196, 30, 58, 0.2)',
-                    transition: 'all 0.3s ease'
+                    transition: 'all 0.3s ease',
+                    marginTop: isMobile ? '10px' : 0
                   }}
                   whileHover={{ 
                     scale: 1.05,

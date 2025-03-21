@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
 
 export function CommonFooter() {
   const currentYear = new Date().getFullYear();
@@ -18,39 +17,12 @@ export function CommonFooter() {
     >
       <div 
         style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: '15px'
+          fontSize: '0.8rem',
+          color: 'rgba(255,255,255,0.6)',
+          fontWeight: 300
         }}
       >
-        <motion.div 
-          style={{
-            width: '25px',
-            height: '25px',
-            borderRadius: '50%',
-            backgroundColor: '#C41E3A',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: '#fff',
-            fontSize: '14px',
-            fontWeight: '600'
-          }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          A
-        </motion.div>
-        <div 
-          style={{
-            fontSize: '0.8rem',
-            color: 'rgba(255,255,255,0.6)',
-            fontWeight: 300
-          }}
-        >
-          © {currentYear} Antequera Abogados. Todos los derechos reservados.
-        </div>
+        © {currentYear} Antequera Abogados. Todos los derechos reservados.
       </div>
     </div>
   );
