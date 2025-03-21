@@ -2,11 +2,11 @@
 
 import { OneTimeTokenProvider } from '@/app/components/OneTimeTokenContext';
 import { SnackbarProvider } from '@/app/global/SnackbarContext';
-import { Header } from './components/Header';
-import { Hero } from './components/Hero';
-import { PracticeAreas } from './components/PracticeAreas';
-import { Contact } from './components/Contact';
-import { Footer } from './components/Footer';
+import { Header } from '@/components/Header';
+import { Hero } from '@/components/Hero';
+import { PracticeAreas } from '@/components/PracticeAreas';
+import { Contact } from '@/components/Contact';
+import { Footer } from '@/components/Footer';
 import { CommonFooter } from '@/components/shared/CommonFooter';
 import '@/app/styles/institution/subdomains/antequera-abogados.scss';
 
