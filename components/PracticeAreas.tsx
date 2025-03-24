@@ -10,9 +10,11 @@ import {
   House,
   ShieldLock,
   People,
-  X
+  X,
+  ChevronRight,
+  ArrowRight
 } from 'react-bootstrap-icons';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 import { useState } from 'react';
 
@@ -29,6 +31,7 @@ export const PracticeAreas = () => {
     title: string;
     description: string;
     detailedDescription: string;
+    icon: string;
   }>(null);
   const [showModal, setShowModal] = useState(false);
   
@@ -191,27 +194,42 @@ Each case is treated with absolute confidentiality and respect, offering persona
   };
   
   // Mapeo de iconos según el identificador en la configuración
-  const getIcon = (iconName: string) => {
-    const iconSize = 24;
-    
+  const getIcon = (iconName: string, size = 24) => {
     switch (iconName) {
       case 'scale':
-        return <CreditCard2Front size={iconSize} />;
+        return <CreditCard2Front size={size} />;
       case 'briefcase':
-        return <Briefcase size={iconSize} />;
+        return <Briefcase size={size} />;
       case 'building':
-        return <Building size={iconSize} />;
+        return <Building size={size} />;
       case 'calculator':
-        return <Calculator size={iconSize} />;
+        return <Calculator size={size} />;
       case 'house':
-        return <House size={iconSize} />;
+        return <House size={size} />;
       case 'shield':
-        return <ShieldLock size={iconSize} />;
+        return <ShieldLock size={size} />;
       case 'people':
-        return <People size={iconSize} />;
+        return <People size={size} />;
       default:
-        return <CreditCard2Front size={iconSize} />;
+        return <CreditCard2Front size={size} />;
     }
+  };
+  
+  // Función para dividir el texto detallado en párrafos
+  const formatDetailedDescription = (text: string) => {
+    return text.split('\n\n').filter(paragraph => paragraph.trim().length > 0);
+  };
+  
+  // Obtener el color de fondo para el icono según el área
+  const getIconBackground = (iconName: string) => {
+    // Color rojo para todos
+    return 'linear-gradient(135deg, rgba(196, 30, 58, 0.08) 0%, rgba(196, 30, 58, 0.15) 100%)';
+  };
+  
+  // Obtener el color del icono según el área
+  const getIconColor = (iconName: string) => {
+    // Color rojo para todos
+    return '#C41E3A';
   };
   
   return (
@@ -319,7 +337,7 @@ Each case is treated with absolute confidentiality and respect, offering persona
                       width: '60px',
                       height: '60px',
                       borderRadius: '12px',
-                      background: 'rgba(196, 30, 58, 0.08)',
+                      background: getIconBackground(area.icon),
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -330,7 +348,7 @@ Each case is treated with absolute confidentiality and respect, offering persona
                       style={{
                         width: '30px',
                         height: '30px',
-                        color: '#C41E3A',
+                        color: getIconColor(area.icon),
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -368,19 +386,20 @@ Each case is treated with absolute confidentiality and respect, offering persona
                   <div 
                     style={{
                       fontSize: '0.9rem',
-                      color: '#C41E3A',
+                      color: getIconColor(area.icon),
                       fontWeight: 500,
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       padding: '8px 16px',
                       borderRadius: '8px',
-                      background: 'rgba(196, 30, 58, 0.08)',
+                      background: `rgba(${getIconColor(area.icon).replace(/[^\d,]/g, '')}, 0.08)`,
                       width: 'fit-content',
-                      margin: '0 auto'
+                      margin: '0 auto',
+                      gap: '6px'
                     }}
                   >
-                    {t('practice.readMore')}
+                    {t('practice.readMore')} <ChevronRight size={14} />
                   </div>
                 </motion.div>
               </Col>
@@ -389,99 +408,250 @@ Each case is treated with absolute confidentiality and respect, offering persona
         </Container>
       </section>
       
-      <Modal 
-        show={showModal} 
-        onHide={handleClose} 
-        centered
-        dialogClassName="practice-area-modal"
-        aria-labelledby="practice-area-modal"
-        style={{ 
-          fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif'
-        }}
-      >
-        <Modal.Header 
-          style={{ 
-            border: 'none', 
-            paddingBottom: 0, 
-            paddingTop: '20px',
-            paddingLeft: '24px',
-            paddingRight: '24px'
-          }}
-        >
-          <Modal.Title 
-            id="practice-area-modal" 
+      <AnimatePresence>
+        {showModal && (
+          <Modal 
+            show={showModal} 
+            onHide={handleClose} 
+            centered
+            dialogClassName="practice-area-modal"
+            aria-labelledby="practice-area-modal"
             style={{ 
-              fontSize: '1.8rem', 
-              fontWeight: 600, 
-              color: '#000',
-              width: '100%',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center'
+              fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif'
             }}
+            backdropClassName="practice-area-modal-backdrop"
           >
-            <div>{selectedArea && getTranslatedTitle(selectedArea.title)}</div>
-            <Button 
-              variant="link" 
-              onClick={handleClose} 
-              style={{ 
-                color: '#000',
-                fontSize: '1.2rem',
-                padding: '8px',
-                border: 'none',
-                background: 'transparent',
-                boxShadow: 'none',
-                marginRight: '-8px',
-                marginTop: '-8px'
-              }}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
             >
-              <X size={20} />
-            </Button>
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body 
-          style={{ 
-            padding: '12px 24px 24px',
-            maxHeight: '60vh',
-            overflowY: 'auto'
-          }}
-        >
-          <div 
-            style={{
-              width: '30px',
-              height: '2px',
-              background: '#C41E3A',
-              marginBottom: '16px',
-              borderRadius: '2px'
-            }}
-          ></div>
-          
-          <div 
-            style={{
-              fontSize: '1rem',
-              color: 'rgba(0,0,0,0.8)',
-              lineHeight: 1.7,
-              fontWeight: 300,
-              whiteSpace: 'pre-line'
-            }}
-          >
-            {selectedArea && getDetailedDescription(selectedArea)}
-          </div>
-        </Modal.Body>
-      </Modal>
+              {selectedArea && (
+                <>
+                  <div className="modal-header-image" style={{ background: getIconBackground(selectedArea.icon) }}>
+                    <div className="modal-icon-container">
+                      <div className="modal-area-icon" style={{ color: getIconColor(selectedArea.icon) }}>
+                        {getIcon(selectedArea.icon, 32)}
+                      </div>
+                    </div>
+                    <Button 
+                      variant="link" 
+                      onClick={handleClose} 
+                      className="close-button"
+                    >
+                      <X size={20} />
+                    </Button>
+                  </div>
+                  
+                  <Modal.Body 
+                    style={{ 
+                      padding: '0 0 30px 0',
+                      overflow: 'hidden'
+                    }}
+                  >
+                    <div className="modal-content-container">
+                      <h2 className="modal-title">
+                        {getTranslatedTitle(selectedArea.title)}
+                      </h2>
+                      
+                      <div className="modal-description-container">
+                        {formatDetailedDescription(getDetailedDescription(selectedArea)).map((paragraph, idx) => (
+                          <motion.p 
+                            key={idx} 
+                            className="modal-paragraph"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.1 + (idx * 0.1), duration: 0.5 }}
+                          >
+                            {paragraph}
+                          </motion.p>
+                        ))}
+                      </div>
+                      
+                      <motion.div 
+                        className="modal-cta-container"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.5, duration: 0.5 }}
+                      >
+                        <a 
+                          href="#contact" 
+                          className="modal-cta-button"
+                          onClick={handleClose}
+                          style={{ background: getIconColor(selectedArea.icon) }}
+                        >
+                          {t('contact.title')} <ArrowRight size={16} />
+                        </a>
+                      </motion.div>
+                    </div>
+                  </Modal.Body>
+                </>
+              )}
+            </motion.div>
+          </Modal>
+        )}
+      </AnimatePresence>
       
       <style jsx global>{`
+        /* Modal styling */
         .practice-area-modal .modal-content {
           border-radius: 16px;
           border: none;
           box-shadow: 0 10px 50px rgba(0,0,0,0.12);
+          overflow: hidden;
+          max-height: 85vh;
         }
+        
         .practice-area-modal .modal-dialog {
-          max-width: 550px;
+          max-width: 600px;
+          margin-top: 50px;
+          margin-bottom: 50px;
         }
+        
+        .practice-area-modal-backdrop {
+          background-color: rgba(0, 0, 0, 0.7);
+          backdrop-filter: blur(5px);
+        }
+        
+        .modal-header-image {
+          position: relative;
+          height: 120px;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        
+        .modal-icon-container {
+          width: 80px;
+          height: 80px;
+          border-radius: 40px;
+          background: white;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+          border: 5px solid white;
+          position: relative;
+          z-index: 10;
+        }
+        
+        .modal-area-icon {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        
+        .close-button {
+          position: absolute;
+          top: 15px;
+          right: 15px;
+          color: rgba(0, 0, 0, 0.5);
+          background: white;
+          border-radius: 50%;
+          width: 36px;
+          height: 36px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          transition: all 0.2s ease;
+          border: none;
+          z-index: 10;
+        }
+        
+        .close-button:hover {
+          background: #f8f8f8;
+          transform: rotate(90deg);
+          color: #000;
+        }
+        
+        .modal-content-container {
+          padding: 0 30px;
+        }
+        
+        .modal-title {
+          font-size: 1.8rem;
+          font-weight: 600;
+          color: #000;
+          margin: 20px 0;
+          text-align: center;
+        }
+        
+        .modal-description-container {
+          max-height: 50vh;
+          overflow-y: auto;
+          padding-right: 15px;
+          margin-bottom: 30px;
+          scrollbar-width: thin;
+        }
+        
+        .modal-description-container::-webkit-scrollbar {
+          width: 6px;
+        }
+        
+        .modal-description-container::-webkit-scrollbar-track {
+          background: #f1f1f1;
+          border-radius: 10px;
+        }
+        
+        .modal-description-container::-webkit-scrollbar-thumb {
+          background: #ccc;
+          border-radius: 10px;
+        }
+        
+        .modal-description-container::-webkit-scrollbar-thumb:hover {
+          background: #bbb;
+        }
+        
+        .modal-paragraph {
+          font-size: 1rem;
+          color: rgba(0, 0, 0, 0.7);
+          line-height: 1.7;
+          margin-bottom: 15px;
+          font-weight: 300;
+        }
+        
+        .modal-cta-container {
+          display: flex;
+          justify-content: center;
+          margin-top: 10px;
+        }
+        
+        .modal-cta-button {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          background: #C41E3A;
+          color: white;
+          text-decoration: none;
+          padding: 12px 24px;
+          border-radius: 30px;
+          font-weight: 500;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .modal-cta-button:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+          color: white;
+        }
+        
         @media (max-width: 768px) {
           .practice-area-modal .modal-dialog {
-            margin: 1rem;
+            margin: 10px;
+            max-width: calc(100% - 20px);
+          }
+          
+          .modal-content-container {
+            padding: 0 20px;
+          }
+          
+          .modal-title {
+            font-size: 1.5rem;
           }
         }
       `}</style>
