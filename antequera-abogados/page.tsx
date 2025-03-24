@@ -7,7 +7,6 @@ import { Hero } from '@/components/Hero';
 import { PracticeAreas } from '@/components/PracticeAreas';
 import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
-import { CommonFooter } from '@/components/shared/CommonFooter';
 import '@/app/styles/institution/subdomains/antequera-abogados.scss';
 
 /**
@@ -28,7 +27,6 @@ export default function AntequeraAbogadosPage() {
           <PracticeAreas />
           <Contact />
           <Footer />
-          <CommonFooter />
         </div>
       </SnackbarProvider>
     </OneTimeTokenProvider>
