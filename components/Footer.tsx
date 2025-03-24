@@ -4,9 +4,11 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { antequeraConfig } from '@/config';
 import { Envelope, Phone, GeoAlt, Clock } from 'react-bootstrap-icons';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/context/LanguageContext';
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { t } = useLanguage();
 
   return (
     <footer 
@@ -72,7 +74,7 @@ export const Footer = () => {
                   maxWidth: '400px'
                 }}
               >
-                Somos un bufete de abogados comprometido con brindar servicios legales de la más alta calidad, enfocados en resolver las necesidades específicas de cada cliente con excelencia y precisión.
+                {t('footer.about')}
               </p>
             </motion.div>
           </Col>
@@ -93,7 +95,7 @@ export const Footer = () => {
                   color: 'rgba(255,255,255,0.9)'
                 }}
               >
-                Información de contacto
+                {t('footer.contact')}
               </h4>
               
               <ul 
@@ -134,7 +136,7 @@ export const Footer = () => {
                         marginBottom: '3px'
                       }}
                     >
-                      Dirección
+                      {t('footer.address')}
                     </span>
                     <span 
                       style={{
@@ -179,7 +181,7 @@ export const Footer = () => {
                         marginBottom: '3px'
                       }}
                     >
-                      Teléfono
+                      {t('footer.phone')}
                     </span>
                     <a 
                       href={`tel:${antequeraConfig.contactInfo.phone}`} 
@@ -229,7 +231,7 @@ export const Footer = () => {
                         marginBottom: '3px'
                       }}
                     >
-                      Email
+                      {t('footer.email')}
                     </span>
                     <a 
                       href={`mailto:${antequeraConfig.contactInfo.email}`} 
@@ -278,7 +280,7 @@ export const Footer = () => {
                         marginBottom: '3px'
                       }}
                     >
-                      Horario
+                      {t('footer.schedule')}
                     </span>
                     <span 
                       style={{
@@ -287,7 +289,7 @@ export const Footer = () => {
                         fontWeight: 300
                       }}
                     >
-                      Lunes a Viernes: {antequeraConfig.businessHours.weekdays}
+                      {t('contact.schedule')}: {antequeraConfig.businessHours.weekdays}
                     </span>
                   </div>
                 </li>
@@ -307,7 +309,7 @@ export const Footer = () => {
           }}
         >
           <p style={{ margin: 0 }}>
-            © {currentYear} {antequeraConfig.name}. Todos los derechos reservados.
+            © {currentYear} {antequeraConfig.name}. {t('footer.copyright')}
           </p>
         </div>
       </Container>

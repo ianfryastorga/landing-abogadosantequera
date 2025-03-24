@@ -4,8 +4,11 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { antequeraConfig } from '@/config';
 import { GeoAlt, Telephone, Envelope, Clock, Whatsapp, Calendar2Check } from 'react-bootstrap-icons';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/context/LanguageContext';
 
 export const Contact = () => {
+  const { t } = useLanguage();
+
   // Variantes de animación
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -75,7 +78,7 @@ export const Contact = () => {
               textTransform: 'uppercase'
             }}
           >
-            Contacto
+            {t('contact.title')}
           </div>
           
           <h2 
@@ -87,7 +90,7 @@ export const Contact = () => {
               letterSpacing: '-0.5px'
             }}
           >
-            Agenda una Consulta
+            {t('contact.heading')}
           </h2>
           
           <div 
@@ -110,7 +113,7 @@ export const Contact = () => {
               fontWeight: 300
             }}
           >
-            Contáctanos por WhatsApp y uno de nuestros abogados especializados te atenderá para evaluar tu caso sin compromiso
+            {t('contact.description')}
           </p>
         </motion.div>
         
@@ -166,7 +169,7 @@ export const Contact = () => {
                     zIndex: 1
                   }}
                 >
-                  Consulta por WhatsApp
+                  {t('contact.card.title')}
                 </h3>
                 
                 <p 
@@ -182,7 +185,7 @@ export const Contact = () => {
                     fontWeight: 300
                   }}
                 >
-                  Nuestras consultas te permiten discutir brevemente tu caso con un abogado especializado y determinar los mejores pasos a seguir para tu situación legal.
+                  {t('contact.card.description')}
                 </p>
                 
                 <motion.a 
@@ -209,7 +212,7 @@ export const Contact = () => {
                   }}
                   whileTap={{ scale: 0.97 }}
                 >
-                  <Whatsapp size={22} /> Contactar por WhatsApp
+                  <Whatsapp size={22} /> {t('contact.card.button')}
                 </motion.a>
                 
                 <div 
@@ -227,7 +230,7 @@ export const Contact = () => {
                       position: 'relative'
                     }}
                   >
-                    Información de Contacto
+                    {t('contact.info.title')}
                   </h4>
                   
                   <div 
@@ -379,9 +382,9 @@ export const Contact = () => {
                           textAlign: 'left'
                         }}
                       >
-                        Lunes a Viernes: {antequeraConfig.businessHours.weekdays}<br />
-                        Sábado: {antequeraConfig.businessHours.saturday}<br />
-                        Domingo: {antequeraConfig.businessHours.sunday}
+                        {t('contact.schedule')}: {antequeraConfig.businessHours.weekdays}<br />
+                        {t('contact.saturday')}: {antequeraConfig.businessHours.saturday}<br />
+                        {t('contact.sunday')}: {antequeraConfig.businessHours.sunday}
                       </span>
                     </div>
                   </div>

@@ -5,9 +5,11 @@ import { antequeraConfig } from '@/config';
 import { Award, ShieldCheck } from 'react-bootstrap-icons';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/context/LanguageContext';
 
 export const Hero = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleResize = () => {
@@ -158,7 +160,7 @@ export const Hero = () => {
                   backdropFilter: 'blur(10px)'
                 }}
               >
-                <Award size={14} style={{ marginRight: '8px', color: '#C41E3A' }} /> Excelencia Jurídica
+                <Award size={14} style={{ marginRight: '8px', color: '#C41E3A' }} /> {t('hero.badge')}
               </motion.div>
               
               <motion.h1 
@@ -188,7 +190,7 @@ export const Hero = () => {
                   padding: isMobile ? '0 15px' : 0
                 }}
               >
-                {antequeraConfig.slogan}
+                {t('hero.slogan')}
               </motion.p>
               
               <motion.div 
@@ -225,7 +227,7 @@ export const Hero = () => {
                   whileHover={{ color: '#fff', scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 >
-                  <ShieldCheck size={16} style={{ marginRight: '10px', color: '#C41E3A' }} /> Asesoría Especializada
+                  <ShieldCheck size={16} style={{ marginRight: '10px', color: '#C41E3A' }} /> {t('hero.feature1')}
                 </motion.div>
                 <motion.div 
                   style={{
@@ -239,7 +241,7 @@ export const Hero = () => {
                   whileHover={{ color: '#fff', scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 >
-                  <ShieldCheck size={16} style={{ marginRight: '10px', color: '#C41E3A' }} /> Soluciones Efectivas
+                  <ShieldCheck size={16} style={{ marginRight: '10px', color: '#C41E3A' }} /> {t('hero.feature2')}
                 </motion.div>
                 <motion.div 
                   style={{
@@ -253,7 +255,7 @@ export const Hero = () => {
                   whileHover={{ color: '#fff', scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 >
-                  <ShieldCheck size={16} style={{ marginRight: '10px', color: '#C41E3A' }} /> Atención Personalizada
+                  <ShieldCheck size={16} style={{ marginRight: '10px', color: '#C41E3A' }} /> {t('hero.feature3')}
                 </motion.div>
               </motion.div>
               
@@ -284,7 +286,7 @@ export const Hero = () => {
                       transition: 'all 0.3s ease'
                     }}
                   >
-                    Consulta
+                    {t('hero.cta.consultation')}
                   </Button>
                 </motion.div>
                 <motion.div
@@ -304,7 +306,7 @@ export const Hero = () => {
                       transition: 'all 0.3s ease'
                     }}
                   >
-                    Nuestros servicios
+                    {t('hero.cta.services')}
                   </Button>
                 </motion.div>
               </motion.div>

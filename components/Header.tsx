@@ -5,11 +5,14 @@ import { Container, Navbar, Nav } from 'react-bootstrap';
 import { Telephone, Envelope, GeoAlt } from 'react-bootstrap-icons';
 import { antequeraConfig } from '@/config';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/context/LanguageContext';
+import { LanguageSwitcher } from './LanguageSwitcher';
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,9 +34,9 @@ export const Header = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Inicio', url: '#hero' },
-    { name: 'Áreas de Práctica', url: '#practice-areas' },
-    { name: 'Contacto', url: '#contact' }
+    { name: t('menu.home'), url: '#hero' },
+    { name: t('menu.practice'), url: '#practice-areas' },
+    { name: t('menu.contact'), url: '#contact' }
   ];
 
   const topBarVariants = {
@@ -140,14 +143,25 @@ export const Header = () => {
             </div>
             <div 
               style={{
-                display: isMobile ? 'none' : 'flex',
+                display: 'flex',
                 alignItems: 'center',
-                color: 'rgba(255,255,255,0.7)',
-                fontSize: '0.8rem'
+                gap: '15px'
               }}
             >
-              <GeoAlt size={12} style={{ marginRight: '6px' }} />
-              <span>{antequeraConfig.contactInfo.address}</span>
+              {!isMobile && (
+                <div 
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    color: 'rgba(255,255,255,0.7)',
+                    fontSize: '0.8rem'
+                  }}
+                >
+                  <GeoAlt size={12} style={{ marginRight: '6px' }} />
+                  <span>{antequeraConfig.contactInfo.address}</span>
+                </div>
+              )}
+              <LanguageSwitcher />
             </div>
           </div>
         </Container>
@@ -256,7 +270,7 @@ export const Header = () => {
                   }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  Consulta
+                  {t('menu.consultation')}
                 </motion.a>
               </motion.div>
             </motion.div>
