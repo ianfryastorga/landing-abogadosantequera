@@ -16,10 +16,18 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 import { useState } from 'react';
 
+interface AreaTranslations {
+  [key: string]: {
+    en: string;
+    es: string;
+  };
+}
+
 export const PracticeAreas = () => {
   const { t, language } = useLanguage();
   const [selectedArea, setSelectedArea] = useState<null | {
     title: string;
+    description: string;
     detailedDescription: string;
   }>(null);
   const [showModal, setShowModal] = useState(false);
@@ -29,6 +37,80 @@ export const PracticeAreas = () => {
   const handleShow = (area: any) => {
     setSelectedArea(area);
     setShowModal(true);
+  };
+  
+  // Traducciones de las áreas de práctica
+  const practiceAreaTranslations: AreaTranslations = {
+    'Derecho Civil': {
+      en: 'Civil Law',
+      es: 'Derecho Civil'
+    },
+    'Derecho Laboral': {
+      en: 'Labor Law',
+      es: 'Derecho Laboral'
+    },
+    'Derecho Corporativo': {
+      en: 'Corporate Law',
+      es: 'Derecho Corporativo'
+    },
+    'Derecho Tributario': {
+      en: 'Tax Law',
+      es: 'Derecho Tributario'
+    },
+    'Derecho Inmobiliario': {
+      en: 'Real Estate Law',
+      es: 'Derecho Inmobiliario'
+    },
+    'Derecho Penal': {
+      en: 'Criminal Law',
+      es: 'Derecho Penal'
+    },
+    'Derecho de Familia': {
+      en: 'Family Law',
+      es: 'Derecho de Familia'
+    }
+  };
+  
+  // Traducciones de las descripciones cortas
+  const descriptionTranslations: AreaTranslations = {
+    'Contratos, obligaciones y responsabilidad civil. Protegemos sus intereses personales con soluciones jurídicas efectivas.': {
+      en: 'Contracts, obligations, and civil liability. We protect your personal interests with effective legal solutions.',
+      es: 'Contratos, obligaciones y responsabilidad civil. Protegemos sus intereses personales con soluciones jurídicas efectivas.'
+    },
+    'Representación experta tanto para empleadores como trabajadores, garantizando cumplimiento normativo y resolución de conflictos.': {
+      en: 'Expert representation for both employers and employees, ensuring regulatory compliance and conflict resolution.',
+      es: 'Representación experta tanto para empleadores como trabajadores, garantizando cumplimiento normativo y resolución de conflictos.'
+    },
+    'Asesoramiento integral para empresas en constitución, contratos comerciales y gobierno corporativo.': {
+      en: 'Comprehensive advice for companies in formation, commercial contracts, and corporate governance.',
+      es: 'Asesoramiento integral para empresas en constitución, contratos comerciales y gobierno corporativo.'
+    },
+    'Optimización fiscal legal, planificación tributaria estratégica y representación ante entidades fiscales.': {
+      en: 'Legal tax optimization, strategic tax planning, and representation before tax authorities.',
+      es: 'Optimización fiscal legal, planificación tributaria estratégica y representación ante entidades fiscales.'
+    },
+    'Transacciones inmobiliarias, arrendamientos, permisos y regularizaciones con total seguridad jurídica.': {
+      en: 'Real estate transactions, leases, permits, and regularizations with full legal security.',
+      es: 'Transacciones inmobiliarias, arrendamientos, permisos y regularizaciones con total seguridad jurídica.'
+    },
+    'Defensa penal especializada, representación y asesoría en procesos penales con estrategias efectivas y personalizadas.': {
+      en: 'Specialized criminal defense, representation, and advice in criminal proceedings with effective and personalized strategies.',
+      es: 'Defensa penal especializada, representación y asesoría en procesos penales con estrategias efectivas y personalizadas.'
+    },
+    'Divorcios, cuidado personal, pensiones alimenticias y otros asuntos familiares con enfoque humano y profesional.': {
+      en: 'Divorces, personal care, alimony, and other family matters with a human and professional approach.',
+      es: 'Divorcios, cuidado personal, pensiones alimenticias y otros asuntos familiares con enfoque humano y profesional.'
+    }
+  };
+  
+  // Función para obtener título traducido
+  const getTranslatedTitle = (originalTitle: string) => {
+    return practiceAreaTranslations[originalTitle]?.[language] || originalTitle;
+  };
+  
+  // Función para obtener descripción corta traducida
+  const getTranslatedDescription = (originalDesc: string) => {
+    return descriptionTranslations[originalDesc]?.[language] || originalDesc;
   };
   
   // Textos traducidos para las descripciones detalladas
@@ -267,7 +349,7 @@ Each case is treated with absolute confidentiality and respect, offering persona
                       color: '#000'
                     }}
                   >
-                    {area.title}
+                    {getTranslatedTitle(area.title)}
                   </h3>
                   
                   <p 
@@ -280,7 +362,7 @@ Each case is treated with absolute confidentiality and respect, offering persona
                       fontWeight: 300
                     }}
                   >
-                    {area.description}
+                    {getTranslatedDescription(area.description)}
                   </p>
                   
                   <div 
@@ -311,12 +393,11 @@ Each case is treated with absolute confidentiality and respect, offering persona
         show={showModal} 
         onHide={handleClose} 
         centered
-        size="md"
+        dialogClassName="practice-area-modal"
         aria-labelledby="practice-area-modal"
         style={{ 
           fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif'
         }}
-        dialogClassName="practice-area-modal"
       >
         <Modal.Header 
           style={{ 
@@ -339,7 +420,7 @@ Each case is treated with absolute confidentiality and respect, offering persona
               alignItems: 'center'
             }}
           >
-            <div>{selectedArea?.title}</div>
+            <div>{selectedArea && getTranslatedTitle(selectedArea.title)}</div>
             <Button 
               variant="link" 
               onClick={handleClose} 
