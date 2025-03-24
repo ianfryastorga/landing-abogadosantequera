@@ -256,7 +256,7 @@ export const Header = () => {
                   }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  Consulta Gratuita
+                  Consulta
                 </motion.a>
               </motion.div>
             </motion.div>

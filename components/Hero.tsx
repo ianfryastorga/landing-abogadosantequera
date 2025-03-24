@@ -284,7 +284,7 @@ export const Hero = () => {
                       transition: 'all 0.3s ease'
                     }}
                   >
-                    Consulta gratuita
+                    Consulta
                   </Button>
                 </motion.div>
                 <motion.div

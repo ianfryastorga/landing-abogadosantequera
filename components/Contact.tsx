@@ -87,7 +87,7 @@ export const Contact = () => {
               letterSpacing: '-0.5px'
             }}
           >
-            Agenda una Consulta Gratuita
+            Agenda una Consulta
           </h2>
           
           <div 
@@ -166,7 +166,7 @@ export const Contact = () => {
                     zIndex: 1
                   }}
                 >
-                  Consulta Gratuita por WhatsApp
+                  Consulta por WhatsApp
                 </h3>
                 
                 <p 
@@ -182,7 +182,7 @@ export const Contact = () => {
                     fontWeight: 300
                   }}
                 >
-                  Nuestras consultas gratuitas te permiten discutir brevemente tu caso con un abogado especializado y determinar los mejores pasos a seguir para tu situación legal.
+                  Nuestras consultas te permiten discutir brevemente tu caso con un abogado especializado y determinar los mejores pasos a seguir para tu situación legal.
                 </p>
                 
                 <motion.a 

@@ -265,7 +265,7 @@ export const PracticeAreas = () => {
             }}
             whileTap={{ scale: 0.95 }}
           >
-            Solicitar consulta gratuita
+            Solicitar consulta
           </motion.a>
         </motion.div>
       </Container>
