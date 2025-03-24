@@ -34,9 +34,9 @@ export const Header = () => {
   }, []);
 
   const navLinks = [
-    { name: t('menu.home'), url: '#hero' },
-    { name: t('menu.practice'), url: '#practice-areas' },
-    { name: t('menu.contact'), url: '#contact' }
+    { name: t('header.home'), url: '#hero' },
+    { name: t('header.services'), url: '#practice-areas' },
+    { name: t('header.contact'), url: '#contact' }
   ];
 
   const topBarVariants = {
@@ -251,21 +251,21 @@ export const Header = () => {
                     background: '#C41E3A',
                     color: '#fff',
                     padding: '10px 20px',
-                    borderRadius: '30px',
+                    borderRadius: '24px',
                     textDecoration: 'none',
                     fontSize: '0.9rem',
                     fontWeight: 500,
-                    boxShadow: '0 4px 15px rgba(196, 30, 58, 0.2)',
-                    transition: 'all 0.3s ease',
-                    marginTop: isMobile ? '10px' : 0
+                    letterSpacing: '0.3px',
+                    boxShadow: '0 4px 10px rgba(196, 30, 58, 0.2)',
+                    transition: 'all 0.3s ease'
                   }}
                   whileHover={{ 
-                    scale: 1.05,
-                    boxShadow: '0 4px 20px rgba(196, 30, 58, 0.3)'
+                    scale: 1.03,
+                    boxShadow: '0 6px 15px rgba(196, 30, 58, 0.25)'
                   }}
-                  whileTap={{ scale: 0.95 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  {t('menu.consultation')}
+                  {t('header.consultation')}
                 </motion.a>
               </motion.div>
             </motion.div>

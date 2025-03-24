@@ -383,8 +383,7 @@ export const Contact = () => {
                         }}
                       >
                         {t('contact.schedule')}: {antequeraConfig.businessHours.weekdays}<br />
-                        {t('contact.saturday')}: {antequeraConfig.businessHours.saturday}<br />
-                        {t('contact.sunday')}: {antequeraConfig.businessHours.sunday}
+                  
                       </span>
                     </div>
                   </div>
