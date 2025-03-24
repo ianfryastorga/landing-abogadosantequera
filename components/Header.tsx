@@ -141,28 +141,19 @@ export const Header = () => {
                 <Envelope size={12} /> {antequeraConfig.contactInfo.email}
               </a>
             </div>
-            <div 
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '15px'
-              }}
-            >
-              {!isMobile && (
-                <div 
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    color: 'rgba(255,255,255,0.7)',
-                    fontSize: '0.8rem'
-                  }}
-                >
-                  <GeoAlt size={12} style={{ marginRight: '6px' }} />
-                  <span>{antequeraConfig.contactInfo.address}</span>
-                </div>
-              )}
-              <LanguageSwitcher />
-            </div>
+            {!isMobile && (
+              <div 
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  color: 'rgba(255,255,255,0.7)',
+                  fontSize: '0.8rem'
+                }}
+              >
+                <GeoAlt size={12} style={{ marginRight: '6px' }} />
+                <span>{antequeraConfig.contactInfo.address}</span>
+              </div>
+            )}
           </div>
         </Container>
       </motion.div>
@@ -246,6 +237,10 @@ export const Header = () => {
                   </motion.div>
                 ))}
               </Nav>
+              
+              <motion.div variants={navItemVariants} className="me-3">
+                <LanguageSwitcher />
+              </motion.div>
               
               <motion.div variants={navItemVariants}>
                 <motion.a 
