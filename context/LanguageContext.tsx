@@ -203,8 +203,8 @@ const translations: Translations = {
   },
   footer: {
     about: {
-      es: 'Sobre Nosotros',
-      en: 'About Us'
+      es: 'Antequera Abogados es un bufete jurídico con más de 30 años de experiencia, dedicado a brindar soluciones legales de alta calidad. Nuestro equipo de profesionales altamente cualificados se caracteriza por su enfoque personalizado y compromiso con la excelencia en cada caso.',
+      en: 'Antequera Abogados is a law firm with over 30 years of experience, dedicated to providing high-quality legal solutions. Our team of highly qualified professionals is characterized by their personalized approach and commitment to excellence in every case.'
     },
     services: {
       es: 'Servicios',
