@@ -399,7 +399,7 @@ The firm has experience in submitting requests to the Comptroller General of the
         </Container>
       </section>
       
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {showModal && (
           <Modal 
             show={showModal} 
@@ -413,10 +413,10 @@ The firm has experience in submitting requests to the Comptroller General of the
             backdropClassName="practice-area-modal-backdrop"
           >
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
             >
               {selectedArea && (
                 <>
@@ -431,37 +431,21 @@ The firm has experience in submitting requests to the Comptroller General of the
                   
                   <div className="modal-header">
                     <div className="modal-icon-wrapper">
-                      <motion.div 
-                        className="modal-icon"
-                        initial={{ scale: 0.8, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        transition={{ delay: 0.1, duration: 0.4 }}
-                        style={{ color: getIconColor(selectedArea.icon) }}
-                      >
-                        {getIcon(selectedArea.icon, 36)}
-                      </motion.div>
+                      {getIcon(selectedArea.icon, 36)}
                     </div>
                     
-                    <motion.h2 
-                      className="modal-title"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.2, duration: 0.4 }}
-                    >
+                    <h2 className="modal-title">
                       {getTranslatedTitle(selectedArea.title)}
-                    </motion.h2>
+                    </h2>
                   </div>
                   
                   <Modal.Body className="modal-body">
                     <div className="modal-content-wrapper">
                       <div className="modal-description-container">
                         {formatDetailedDescription(getDetailedDescription(selectedArea)).map((paragraph, idx) => (
-                          <motion.div 
+                          <div 
                             key={idx}
                             className="modal-paragraph-container"
-                            initial={{ opacity: 0, y: 15 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2 + (idx * 0.1), duration: 0.5 }}
                           >
                             {paragraph.startsWith('**') && paragraph.endsWith('**') ? (
                               <h4 className="modal-subheading">
@@ -472,7 +456,7 @@ The firm has experience in submitting requests to the Comptroller General of the
                                 {paragraph}
                               </p>
                             )}
-                          </motion.div>
+                          </div>
                         ))}
                       </div>
                     </div>
@@ -494,6 +478,7 @@ The firm has experience in submitting requests to the Comptroller General of the
           max-height: 90vh;
           background: #fff;
           position: relative;
+          will-change: transform, opacity;
         }
         
         .practice-area-modal .modal-dialog {
@@ -504,7 +489,7 @@ The firm has experience in submitting requests to the Comptroller General of the
         
         .practice-area-modal-backdrop {
           background-color: rgba(0, 0, 0, 0.75);
-          backdrop-filter: blur(8px);
+          backdrop-filter: blur(5px);
         }
         
         .modal-header {
