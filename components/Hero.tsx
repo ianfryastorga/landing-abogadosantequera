@@ -67,7 +67,32 @@ export const Hero = () => {
         background: '#000'
       }}
     >
-      {/* Capa de fondo con animación de degradado */}
+      {/* Imagen de fondo con efecto de paralaje */}
+      <motion.div 
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundImage: 'url(https://images.adsttc.com/media/images/6375/4384/bd52/ae22/4b92/1646/large_jpg/guia-de-arquitectura-en-santiago-de-chile-41-edificios-complejos-y-parques-de-la-capital-chilena_43.jpg?1668629390)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          zIndex: 0,
+          filter: 'brightness(0.9) contrast(1.1)'
+        }}
+        animate={{
+          scale: [1, 1.05, 1],
+          y: [0, -10, 0]
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
+      {/* Capa de fondo con gradiente oscuro */}
       <motion.div 
         className="hero-background"
         style={{
@@ -76,20 +101,15 @@ export const Hero = () => {
           left: 0,
           width: '100%',
           height: '100%',
-          background: 'radial-gradient(circle at 20% 30%, rgba(40,40,40,0.7) 0%, rgba(0,0,0,0.95) 70%)',
-          zIndex: 1
+          background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.75))',
+          zIndex: 1,
+          backdropFilter: 'blur(2px)'
         }}
         animate={{
-          background: [
-            'radial-gradient(circle at 20% 30%, rgba(40,40,40,0.7) 0%, rgba(0,0,0,0.95) 70%)',
-            'radial-gradient(circle at 80% 30%, rgba(40,40,40,0.7) 0%, rgba(0,0,0,0.95) 70%)',
-            'radial-gradient(circle at 80% 70%, rgba(40,40,40,0.7) 0%, rgba(0,0,0,0.95) 70%)',
-            'radial-gradient(circle at 20% 70%, rgba(40,40,40,0.7) 0%, rgba(0,0,0,0.95) 70%)',
-            'radial-gradient(circle at 20% 30%, rgba(40,40,40,0.7) 0%, rgba(0,0,0,0.95) 70%)'
-          ]
+          opacity: [0.85, 0.75, 0.85]
         }}
         transition={{
-          duration: 12,
+          duration: 8,
           repeat: Infinity,
           ease: "easeInOut"
         }}
@@ -103,16 +123,16 @@ export const Hero = () => {
           left: 0,
           width: '100%',
           height: '100%',
-          background: 'radial-gradient(circle at 70% 40%, rgba(196, 30, 58, 0.08) 0%, rgba(0,0,0,0) 60%)',
+          background: 'radial-gradient(circle at 70% 40%, rgba(196, 30, 58, 0.15) 0%, rgba(0,0,0,0) 60%)',
           zIndex: 2,
           pointerEvents: 'none'
         }}
         animate={{
           opacity: [0.5, 0.8, 0.5],
           background: [
-            'radial-gradient(circle at 70% 40%, rgba(196, 30, 58, 0.08) 0%, rgba(0,0,0,0) 60%)',
-            'radial-gradient(circle at 30% 60%, rgba(196, 30, 58, 0.08) 0%, rgba(0,0,0,0) 60%)',
-            'radial-gradient(circle at 70% 40%, rgba(196, 30, 58, 0.08) 0%, rgba(0,0,0,0) 60%)'
+            'radial-gradient(circle at 70% 40%, rgba(196, 30, 58, 0.15) 0%, rgba(0,0,0,0) 60%)',
+            'radial-gradient(circle at 30% 60%, rgba(196, 30, 58, 0.15) 0%, rgba(0,0,0,0) 60%)',
+            'radial-gradient(circle at 70% 40%, rgba(196, 30, 58, 0.15) 0%, rgba(0,0,0,0) 60%)'
           ]
         }}
         transition={{
@@ -121,6 +141,20 @@ export const Hero = () => {
           ease: "easeInOut"
         }}
       />
+      
+      {/* Efecto de viñeta */}
+      <div 
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          boxShadow: 'inset 0 0 200px rgba(0,0,0,0.9)',
+          zIndex: 3,
+          pointerEvents: 'none'
+        }}
+      ></div>
       
       {/* Partículas decorativas */}
       <div 
@@ -133,7 +167,21 @@ export const Hero = () => {
           height: '800px',
           borderRadius: '50%',
           background: 'radial-gradient(circle, rgba(196, 30, 58, 0.15) 0%, rgba(0,0,0,0) 70%)',
-          zIndex: 3,
+          zIndex: 4,
+          pointerEvents: 'none'
+        }}
+      ></div>
+      
+      {/* Efecto de línea en la parte inferior */}
+      <div 
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          width: '100%',
+          height: '80px',
+          background: 'linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0))',
+          zIndex: 5,
           pointerEvents: 'none'
         }}
       ></div>
