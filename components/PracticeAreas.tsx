@@ -416,63 +416,81 @@ The firm has experience in submitting requests to the Comptroller General of the
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
             >
               {selectedArea && (
                 <>
-                  <div className="modal-header-image" style={{ background: getIconBackground(selectedArea.icon) }}>
-                    <div className="modal-icon-container">
-                      <div className="modal-area-icon" style={{ color: getIconColor(selectedArea.icon) }}>
-                        {getIcon(selectedArea.icon, 32)}
-                      </div>
+                  <Button 
+                    variant="link" 
+                    onClick={handleClose} 
+                    className="close-button"
+                    aria-label="Close"
+                  >
+                    <X size={20} />
+                  </Button>
+                  
+                  <div className="modal-header">
+                    <div className="modal-icon-wrapper">
+                      <motion.div 
+                        className="modal-icon"
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ delay: 0.1, duration: 0.4 }}
+                        style={{ color: getIconColor(selectedArea.icon) }}
+                      >
+                        {getIcon(selectedArea.icon, 36)}
+                      </motion.div>
                     </div>
-                    <Button 
-                      variant="link" 
-                      onClick={handleClose} 
-                      className="close-button"
+                    
+                    <motion.h2 
+                      className="modal-title"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2, duration: 0.4 }}
                     >
-                      <X size={20} />
-                    </Button>
+                      {getTranslatedTitle(selectedArea.title)}
+                    </motion.h2>
                   </div>
                   
-                  <Modal.Body 
-                    style={{ 
-                      padding: '0 0 30px 0',
-                      overflow: 'hidden'
-                    }}
-                  >
-                    <div className="modal-content-container">
-                      <h2 className="modal-title">
-                        {getTranslatedTitle(selectedArea.title)}
-                      </h2>
-                      
+                  <Modal.Body className="modal-body">
+                    <div className="modal-content-wrapper">
                       <div className="modal-description-container">
                         {formatDetailedDescription(getDetailedDescription(selectedArea)).map((paragraph, idx) => (
-                          <motion.p 
-                            key={idx} 
-                            className="modal-paragraph"
-                            initial={{ opacity: 0, y: 20 }}
+                          <motion.div 
+                            key={idx}
+                            className="modal-paragraph-container"
+                            initial={{ opacity: 0, y: 15 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.1 + (idx * 0.1), duration: 0.5 }}
+                            transition={{ delay: 0.2 + (idx * 0.1), duration: 0.5 }}
                           >
-                            {paragraph}
-                          </motion.p>
+                            {paragraph.startsWith('**') && paragraph.endsWith('**') ? (
+                              <h4 className="modal-subheading">
+                                {paragraph.replace(/\*\*/g, '')}
+                              </h4>
+                            ) : (
+                              <p className="modal-paragraph">
+                                {paragraph}
+                              </p>
+                            )}
+                          </motion.div>
                         ))}
                       </div>
                       
                       <motion.div 
-                        className="modal-cta-container"
+                        className="modal-footer"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.5, duration: 0.5 }}
+                        transition={{ delay: 0.5, duration: 0.4 }}
                       >
+                        <div className="modal-divider"></div>
+                        
                         <a 
                           href="#contact" 
                           className="modal-cta-button"
                           onClick={handleClose}
-                          style={{ background: getIconColor(selectedArea.icon) }}
                         >
-                          {t('contact.title')} <ArrowRight size={16} />
+                          <span>{t('contact.title')}</span>
+                          <ArrowRight size={16} />
                         </a>
                       </motion.div>
                     </div>
@@ -487,48 +505,52 @@ The firm has experience in submitting requests to the Comptroller General of the
       <style jsx global>{`
         /* Modal styling */
         .practice-area-modal .modal-content {
-          border-radius: 16px;
+          border-radius: 20px;
           border: none;
-          box-shadow: 0 10px 50px rgba(0,0,0,0.12);
+          box-shadow: 0 20px 80px rgba(0,0,0,0.2);
           overflow: hidden;
-          max-height: 85vh;
+          max-height: 90vh;
+          background: #fff;
+          position: relative;
         }
         
         .practice-area-modal .modal-dialog {
-          max-width: 600px;
-          margin-top: 50px;
-          margin-bottom: 50px;
+          max-width: 650px;
+          margin: 30px auto;
+          width: calc(100% - 40px);
         }
         
         .practice-area-modal-backdrop {
-          background-color: rgba(0, 0, 0, 0.7);
-          backdrop-filter: blur(5px);
+          background-color: rgba(0, 0, 0, 0.75);
+          backdrop-filter: blur(8px);
         }
         
-        .modal-header-image {
+        .modal-header {
+          text-align: center;
+          padding: 40px 24px 10px;
           position: relative;
-          height: 120px;
-          width: 100%;
           display: flex;
-          justify-content: center;
+          flex-direction: column;
           align-items: center;
+          border: none;
+          background: #fff;
         }
         
-        .modal-icon-container {
+        .modal-icon-wrapper {
           width: 80px;
           height: 80px;
-          border-radius: 40px;
-          background: white;
+          border-radius: 18px;
+          background: rgba(196, 30, 58, 0.08);
           display: flex;
           justify-content: center;
           align-items: center;
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-          border: 5px solid white;
+          margin-bottom: 16px;
           position: relative;
           z-index: 10;
+          transition: all 0.3s ease;
         }
         
-        .modal-area-icon {
+        .modal-icon {
           display: flex;
           justify-content: center;
           align-items: center;
@@ -536,113 +558,217 @@ The firm has experience in submitting requests to the Comptroller General of the
         
         .close-button {
           position: absolute;
-          top: 15px;
-          right: 15px;
+          top: 20px;
+          right: 20px;
+          z-index: 100;
           color: rgba(0, 0, 0, 0.5);
-          background: white;
+          background: rgba(255, 255, 255, 0.9);
           border-radius: 50%;
-          width: 36px;
-          height: 36px;
+          width: 40px;
+          height: 40px;
           display: flex;
           align-items: center;
           justify-content: center;
           padding: 0;
-          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-          transition: all 0.2s ease;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          transition: all 0.25s ease;
           border: none;
-          z-index: 10;
         }
         
         .close-button:hover {
-          background: #f8f8f8;
-          transform: rotate(90deg);
-          color: #000;
-        }
-        
-        .modal-content-container {
-          padding: 0 30px;
+          background: #fff;
+          transform: rotate(90deg) scale(1.1);
+          color: #C41E3A;
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
         }
         
         .modal-title {
-          font-size: 1.8rem;
+          font-size: 2.2rem;
           font-weight: 600;
           color: #000;
-          margin: 20px 0;
+          margin: 0 0 20px;
           text-align: center;
+          letter-spacing: -0.5px;
+          line-height: 1.2;
+          max-width: 85%;
+        }
+        
+        .modal-body {
+          padding: 0 0 30px;
+          background: #fff;
+          position: relative;
+        }
+        
+        .modal-content-wrapper {
+          padding: 0 40px;
         }
         
         .modal-description-container {
-          max-height: 50vh;
+          max-height: 55vh;
           overflow-y: auto;
-          padding-right: 15px;
-          margin-bottom: 30px;
+          padding-right: 20px;
           scrollbar-width: thin;
+          margin-bottom: 20px;
         }
         
         .modal-description-container::-webkit-scrollbar {
-          width: 6px;
+          width: 5px;
         }
         
         .modal-description-container::-webkit-scrollbar-track {
-          background: #f1f1f1;
+          background: #f5f5f5;
           border-radius: 10px;
         }
         
         .modal-description-container::-webkit-scrollbar-thumb {
-          background: #ccc;
+          background: #ddd;
           border-radius: 10px;
         }
         
         .modal-description-container::-webkit-scrollbar-thumb:hover {
-          background: #bbb;
+          background: #C41E3A;
+        }
+        
+        .modal-paragraph-container {
+          margin-bottom: 20px;
+        }
+        
+        .modal-subheading {
+          font-size: 1.4rem;
+          font-weight: 600;
+          color: #000;
+          margin: 25px 0 15px;
+          letter-spacing: -0.3px;
         }
         
         .modal-paragraph {
-          font-size: 1rem;
-          color: rgba(0, 0, 0, 0.7);
+          font-size: 1.05rem;
+          color: rgba(0, 0, 0, 0.75);
           line-height: 1.7;
-          margin-bottom: 15px;
-          font-weight: 300;
+          margin-bottom: 0;
+          font-weight: 400;
         }
         
-        .modal-cta-container {
+        .modal-footer {
           display: flex;
-          justify-content: center;
-          margin-top: 10px;
+          flex-direction: column;
+          align-items: center;
+          padding-top: 10px;
+        }
+        
+        .modal-divider {
+          width: 40px;
+          height: 3px;
+          background: rgba(196, 30, 58, 0.2);
+          margin-bottom: 25px;
+          border-radius: 2px;
         }
         
         .modal-cta-button {
           display: inline-flex;
           align-items: center;
-          gap: 8px;
+          gap: 10px;
           background: #C41E3A;
           color: white;
           text-decoration: none;
-          padding: 12px 24px;
+          padding: 14px 32px;
           border-radius: 30px;
           font-weight: 500;
+          font-size: 1.05rem;
           transition: all 0.3s ease;
-          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 4px 15px rgba(196, 30, 58, 0.2);
         }
         
         .modal-cta-button:hover {
           transform: translateY(-2px);
-          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 8px 25px rgba(196, 30, 58, 0.25);
           color: white;
+          background: #d82240;
         }
         
+        .modal-cta-button:active {
+          transform: translateY(0);
+        }
+        
+        /* Responsive adjustments */
         @media (max-width: 768px) {
           .practice-area-modal .modal-dialog {
-            margin: 10px;
-            max-width: calc(100% - 20px);
+            margin: 20px auto;
+            max-width: calc(100% - 30px);
           }
           
-          .modal-content-container {
-            padding: 0 20px;
+          .modal-content-wrapper {
+            padding: 0 24px;
           }
           
           .modal-title {
-            font-size: 1.5rem;
+            font-size: 1.9rem;
+            max-width: 90%;
+          }
+          
+          .modal-header {
+            padding: 30px 20px 5px;
+          }
+          
+          .modal-description-container {
+            max-height: 50vh;
+            padding-right: 15px;
+          }
+          
+          .close-button {
+            top: 15px;
+            right: 15px;
+            width: 36px;
+            height: 36px;
+          }
+          
+          .modal-cta-button {
+            padding: 12px 28px;
+            font-size: 1rem;
+          }
+          
+          .modal-paragraph {
+            font-size: 1rem;
+          }
+          
+          .modal-subheading {
+            font-size: 1.25rem;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .practice-area-modal .modal-dialog {
+            margin: 15px auto;
+            max-width: calc(100% - 20px);
+          }
+          
+          .modal-content-wrapper {
+            padding: 0 20px;
+          }
+          
+          .modal-icon-wrapper {
+            width: 70px;
+            height: 70px;
+          }
+          
+          .modal-title {
+            font-size: 1.7rem;
+            margin-bottom: 15px;
+          }
+          
+          .modal-header {
+            padding: 25px 15px 0;
+          }
+          
+          .modal-description-container {
+            max-height: 45vh;
+          }
+          
+          .close-button {
+            top: 10px;
+            right: 10px;
+            width: 32px;
+            height: 32px;
           }
         }
       `}</style>
