@@ -75,7 +75,7 @@ export const Hero = () => {
           left: 0,
           width: '100%',
           height: '100%',
-          backgroundImage: 'url(/images/santiago-skyline.jpg)',
+          backgroundImage: 'url(/santiago-skyline.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           zIndex: 0,
