@@ -75,7 +75,7 @@ export const Hero = () => {
           left: 0,
           width: '100%',
           height: '100%',
-          backgroundImage: 'url(https://images.adsttc.com/media/images/6375/4384/bd52/ae22/4b92/1646/large_jpg/guia-de-arquitectura-en-santiago-de-chile-41-edificios-complejos-y-parques-de-la-capital-chilena_43.jpg?1668629390)',
+          backgroundImage: 'url(/images/santiago-skyline.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           zIndex: 0,
