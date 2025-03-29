@@ -515,7 +515,7 @@ The firm has experience in submitting requests to the Comptroller General of the
         }
         
         .practice-area-modal .modal-dialog {
-          max-width: 650px;
+          max-width: 850px;
           margin: 30px auto;
           width: calc(100% - 40px);
         }
@@ -527,7 +527,7 @@ The firm has experience in submitting requests to the Comptroller General of the
         
         .modal-header {
           text-align: center;
-          padding: 40px 24px 10px;
+          padding: 50px 40px 20px;
           position: relative;
           display: flex;
           flex-direction: column;
@@ -537,14 +537,14 @@ The firm has experience in submitting requests to the Comptroller General of the
         }
         
         .modal-icon-wrapper {
-          width: 80px;
-          height: 80px;
-          border-radius: 18px;
+          width: 90px;
+          height: 90px;
+          border-radius: 20px;
           background: rgba(196, 30, 58, 0.08);
           display: flex;
           justify-content: center;
           align-items: center;
-          margin-bottom: 16px;
+          margin-bottom: 20px;
           position: relative;
           z-index: 10;
           transition: all 0.3s ease;
@@ -554,18 +554,19 @@ The firm has experience in submitting requests to the Comptroller General of the
           display: flex;
           justify-content: center;
           align-items: center;
+          transform: scale(1.2);
         }
         
         .close-button {
           position: absolute;
-          top: 20px;
-          right: 20px;
+          top: 25px;
+          right: 25px;
           z-index: 100;
           color: rgba(0, 0, 0, 0.5);
           background: rgba(255, 255, 255, 0.9);
           border-radius: 50%;
-          width: 40px;
-          height: 40px;
+          width: 44px;
+          height: 44px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -583,10 +584,10 @@ The firm has experience in submitting requests to the Comptroller General of the
         }
         
         .modal-title {
-          font-size: 2.2rem;
+          font-size: 2.4rem;
           font-weight: 600;
           color: #000;
-          margin: 0 0 20px;
+          margin: 0 0 25px;
           text-align: center;
           letter-spacing: -0.5px;
           line-height: 1.2;
@@ -594,25 +595,26 @@ The firm has experience in submitting requests to the Comptroller General of the
         }
         
         .modal-body {
-          padding: 0 0 30px;
+          padding: 0 0 40px;
           background: #fff;
           position: relative;
         }
         
         .modal-content-wrapper {
-          padding: 0 40px;
+          padding: 0 60px;
         }
         
         .modal-description-container {
           max-height: 55vh;
           overflow-y: auto;
-          padding-right: 20px;
+          padding-right: 30px;
           scrollbar-width: thin;
-          margin-bottom: 20px;
+          margin-bottom: 30px;
+          font-size: 1.1rem;
         }
         
         .modal-description-container::-webkit-scrollbar {
-          width: 5px;
+          width: 6px;
         }
         
         .modal-description-container::-webkit-scrollbar-track {
@@ -630,19 +632,19 @@ The firm has experience in submitting requests to the Comptroller General of the
         }
         
         .modal-paragraph-container {
-          margin-bottom: 20px;
+          margin-bottom: 24px;
         }
         
         .modal-subheading {
-          font-size: 1.4rem;
+          font-size: 1.5rem;
           font-weight: 600;
           color: #000;
-          margin: 25px 0 15px;
+          margin: 30px 0 18px;
           letter-spacing: -0.3px;
         }
         
         .modal-paragraph {
-          font-size: 1.05rem;
+          font-size: 1.15rem;
           color: rgba(0, 0, 0, 0.75);
           line-height: 1.7;
           margin-bottom: 0;
@@ -653,44 +655,54 @@ The firm has experience in submitting requests to the Comptroller General of the
           display: flex;
           flex-direction: column;
           align-items: center;
-          padding-top: 10px;
+          padding-top: 15px;
         }
         
         .modal-divider {
-          width: 40px;
+          width: 50px;
           height: 3px;
           background: rgba(196, 30, 58, 0.2);
-          margin-bottom: 25px;
+          margin-bottom: 30px;
           border-radius: 2px;
         }
         
         .modal-cta-button {
           display: inline-flex;
           align-items: center;
-          gap: 10px;
+          gap: 12px;
           background: #C41E3A;
           color: white;
           text-decoration: none;
-          padding: 14px 32px;
-          border-radius: 30px;
+          padding: 16px 40px;
+          border-radius: 40px;
           font-weight: 500;
-          font-size: 1.05rem;
+          font-size: 1.15rem;
           transition: all 0.3s ease;
-          box-shadow: 0 4px 15px rgba(196, 30, 58, 0.2);
+          box-shadow: 0 6px 20px rgba(196, 30, 58, 0.2);
         }
         
         .modal-cta-button:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 8px 25px rgba(196, 30, 58, 0.25);
+          transform: translateY(-3px);
+          box-shadow: 0 10px 30px rgba(196, 30, 58, 0.25);
           color: white;
           background: #d82240;
         }
         
         .modal-cta-button:active {
-          transform: translateY(0);
+          transform: translateY(-1px);
         }
         
         /* Responsive adjustments */
+        @media (max-width: 992px) {
+          .practice-area-modal .modal-dialog {
+            max-width: 90%;
+          }
+          
+          .modal-content-wrapper {
+            padding: 0 40px;
+          }
+        }
+        
         @media (max-width: 768px) {
           .practice-area-modal .modal-dialog {
             margin: 20px auto;
@@ -698,41 +710,41 @@ The firm has experience in submitting requests to the Comptroller General of the
           }
           
           .modal-content-wrapper {
-            padding: 0 24px;
+            padding: 0 30px;
           }
           
           .modal-title {
-            font-size: 1.9rem;
+            font-size: 2rem;
             max-width: 90%;
           }
           
           .modal-header {
-            padding: 30px 20px 5px;
+            padding: 40px 20px 10px;
           }
           
           .modal-description-container {
             max-height: 50vh;
-            padding-right: 15px;
+            padding-right: 20px;
           }
           
           .close-button {
             top: 15px;
             right: 15px;
-            width: 36px;
-            height: 36px;
+            width: 40px;
+            height: 40px;
           }
           
           .modal-cta-button {
-            padding: 12px 28px;
-            font-size: 1rem;
+            padding: 14px 32px;
+            font-size: 1.05rem;
           }
           
           .modal-paragraph {
-            font-size: 1rem;
+            font-size: 1.05rem;
           }
           
           .modal-subheading {
-            font-size: 1.25rem;
+            font-size: 1.35rem;
           }
         }
         
@@ -743,32 +755,33 @@ The firm has experience in submitting requests to the Comptroller General of the
           }
           
           .modal-content-wrapper {
-            padding: 0 20px;
+            padding: 0 25px;
           }
           
           .modal-icon-wrapper {
-            width: 70px;
-            height: 70px;
+            width: 75px;
+            height: 75px;
           }
           
           .modal-title {
-            font-size: 1.7rem;
+            font-size: 1.8rem;
             margin-bottom: 15px;
           }
           
           .modal-header {
-            padding: 25px 15px 0;
+            padding: 30px 20px 5px;
           }
           
           .modal-description-container {
             max-height: 45vh;
+            font-size: 1rem;
           }
           
           .close-button {
             top: 10px;
             right: 10px;
-            width: 32px;
-            height: 32px;
+            width: 38px;
+            height: 38px;
           }
         }
       `}</style>
