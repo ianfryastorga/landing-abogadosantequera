@@ -208,7 +208,18 @@ The firm has experience in submitting requests to the Comptroller General of the
   
   // Función para dividir el texto detallado en párrafos
   const formatDetailedDescription = (text: string) => {
-    return text.split('\n\n').filter(paragraph => paragraph.trim().length > 0);
+    // Dividir por párrafos y filtrar líneas vacías
+    const paragraphs = text.split('\n\n').filter(paragraph => paragraph.trim().length > 0);
+    
+    // Procesar cada párrafo para mejorar el formato
+    return paragraphs.map(paragraph => {
+      // Destacar texto en negrita (entre **)
+      if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
+        return paragraph; // Ya manejamos esto en el renderizado
+      }
+      
+      return paragraph;
+    });
   };
   
   // Obtener el color de fondo para el icono según el área
@@ -405,18 +416,21 @@ The firm has experience in submitting requests to the Comptroller General of the
             show={showModal} 
             onHide={handleClose} 
             centered
+            size="xl"
             dialogClassName="practice-area-modal"
             aria-labelledby="practice-area-modal"
             style={{ 
               fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif'
             }}
             backdropClassName="practice-area-modal-backdrop"
+            fullscreen="lg-down"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
+              className="modal-inner-container"
             >
               {selectedArea && (
                 <>
@@ -441,7 +455,7 @@ The firm has experience in submitting requests to the Comptroller General of the
                   
                   <Modal.Body className="modal-body">
                     <div className="modal-content-wrapper">
-                      <div className="modal-description-container">
+                      <div className="modal-description-container custom-scrollbar">
                         {formatDetailedDescription(getDetailedDescription(selectedArea)).map((paragraph, idx) => (
                           <div 
                             key={idx}
@@ -471,20 +485,32 @@ The firm has experience in submitting requests to the Comptroller General of the
       <style jsx global>{`
         /* Modal styling */
         .practice-area-modal .modal-content {
-          border-radius: 20px;
+          border-radius: 24px;
           border: none;
-          box-shadow: 0 20px 80px rgba(0,0,0,0.2);
+          box-shadow: 0 25px 100px rgba(0,0,0,0.25);
           overflow: hidden;
+          height: auto;
           max-height: 90vh;
           background: #fff;
           position: relative;
           will-change: transform, opacity;
+          padding: 0;
+          display: flex;
+          flex-direction: column;
+        }
+        
+        .modal-inner-container {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          overflow: hidden;
         }
         
         .practice-area-modal .modal-dialog {
-          max-width: 850px;
+          max-width: 1000px;
           margin: 30px auto;
           width: calc(100% - 40px);
+          height: auto;
         }
         
         .practice-area-modal-backdrop {
@@ -494,7 +520,7 @@ The firm has experience in submitting requests to the Comptroller General of the
         
         .modal-header {
           text-align: center;
-          padding: 50px 40px 20px;
+          padding: 40px 40px 20px;
           position: relative;
           display: flex;
           flex-direction: column;
@@ -504,14 +530,14 @@ The firm has experience in submitting requests to the Comptroller General of the
         }
         
         .modal-icon-wrapper {
-          width: 90px;
-          height: 90px;
+          width: 100px;
+          height: 100px;
           border-radius: 20px;
           background: rgba(196, 30, 58, 0.08);
           display: flex;
           justify-content: center;
           align-items: center;
-          margin-bottom: 20px;
+          margin-bottom: 25px;
           position: relative;
           z-index: 10;
           transition: all 0.3s ease;
@@ -521,7 +547,7 @@ The firm has experience in submitting requests to the Comptroller General of the
           display: flex;
           justify-content: center;
           align-items: center;
-          transform: scale(1.2);
+          transform: scale(1.4);
         }
         
         .close-button {
@@ -532,8 +558,8 @@ The firm has experience in submitting requests to the Comptroller General of the
           color: rgba(0, 0, 0, 0.5);
           background: rgba(255, 255, 255, 0.9);
           border-radius: 50%;
-          width: 44px;
-          height: 44px;
+          width: 45px;
+          height: 45px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -551,10 +577,10 @@ The firm has experience in submitting requests to the Comptroller General of the
         }
         
         .modal-title {
-          font-size: 2.4rem;
+          font-size: 2.6rem;
           font-weight: 600;
           color: #000;
-          margin: 0 0 25px;
+          margin: 0 0 20px;
           text-align: center;
           letter-spacing: -0.5px;
           line-height: 1.2;
@@ -562,44 +588,64 @@ The firm has experience in submitting requests to the Comptroller General of the
         }
         
         .modal-body {
-          padding: 0 0 40px;
+          padding: 0 0 20px;
           background: #fff;
           position: relative;
+          overflow: visible;
+          flex: 1;
+          display: flex;
+          flex-direction: column;
         }
         
         .modal-content-wrapper {
           padding: 0 60px;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+          overflow: visible;
         }
         
         .modal-description-container {
-          max-height: 55vh;
+          height: auto;
           overflow-y: auto;
-          padding-right: 30px;
+          padding-right: 35px;
+          padding-left: 10px;
+          padding-bottom: 40px;
           scrollbar-width: thin;
           margin-bottom: 0;
           font-size: 1.1rem;
+          display: flex;
+          flex-direction: column;
+          gap: 25px;
+          flex: 1;
+          -webkit-overflow-scrolling: touch;
+          max-height: 50vh;
+          overscroll-behavior: contain;
         }
         
-        .modal-description-container::-webkit-scrollbar {
-          width: 6px;
+        /* Estilo personalizado para scrollbar */
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 8px;
+          height: 8px;
         }
         
-        .modal-description-container::-webkit-scrollbar-track {
+        .custom-scrollbar::-webkit-scrollbar-track {
           background: #f5f5f5;
           border-radius: 10px;
         }
         
-        .modal-description-container::-webkit-scrollbar-thumb {
-          background: #ddd;
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: #C41E3A;
           border-radius: 10px;
         }
         
-        .modal-description-container::-webkit-scrollbar-thumb:hover {
-          background: #C41E3A;
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: #a81831;
         }
         
         .modal-paragraph-container {
-          margin-bottom: 24px;
+          margin-bottom: 0;
         }
         
         .modal-paragraph-container:last-child {
@@ -607,36 +653,82 @@ The firm has experience in submitting requests to the Comptroller General of the
         }
         
         .modal-subheading {
-          font-size: 1.5rem;
+          font-size: 1.8rem;
           font-weight: 600;
           color: #000;
-          margin: 30px 0 18px;
+          margin: 10px 0 20px;
           letter-spacing: -0.3px;
         }
         
         .modal-paragraph {
-          font-size: 1.15rem;
+          font-size: 1.25rem;
           color: rgba(0, 0, 0, 0.75);
           line-height: 1.7;
           margin-bottom: 0;
           font-weight: 400;
+          max-width: 95%;
+          letter-spacing: -0.2px;
         }
         
         /* Responsive adjustments */
+        @media (max-width: 1200px) {
+          .practice-area-modal .modal-dialog {
+            max-width: 90%;
+          }
+          
+          .modal-content-wrapper {
+            padding: 0 60px;
+          }
+          
+          .modal-title {
+            font-size: 2.6rem;
+          }
+          
+          .modal-paragraph {
+            font-size: 1.2rem;
+            max-width: 100%;
+          }
+        }
+        
         @media (max-width: 992px) {
           .practice-area-modal .modal-dialog {
             max-width: 90%;
           }
           
           .modal-content-wrapper {
-            padding: 0 40px;
+            padding: 0 50px;
+          }
+          
+          .modal-title {
+            font-size: 2.4rem;
+          }
+          
+          .modal-paragraph {
+            font-size: 1.2rem;
+          }
+          
+          .modal-subheading {
+            font-size: 1.6rem;
+          }
+          
+          .modal-icon-wrapper {
+            width: 100px;
+            height: 100px;
           }
         }
         
         @media (max-width: 768px) {
           .practice-area-modal .modal-dialog {
-            margin: 20px auto;
-            max-width: calc(100% - 30px);
+            margin: 0;
+            max-width: 100%;
+            height: 100%;
+            width: 100%;
+          }
+          
+          .practice-area-modal .modal-content {
+            max-height: 100vh;
+            height: 100%;
+            border-radius: 0;
           }
           
           .modal-content-wrapper {
@@ -644,8 +736,62 @@ The firm has experience in submitting requests to the Comptroller General of the
           }
           
           .modal-title {
-            font-size: 2rem;
+            font-size: 2.2rem;
             max-width: 90%;
+          }
+          
+          .modal-header {
+            padding: 50px 30px 15px;
+          }
+          
+          .modal-description-container {
+            max-height: none !important;
+            height: calc(100vh - 250px) !important;
+            padding-right: 20px;
+            gap: 25px;
+          }
+          
+          .close-button {
+            top: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            position: fixed;
+          }
+          
+          .modal-paragraph {
+            font-size: 1.15rem;
+          }
+          
+          .modal-subheading {
+            font-size: 1.5rem;
+            margin: 5px 0 15px;
+          }
+          
+          .modal-icon-wrapper {
+            width: 90px;
+            height: 90px;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .practice-area-modal .modal-dialog {
+            margin: 0;
+            max-width: 100%;
+          }
+          
+          .modal-content-wrapper {
+            padding: 0 25px;
+          }
+          
+          .modal-icon-wrapper {
+            width: 80px;
+            height: 80px;
+          }
+          
+          .modal-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
           }
           
           .modal-header {
@@ -653,8 +799,8 @@ The firm has experience in submitting requests to the Comptroller General of the
           }
           
           .modal-description-container {
-            max-height: 50vh;
-            padding-right: 20px;
+            height: calc(100vh - 220px) !important;
+            gap: 20px;
           }
           
           .close-button {
@@ -665,48 +811,12 @@ The firm has experience in submitting requests to the Comptroller General of the
           }
           
           .modal-paragraph {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
+            max-width: 100%;
           }
           
           .modal-subheading {
-            font-size: 1.35rem;
-          }
-        }
-        
-        @media (max-width: 480px) {
-          .practice-area-modal .modal-dialog {
-            margin: 15px auto;
-            max-width: calc(100% - 20px);
-          }
-          
-          .modal-content-wrapper {
-            padding: 0 25px;
-          }
-          
-          .modal-icon-wrapper {
-            width: 75px;
-            height: 75px;
-          }
-          
-          .modal-title {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-          }
-          
-          .modal-header {
-            padding: 30px 20px 5px;
-          }
-          
-          .modal-description-container {
-            max-height: 45vh;
-            font-size: 1rem;
-          }
-          
-          .close-button {
-            top: 10px;
-            right: 10px;
-            width: 38px;
-            height: 38px;
+            font-size: 1.4rem;
           }
         }
       `}</style>
