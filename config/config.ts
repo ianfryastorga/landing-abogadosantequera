@@ -34,93 +34,73 @@ export const antequeraConfig = {
   practiceAreas: [
     {
       title: 'Derecho Civil',
-      description: 'Contratos, obligaciones y responsabilidad civil. Protegemos sus intereses personales con soluciones jurídicas efectivas.',
+      description: 'Representación y asesoría en litigios civiles y comerciales complejos, conflictos entre socios y otras disputas legales con soluciones efectivas.',
       icon: 'scale',
-      detailedDescription: `Nuestro equipo especializado en Derecho Civil ofrece asesoramiento experto en todas las ramas de esta materia. Nos especializamos en la redacción, revisión y negociación de todo tipo de contratos civiles y mercantiles, asegurando la protección de los intereses de nuestros clientes mediante cláusulas adecuadas y condiciones equilibradas.
-
-En el ámbito de obligaciones y responsabilidad civil, representamos a nuestros clientes en reclamaciones por daños y perjuicios, ya sea por incumplimientos contractuales o responsabilidad extracontractual. Nuestro enfoque se basa en un análisis exhaustivo de los hechos, jurisprudencia aplicable y circunstancias particulares de cada caso para diseñar estrategias legales óptimas.
-
-Adicionalmente, brindamos servicios especializados en materia sucesoria, incluyendo testamentos, particiones hereditarias y administración de herencias, garantizando la correcta transmisión patrimonial conforme a la voluntad del testador y las disposiciones legales vigentes.`
+      detailedDescription: `Antequera Abogados cuenta con una destacada trayectoria en la atención y asistencia que proporciona a sus clientes en la resolución de casos civiles y comerciales complicados, conflictos entre socios, problemas de insolvencia y reestructuración de empresas, así como en asuntos ambientales y sanciones, litigios penales, de construcción y disputas relacionadas con concesiones, entre otros.`
     },
     {
       title: 'Derecho Laboral',
-      description: 'Representación experta tanto para empleadores como trabajadores, garantizando cumplimiento normativo y resolución de conflictos.',
+      description: 'Asesoría en contratación, finalizaciones laborales, compensaciones, subcontrataciones y políticas corporativas tanto para empleadores como trabajadores.',
       icon: 'briefcase',
-      detailedDescription: `En nuestra área de Derecho Laboral ofrecemos un servicio integral que abarca todas las necesidades jurídicas en el ámbito de las relaciones laborales, tanto para empresas como para trabajadores.
+      detailedDescription: `Antequera Abogados posee una amplia trayectoria en la contratación y finalización de relaciones laborales, tanto individuales como colectivas, así como en la elaboración de paquetes de compensación que incluyen opciones de acciones, auditorías de cumplimiento normativo, subcontrataciones, políticas corporativas, investigaciones internas, y cuestiones laborales vinculadas a fusiones y adquisiciones, en adición a asuntos de seguridad social e impuestos aplicables a los trabajadores.
 
-Para empleadores, proporcionamos asesoramiento en la elaboración y revisión de contratos de trabajo, reglamentos internos y políticas de empresa, asegurando el cumplimiento de la normativa laboral vigente. Representamos a empresas en procesos de negociación colectiva, procedimientos de despido y reestructuraciones, minimizando riesgos legales y contingencias laborales.
-
-Para trabajadores, ofrecemos defensa especializada en casos de despidos injustificados, discriminación laboral, acoso, reclamaciones salariales y vulneración de derechos fundamentales. Nuestro objetivo es garantizar el respeto de los derechos laborales mediante una representación legal efectiva y personalizada.
-
-Adicionalmente, asesoramos en materia de seguridad social, prevención de riesgos laborales y en la gestión de procedimientos administrativos ante la Inspección del Trabajo y otras entidades reguladoras, buscando siempre soluciones eficientes que salvaguarden los intereses de nuestros clientes.`
+En lo relacionado a la subcontratación de servicios, Antequera Abogados brinda asesoría continua a empresas subcontratistas y propietarios en proyectos, identificando y reduciendo los riesgos y responsabilidades legales implicadas.`
     },
     {
       title: 'Derecho Corporativo',
-      description: 'Asesoramiento integral para empresas en constitución, contratos comerciales y gobierno corporativo.',
+      description: 'Asistencia integral en ESG, derecho ambiental, comercio internacional y cumplimiento normativo para empresas nacionales e internacionales.',
       icon: 'building',
-      detailedDescription: `El área de Derecho Corporativo de Antequera Abogados está orientada a proporcionar soluciones jurídicas integrales para empresas en todas sus etapas de desarrollo, desde su constitución hasta procesos de expansión, fusión o adquisición.
+      detailedDescription: `Antequera Abogados cuenta con una amplia experiencia brindando asesoría a empresas y entidades del estado en diversos asuntos relacionados con la aplicación de factores ambientales, sociales y de gobernanza (ESG), tanto para aquellos que invierten como para los que reciben inversiones.
 
-Nuestros servicios incluyen el asesoramiento en la elección de la estructura societaria más adecuada según el proyecto empresarial, la redacción de estatutos sociales, pactos de accionistas y protocolos familiares que garanticen una operativa fluida y prevengan conflictos futuros.
+En relación con ESG, los servicios que ofrece Antequera Abogados incluyen la identificación de riesgos y oportunidades que surgen de nuevas tendencias, directrices no obligatorias y reformas legales en los distintos ámbitos y sectores en los que sus clientes están involucrados.
 
-En materia de gobierno corporativo, asistimos a órganos de administración y dirección en el cumplimiento de sus deberes fiduciarios, implementación de buenas prácticas y diseño de procedimientos internos que aseguren transparencia y responsabilidad en la gestión empresarial.
+**Derecho Ambiental**: Brindamos orientación a nuestros clientes en todas las áreas del Derecho Ambiental, incluyendo conflictos administrativos, litigios, inspecciones, evaluación de la planificación territorial y responsabilidad ecológica, adquisición de permisos, así como en todos los elementos conectados con el Sistema de Evaluación de Impacto Ambiental (SEIA). La firma posee una amplia trayectoria en procesos relacionados con temas ambientales, proporcionando asesoramiento para alcanzar estándares a nivel internacional, en gestiones de financiamiento, cuestiones relacionadas con ESG, temas asociados a la Ley REP, diálogos con comunidades y la ejecución del Convenio 169 de la OIT.
 
-Ofrecemos también asesoramiento en operaciones de financiación, reestructuraciones societarias, due diligence, joint ventures y alianzas estratégicas, aportando seguridad jurídica y minimizando riesgos en todas las decisiones corporativas. Nuestro enfoque combina un profundo conocimiento técnico con una visión práctica y orientada a resultados.`
+**Comercio Internacional**: Proporcionamos apoyo a nuestros clientes en todos los aspectos del sector de importación y exportación desde perspectivas reguladoras, comerciales y legales. Facilitamos las relaciones comerciales y legales con funcionarios aduaneros locales, transportistas y el Servicio Nacional de Aduanas, en lo que concierne a la obtención de licencias y permisos para la entrada de productos regulados. Contamos con amplia experiencia en el análisis del cumplimiento de normativas aduaneras, en la redacción y negociación de contratos internacionales de distribución y logística, así como en la gestión de documentos ante el Servicio Nacional de Aduanas y en la resolución de disputas relacionadas con asuntos aduaneros y comerciales.`
     },
     {
       title: 'Derecho Tributario',
-      description: 'Optimización fiscal legal, planificación tributaria estratégica y representación ante entidades fiscales.',
+      description: 'Equipo multidisciplinario de abogados, contadores y economistas que brindan asesoría fiscal nacional e internacional con enfoque práctico.',
       icon: 'calculator',
-      detailedDescription: `Nuestro departamento de Derecho Tributario ofrece un servicio especializado en la planificación fiscal para personas físicas y jurídicas, siempre dentro del estricto cumplimiento de la normativa tributaria vigente.
+      detailedDescription: `El departamento fiscal de Antequera Abogados se compone de un equipo multidisciplinario de abogados, contadores y economistas, con un amplio conocimiento tanto a nivel nacional como internacional.
 
-Realizamos un análisis pormenorizado de la situación fiscal de nuestros clientes para identificar oportunidades de optimización, beneficios fiscales aplicables y mecanismos legales que permitan una tributación eficiente. Nuestro objetivo es minimizar la carga impositiva dentro del marco legal, evitando riesgos innecesarios.
-
-Proporcionamos asesoramiento en fiscalidad nacional e internacional, incluyendo convenios de doble imposición, precios de transferencia y estructuración de operaciones transfronterizas. Nuestra experiencia abarca impuestos directos (Impuesto sobre la Renta, Impuesto sobre Sociedades) e indirectos (IVA, impuestos especiales).
-
-Representamos a nuestros clientes ante la administración tributaria en procedimientos de comprobación, inspección y recaudación, así como en la interposición de recursos administrativos y contencioso-administrativos cuando sea necesario, defendiendo sus derechos e intereses con firmeza y rigor técnico.`
+La firma se involucra de manera activa en la organización de transacciones complejas de gran relevancia, en litigios, planeación tributaria y procesos de auditoría, siempre con un enfoque práctico destinado a ofrecer soluciones efectivas y completas.`
     },
     {
       title: 'Derecho Inmobiliario',
-      description: 'Transacciones inmobiliarias, arrendamientos, permisos y regularizaciones con total seguridad jurídica.',
+      description: 'Servicios legales para transacciones inmobiliarias, arrendamientos, permisos y regularizaciones con total seguridad jurídica.',
       icon: 'house',
       detailedDescription: `El área de Derecho Inmobiliario de Antequera Abogados ofrece un servicio integral que abarca todos los aspectos legales relacionados con bienes inmuebles, tanto para particulares como para empresas del sector.
 
 Nuestra práctica incluye el asesoramiento en compraventas de inmuebles, realizando un exhaustivo estudio de la documentación, verificación de cargas y gravámenes, y supervisión de todo el proceso hasta su inscripción registral, garantizando la máxima seguridad jurídica en cada transacción.
 
-En materia de arrendamientos, redactamos y revisamos contratos tanto de uso residencial como comercial, asegurando la protección de los intereses de propietarios e inquilinos y previniendo conflictos futuros mediante cláusulas claras y equilibradas.
-
-Proporcionamos asesoramiento especializado en urbanismo y construcción, incluyendo licencias, permisos, regulaciones de obra y gestión de procedimientos administrativos ante los organismos competentes. También ofrecemos servicios en materia de propiedad horizontal, comunidades de propietarios y servidumbres.
-
-Para promotores e inversores inmobiliarios, brindamos asistencia en la estructuración legal de proyectos, due diligence inmobiliaria, contratos de construcción y gestión integral de desarrollos inmobiliarios, optimizando tanto aspectos legales como fiscales.`
+En materia de arrendamientos, redactamos y revisamos contratos tanto de uso residencial como comercial, asegurando la protección de los intereses de propietarios e inquilinos y previniendo conflictos futuros mediante cláusulas claras y equilibradas.`
     },
     {
       title: 'Derecho Penal',
-      description: 'Defensa penal especializada, representación y asesoría en procesos penales con estrategias efectivas y personalizadas.',
+      description: 'Especialización en litigios complejos, consultoría en delitos económicos, fiscales, cibercrímenes y prevención de riesgos penales.',
       icon: 'shield',
-      detailedDescription: `Nuestro departamento de Derecho Penal está formado por abogados con amplia experiencia en la defensa penal y un profundo conocimiento del sistema procesal penal chileno.
+      detailedDescription: `El bufete de Antequera Abogados se especializa en litigios complejos. El equipo proporciona consultorías en áreas como delitos económicos, fiscales, violaciones a leyes anticorrupción, cibercrímenes, lavado de activos, y violaciones a normativas de propiedad industrial e intelectual, entre otros.
 
-Proporcionamos asistencia legal desde la fase de investigación, acompañando a nuestros clientes en declaraciones ante fiscalía, policía o juzgados, diseñando estrategias de defensa sólidas basadas en un análisis minucioso de los hechos y las pruebas disponibles.
-
-Nuestra experiencia abarca tanto delitos económicos (fraude, estafa, apropiación indebida, delitos societarios, blanqueo de capitales) como delitos contra las personas, contra la propiedad, delitos de tráfico y aquellos relacionados con la seguridad vial.
-
-En cada caso, desarrollamos una estrategia personalizada que puede incluir desde la negociación de acuerdos con la fiscalía hasta la representación en juicio oral, siempre buscando el mejor resultado posible para nuestro cliente. Nuestro compromiso es ofrecer una defensa técnica de máxima calidad, manteniendo una comunicación constante y transparente sobre el desarrollo del procedimiento y las opciones disponibles en cada fase.
-
-También ofrecemos asesoramiento preventivo a empresas para la implementación de programas de compliance penal que minimicen riesgos de responsabilidad penal corporativa.`
+Antequera Abogados cuenta con un grupo penal con diversas especialidades que le permite asistir a clientes desde las fases iniciales, priorizando la prevención y evaluación de posibles riesgos, además de realizar una planificación adecuada, investigaciones internas y tácticas de respuesta ante cualquier eventualidad penal, defendiendo los intereses de sus clientes en instancias tanto administrativas como judiciales en todo el país.`
     },
     {
       title: 'Derecho de Familia',
-      description: 'Divorcios, cuidado personal, pensiones alimenticias y otros asuntos familiares con enfoque humano y profesional.',
+      description: 'Especialización en asuntos familiares como separaciones, pensiones alimenticias, derechos de visita, custodia y adopción con servicios de alta calidad.',
       icon: 'people',
-      detailedDescription: `En nuestra área de Derecho de Familia abordamos todas las cuestiones legales relacionadas con las relaciones familiares, combinando rigor técnico con sensibilidad y empatía hacia las circunstancias personales de cada cliente.
+      detailedDescription: `Antequera Abogados tiene una gran especialización y vasta experiencia en asuntos familiares, ofreciendo un servicio de gran calidad a nuestros clientes. Nos especializamos en separaciones unilaterales, separaciones consensuadas, separaciones por falta, pensiones alimenticias, derechos de visita, custodia, adopción, reclamaciones de paternidad, declaración de bienes familiares, entre otros.`
+    },
+    {
+      title: 'Derecho Administrativo',
+      description: 'Asesoramiento en derecho constitucional, administrativo, energía, contratación pública y representación ante entidades gubernamentales.',
+      icon: 'building-lock',
+      detailedDescription: `Antequera Abogados cuenta con una fuerte trayectoria en ofrecer asesoramiento a clientes en asuntos de derecho constitucional y administrativo, abarcando temas complejos que surgen en negociaciones, investigaciones, fases previas a posibles litigios o a lo largo de disputas judiciales.
 
-Ofrecemos asesoramiento y representación en procesos de divorcio, tanto de mutuo acuerdo como contenciosos, trabajando para alcanzar soluciones que minimicen el impacto emocional y económico, especialmente cuando hay hijos menores involucrados.
+La asesoría de Antequera Abogados abarca una amplia variedad de tópicos, como consultas legales, análisis jurídicos y comparecencias ante la Corte, Corte Constitucional, además de brindar asesoramientos que fomentan la transparencia en la información pública y asesorías legislativas para organismos tanto públicos como privados.
 
-Gestionamos procedimientos relacionados con la filiación, cuidado personal, relación directa y regular, así como la determinación y modificación de pensiones alimenticias, siempre con el objetivo primordial de proteger el interés superior de los niños, niñas y adolescentes.
+El despacho tiene experiencia en la presentación de solicitudes ante la Contraloría General de la República, así como en la defensa de individuos ante entidades públicas y tribunales en procesos sancionadores en diferentes áreas.
 
-Nuestros servicios incluyen también la redacción de capitulaciones matrimoniales, acuerdos de convivencia y pactos reguladores, así como la tramitación de procedimientos de guardas, tutelas y curatelas.
-
-Promovemos, cuando es posible, métodos alternativos de resolución de conflictos como la mediación familiar, buscando acuerdos colaborativos que preserven las relaciones familiares y eviten la judicialización innecesaria.
-
-Cada caso es tratado con absoluta confidencialidad y respeto, ofreciendo un acompañamiento personalizado durante todo el proceso legal y proporcionando orientación clara sobre las opciones disponibles y sus implicaciones.`
+**Energía**: Ofrecemos un servicio integral que incluye temas normativos, la creación de proyectos, la negociación de contratos de energía, acuerdos de infraestructura, financiamiento de iniciativas, fusiones, adquisiciones y asociaciones empresariales. Asimismo, el despacho ha proporcionado asesoramiento a licitadores y postulantes en múltiples procesos de licitación, tanto en el ámbito público como privado.`
     }
   ],
   
