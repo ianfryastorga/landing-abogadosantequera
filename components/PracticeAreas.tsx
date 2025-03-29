@@ -475,24 +475,6 @@ The firm has experience in submitting requests to the Comptroller General of the
                           </motion.div>
                         ))}
                       </div>
-                      
-                      <motion.div 
-                        className="modal-footer"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.5, duration: 0.4 }}
-                      >
-                        <div className="modal-divider"></div>
-                        
-                        <a 
-                          href="#contact" 
-                          className="modal-cta-button"
-                          onClick={handleClose}
-                        >
-                          <span>{t('contact.title')}</span>
-                          <ArrowRight size={16} />
-                        </a>
-                      </motion.div>
                     </div>
                   </Modal.Body>
                 </>
@@ -609,7 +591,7 @@ The firm has experience in submitting requests to the Comptroller General of the
           overflow-y: auto;
           padding-right: 30px;
           scrollbar-width: thin;
-          margin-bottom: 30px;
+          margin-bottom: 0;
           font-size: 1.1rem;
         }
         
@@ -635,6 +617,10 @@ The firm has experience in submitting requests to the Comptroller General of the
           margin-bottom: 24px;
         }
         
+        .modal-paragraph-container:last-child {
+          margin-bottom: 0;
+        }
+        
         .modal-subheading {
           font-size: 1.5rem;
           font-weight: 600;
@@ -649,47 +635,6 @@ The firm has experience in submitting requests to the Comptroller General of the
           line-height: 1.7;
           margin-bottom: 0;
           font-weight: 400;
-        }
-        
-        .modal-footer {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          padding-top: 15px;
-        }
-        
-        .modal-divider {
-          width: 50px;
-          height: 3px;
-          background: rgba(196, 30, 58, 0.2);
-          margin-bottom: 30px;
-          border-radius: 2px;
-        }
-        
-        .modal-cta-button {
-          display: inline-flex;
-          align-items: center;
-          gap: 12px;
-          background: #C41E3A;
-          color: white;
-          text-decoration: none;
-          padding: 16px 40px;
-          border-radius: 40px;
-          font-weight: 500;
-          font-size: 1.15rem;
-          transition: all 0.3s ease;
-          box-shadow: 0 6px 20px rgba(196, 30, 58, 0.2);
-        }
-        
-        .modal-cta-button:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 10px 30px rgba(196, 30, 58, 0.25);
-          color: white;
-          background: #d82240;
-        }
-        
-        .modal-cta-button:active {
-          transform: translateY(-1px);
         }
         
         /* Responsive adjustments */
@@ -732,11 +677,6 @@ The firm has experience in submitting requests to the Comptroller General of the
             right: 15px;
             width: 40px;
             height: 40px;
-          }
-          
-          .modal-cta-button {
-            padding: 14px 32px;
-            font-size: 1.05rem;
           }
           
           .modal-paragraph {
