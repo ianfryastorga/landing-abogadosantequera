@@ -71,38 +71,46 @@ export const PracticeAreas = () => {
     'Derecho de Familia': {
       en: 'Family Law',
       es: 'Derecho de Familia'
+    },
+    'Derecho Administrativo': {
+      en: 'Administrative Law',
+      es: 'Derecho Administrativo'
     }
   };
   
   // Traducciones de las descripciones cortas
   const descriptionTranslations: AreaTranslations = {
-    'Contratos, obligaciones y responsabilidad civil. Protegemos sus intereses personales con soluciones jurídicas efectivas.': {
-      en: 'Contracts, obligations, and civil liability. We protect your personal interests with effective legal solutions.',
-      es: 'Contratos, obligaciones y responsabilidad civil. Protegemos sus intereses personales con soluciones jurídicas efectivas.'
+    'Representación y asesoría en litigios civiles y comerciales complejos, conflictos entre socios y otras disputas legales con soluciones efectivas.': {
+      en: 'Representation and advice in complex civil and commercial litigation, partner disputes, and other legal conflicts with effective solutions.',
+      es: 'Representación y asesoría en litigios civiles y comerciales complejos, conflictos entre socios y otras disputas legales con soluciones efectivas.'
     },
-    'Representación experta tanto para empleadores como trabajadores, garantizando cumplimiento normativo y resolución de conflictos.': {
-      en: 'Expert representation for both employers and employees, ensuring regulatory compliance and conflict resolution.',
-      es: 'Representación experta tanto para empleadores como trabajadores, garantizando cumplimiento normativo y resolución de conflictos.'
+    'Asesoría en contratación, finalizaciones laborales, compensaciones, subcontrataciones y políticas corporativas tanto para empleadores como trabajadores.': {
+      en: 'Advice on hiring, employment terminations, compensation, subcontracting, and corporate policies for both employers and workers.',
+      es: 'Asesoría en contratación, finalizaciones laborales, compensaciones, subcontrataciones y políticas corporativas tanto para empleadores como trabajadores.'
     },
-    'Asesoramiento integral para empresas en constitución, contratos comerciales y gobierno corporativo.': {
-      en: 'Comprehensive advice for companies in formation, commercial contracts, and corporate governance.',
-      es: 'Asesoramiento integral para empresas en constitución, contratos comerciales y gobierno corporativo.'
+    'Asistencia integral en ESG, derecho ambiental, comercio internacional y cumplimiento normativo para empresas nacionales e internacionales.': {
+      en: 'Comprehensive assistance in ESG, environmental law, international trade, and regulatory compliance for national and international companies.',
+      es: 'Asistencia integral en ESG, derecho ambiental, comercio internacional y cumplimiento normativo para empresas nacionales e internacionales.'
     },
-    'Optimización fiscal legal, planificación tributaria estratégica y representación ante entidades fiscales.': {
-      en: 'Legal tax optimization, strategic tax planning, and representation before tax authorities.',
-      es: 'Optimización fiscal legal, planificación tributaria estratégica y representación ante entidades fiscales.'
+    'Equipo multidisciplinario de abogados, contadores y economistas que brindan asesoría fiscal nacional e internacional con enfoque práctico.': {
+      en: 'Multidisciplinary team of lawyers, accountants, and economists providing national and international tax advice with a practical approach.',
+      es: 'Equipo multidisciplinario de abogados, contadores y economistas que brindan asesoría fiscal nacional e internacional con enfoque práctico.'
     },
-    'Transacciones inmobiliarias, arrendamientos, permisos y regularizaciones con total seguridad jurídica.': {
-      en: 'Real estate transactions, leases, permits, and regularizations with full legal security.',
-      es: 'Transacciones inmobiliarias, arrendamientos, permisos y regularizaciones con total seguridad jurídica.'
+    'Servicios legales para transacciones inmobiliarias, arrendamientos, permisos y regularizaciones con total seguridad jurídica.': {
+      en: 'Legal services for real estate transactions, leases, permits, and regularizations with complete legal security.',
+      es: 'Servicios legales para transacciones inmobiliarias, arrendamientos, permisos y regularizaciones con total seguridad jurídica.'
     },
-    'Defensa penal especializada, representación y asesoría en procesos penales con estrategias efectivas y personalizadas.': {
-      en: 'Specialized criminal defense, representation, and advice in criminal proceedings with effective and personalized strategies.',
-      es: 'Defensa penal especializada, representación y asesoría en procesos penales con estrategias efectivas y personalizadas.'
+    'Especialización en litigios complejos, consultoría en delitos económicos, fiscales, cibercrímenes y prevención de riesgos penales.': {
+      en: 'Specialization in complex litigation, consulting on economic crimes, tax offenses, cybercrimes, and prevention of criminal risks.',
+      es: 'Especialización en litigios complejos, consultoría en delitos económicos, fiscales, cibercrímenes y prevención de riesgos penales.'
     },
-    'Divorcios, cuidado personal, pensiones alimenticias y otros asuntos familiares con enfoque humano y profesional.': {
-      en: 'Divorces, personal care, alimony, and other family matters with a human and professional approach.',
-      es: 'Divorcios, cuidado personal, pensiones alimenticias y otros asuntos familiares con enfoque humano y profesional.'
+    'Especialización en asuntos familiares como separaciones, pensiones alimenticias, derechos de visita, custodia y adopción con servicios de alta calidad.': {
+      en: 'Specialization in family matters such as separations, alimony, visitation rights, custody, and adoption with high-quality services.',
+      es: 'Especialización en asuntos familiares como separaciones, pensiones alimenticias, derechos de visita, custodia y adopción con servicios de alta calidad.'
+    },
+    'Asesoramiento en derecho constitucional, administrativo, energía, contratación pública y representación ante entidades gubernamentales.': {
+      en: 'Advice on constitutional law, administrative law, energy, public procurement, and representation before government entities.',
+      es: 'Asesoramiento en derecho constitucional, administrativo, energía, contratación pública y representación ante entidades gubernamentales.'
     }
   };
   
@@ -119,71 +127,54 @@ export const PracticeAreas = () => {
   // Textos traducidos para las descripciones detalladas
   const getDetailedDescription = (area: any) => {
     // Si estamos en inglés, devolvemos una versión en inglés de la descripción detallada
-    // Esta es una traducción simplificada para demostración
     if (language === 'en') {
       switch(area.title) {
         case 'Derecho Civil':
-          return `Our team specializes in Civil Law, offering expert advice in all branches of this matter. We specialize in drafting, reviewing, and negotiating all types of civil and commercial contracts, ensuring the protection of our clients' interests through appropriate clauses and balanced conditions.
-
-In the field of obligations and civil liability, we represent our clients in claims for damages, whether due to contractual breaches or non-contractual liability. Our approach is based on a comprehensive analysis of the facts, applicable jurisprudence, and particular circumstances of each case to design optimal legal strategies.
-
-Additionally, we provide specialized services in inheritance matters, including wills, hereditary partitions, and estate administration, guaranteeing the correct patrimonial transmission according to the testator's will and current legal provisions.`;
+          return `Antequera Abogados has a distinguished track record in providing client assistance for solving complex civil and commercial cases, partner conflicts, insolvency issues, company restructuring, as well as environmental matters and sanctions, criminal litigation, construction, and disputes related to concessions, among others.`;
+        
         case 'Derecho Laboral':
-          return `In our Labor Law area, we offer a comprehensive service that covers all legal needs in the field of labor relations, for both companies and workers.
+          return `Antequera Abogados has extensive experience in hiring and termination of labor relationships, both individual and collective, as well as in the preparation of compensation packages including stock options, regulatory compliance audits, subcontracting, corporate policies, internal investigations, and labor issues related to mergers and acquisitions, in addition to social security and tax matters applicable to workers.
 
-For employers, we provide advice on the preparation and review of employment contracts, internal regulations, and company policies, ensuring compliance with current labor regulations. We represent companies in collective negotiation processes, dismissal procedures, and restructurings, minimizing legal risks and labor contingencies.
-
-For workers, we offer specialized defense in cases of unjustified dismissals, labor discrimination, harassment, wage claims, and violation of fundamental rights. Our goal is to guarantee respect for labor rights through effective and personalized legal representation.
-
-Additionally, we advise on social security, occupational risk prevention, and the management of administrative procedures before the Labor Inspection and other regulatory entities, always seeking efficient solutions that safeguard our clients' interests.`;
+Regarding service subcontracting, Antequera Abogados provides continuous advice to subcontractor companies and project owners, identifying and reducing legal risks and liabilities involved.`;
+        
         case 'Derecho Corporativo':
-          return `The Corporate Law area of Antequera Abogados is oriented to provide integral legal solutions for companies in all their stages of development, from their constitution to expansion, merger, or acquisition processes.
+          return `Antequera Abogados has extensive experience providing advice to companies and state entities on various matters related to the application of environmental, social, and governance (ESG) factors, both for investors and investees.
 
-Our services include advice on choosing the most appropriate corporate structure according to the business project, drafting corporate bylaws, shareholder agreements, and family protocols that guarantee a fluid operation and prevent future conflicts.
+In relation to ESG, the services offered by Antequera Abogados include identifying risks and opportunities arising from new trends, non-mandatory guidelines, and legal reforms across different fields and sectors in which their clients are involved.
 
-In corporate governance matters, we assist administrative and management bodies in complying with their fiduciary duties, implementing good practices, and designing internal procedures that ensure transparency and responsibility in business management.
+**Environmental Law**: We provide guidance to our clients in all areas of Environmental Law, including administrative conflicts, litigation, inspections, territorial planning assessment and ecological responsibility, permit acquisition, as well as all elements connected with the Environmental Impact Assessment System (SEIA). The firm has extensive experience in processes related to environmental issues, providing advice to achieve international standards, in financing arrangements, ESG-related matters, issues associated with the REP Law, community dialogues, and the implementation of ILO Convention 169.
 
-We also offer advice on financing operations, corporate restructurings, due diligence, joint ventures, and strategic alliances, providing legal security and minimizing risks in all corporate decisions. Our approach combines deep technical knowledge with a practical vision oriented to results.`;
+**International Trade**: We provide support to our clients in all aspects of the import and export sector from regulatory, commercial, and legal perspectives. We facilitate commercial and legal relations with local customs officials, carriers, and the National Customs Service, concerning the obtaining of licenses and permits for the entry of regulated products. We have extensive experience in analyzing compliance with customs regulations, in drafting and negotiating international distribution and logistics contracts, as well as in document management before the National Customs Service and in resolving disputes related to customs and commercial matters.`;
+        
         case 'Derecho Tributario':
-          return `Our Tax Law department offers a specialized service in tax planning for individuals and legal entities, always within strict compliance with current tax regulations.
+          return `The tax department of Antequera Abogados is composed of a multidisciplinary team of lawyers, accountants, and economists, with extensive knowledge both nationally and internationally.
 
-We conduct a detailed analysis of our clients' tax situation to identify optimization opportunities, applicable tax benefits, and legal mechanisms that allow efficient taxation. Our goal is to minimize the tax burden within the legal framework, avoiding unnecessary risks.
-
-We provide advice on national and international taxation, including double taxation agreements, transfer pricing, and structuring of cross-border operations. Our experience covers direct taxes (Income Tax, Corporate Tax) and indirect taxes (VAT, special taxes).
-
-We represent our clients before the tax administration in verification, inspection, and collection procedures, as well as in the filing of administrative and contentious-administrative appeals when necessary, defending their rights and interests with firmness and technical rigor.`;
+The firm is actively involved in the organization of complex transactions of great relevance, in litigation, tax planning, and audit processes, always with a practical approach aimed at offering effective and complete solutions.`;
+        
         case 'Derecho Inmobiliario':
           return `The Real Estate Law area of Antequera Abogados offers a comprehensive service that covers all legal aspects related to real estate, for both individuals and companies in the sector.
 
 Our practice includes advice on real estate purchases and sales, conducting a thorough study of documentation, verification of charges and encumbrances, and supervision of the entire process until its registration, guaranteeing maximum legal security in each transaction.
 
-In terms of leases, we draft and review contracts for both residential and commercial use, ensuring the protection of the interests of owners and tenants and preventing future conflicts through clear and balanced clauses.
-
-We provide specialized advice on urban planning and construction, including licenses, permits, construction regulations, and management of administrative procedures before competent bodies. We also offer services in horizontal property, owner communities, and easements.
-
-For real estate developers and investors, we provide assistance in the legal structuring of projects, real estate due diligence, construction contracts, and comprehensive management of real estate developments, optimizing both legal and fiscal aspects.`;
+In terms of leases, we draft and review contracts for both residential and commercial use, ensuring the protection of the interests of owners and tenants and preventing future conflicts through clear and balanced clauses.`;
+        
         case 'Derecho Penal':
-          return `Our Criminal Law department is made up of lawyers with extensive experience in criminal defense and a deep knowledge of the Chilean criminal procedural system.
+          return `The Antequera Abogados firm specializes in complex litigation. The team provides consultancy in areas such as economic crimes, tax violations, anti-corruption law violations, cybercrimes, money laundering, and violations of industrial and intellectual property regulations, among others.
 
-We provide legal assistance from the investigation phase, accompanying our clients in statements before the prosecutor's office, police, or courts, designing solid defense strategies based on a thorough analysis of the facts and available evidence.
-
-Our experience covers both economic crimes (fraud, scam, misappropriation, corporate crimes, money laundering) and crimes against people, against property, traffic crimes, and those related to road safety.
-
-In each case, we develop a personalized strategy that can include from negotiating agreements with the prosecutor's office to representation in oral trial, always seeking the best possible outcome for our client. Our commitment is to offer technical defense of the highest quality, maintaining constant and transparent communication about the development of the procedure and the options available at each phase.
-
-We also offer preventive advice to companies for the implementation of criminal compliance programs that minimize risks of corporate criminal liability.`;
+Antequera Abogados has a criminal group with various specialties that allows it to assist clients from the initial phases, prioritizing prevention and assessment of possible risks, as well as carrying out adequate planning, internal investigations, and response tactics for any criminal eventuality, defending the interests of its clients in both administrative and judicial instances throughout the country.`;
+        
         case 'Derecho de Familia':
-          return `In our Family Law area, we address all legal issues related to family relationships, combining technical rigor with sensitivity and empathy towards the personal circumstances of each client.
+          return `Antequera Abogados has a great specialization and vast experience in family matters, offering a high-quality service to our clients. We specialize in unilateral separations, consensual separations, separations due to fault, alimony, visitation rights, custody, adoption, paternity claims, declaration of family assets, among others.`;
+        
+        case 'Derecho Administrativo':
+          return `Antequera Abogados has a strong track record in offering advice to clients on matters of constitutional and administrative law, covering complex issues that arise in negotiations, investigations, pre-litigation phases, or throughout judicial disputes.
 
-We offer advice and representation in divorce processes, both by mutual agreement and contentious, working to achieve solutions that minimize emotional and economic impact, especially when minor children are involved.
+The advice of Antequera Abogados covers a wide variety of topics, such as legal consultations, legal analyses, and appearances before the Court, Constitutional Court, in addition to providing advice that promotes transparency in public information and legislative advice for both public and private organizations.
 
-We manage procedures related to filiation, personal care, direct and regular relationship, as well as the determination and modification of alimony, always with the primary objective of protecting the best interests of children and adolescents.
+The firm has experience in submitting requests to the Comptroller General of the Republic, as well as in defending individuals before public entities and courts in sanctioning processes in different areas.
 
-Our services also include drafting marriage settlements, cohabitation agreements and regulatory pacts, as well as the processing of guardianship and custody procedures.
-
-We promote, when possible, alternative methods of conflict resolution such as family mediation, seeking collaborative agreements that preserve family relationships and avoid unnecessary judicialization.
-
-Each case is treated with absolute confidentiality and respect, offering personalized accompaniment throughout the legal process and providing clear guidance on the available options and their implications.`;
+**Energy**: We offer a comprehensive service that includes regulatory issues, project creation, negotiation of energy contracts, infrastructure agreements, initiative financing, mergers, acquisitions, and business associations. Likewise, the firm has provided advice to bidders and applicants in multiple bidding processes, both in the public and private sectors.`;
+        
         default:
           return area.detailedDescription;
       }
