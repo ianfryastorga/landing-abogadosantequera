@@ -238,171 +238,149 @@ The firm has experience in submitting requests to the Comptroller General of the
     <>
       <section 
         id="practice-areas" 
-        style={{
-          padding: '120px 0',
-          background: '#fff',
-          fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif'
-        }}
+        className="practice-areas"
       >
-        <Container>
+        {/* Elementos decorativos de fondo */}
+        <div className="decorative-circle right-top"></div>
+        <div className="decorative-circle left-bottom"></div>
+        
+        <Container style={{ position: 'relative', zIndex: 2 }}>
           <motion.div 
-            style={{
-              textAlign: 'center',
-              marginBottom: '80px'
-            }}
-            initial={{ opacity: 0, y: 30 }}
+            className="section-header"
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, ease: [0.25, 0.4, 0.3, 1.0] }}
             viewport={{ once: true, amount: 0.3 }}
           >
-            <div 
-              style={{
-                display: 'inline-block',
-                fontSize: '0.95rem',
-                fontWeight: 500,
-                color: '#C41E3A',
-                marginBottom: '16px',
-                letterSpacing: '1px',
-                textTransform: 'uppercase'
-              }}
+            <motion.div 
+              className="section-preheading"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 0.4, 0.3, 1.0] }}
+              viewport={{ once: true }}
+            >
+              ÁREAS DE PRÁCTICA
+            </motion.div>
+            
+            <motion.h2 
+              className="section-title"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2, ease: [0.25, 0.4, 0.3, 1.0] }}
+              viewport={{ once: true }}
             >
               {t('practice.title')}
-            </div>
+            </motion.h2>
             
-            <h2 
-              style={{
-                fontSize: '2.8rem',
-                fontWeight: 600,
-                color: '#000',
-                marginBottom: '24px',
-                letterSpacing: '-0.5px'
-              }}
-            >
-              {t('practice.title')}
-            </h2>
+            <motion.div 
+              className="section-separator"
+              initial={{ opacity: 0, width: '0px' }}
+              whileInView={{ opacity: 1, width: '40px' }}
+              transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.4, 0.3, 1.0] }}
+              viewport={{ once: true }}
+            />
             
-            <div 
-              style={{
-                width: '40px',
-                height: '3px',
-                background: '#C41E3A',
-                margin: '0 auto 24px',
-                borderRadius: '2px'
-              }}
-            ></div>
-            
-            <p 
-              style={{
-                fontSize: '1.2rem',
-                color: 'rgba(0,0,0,0.6)',
-                maxWidth: '700px',
-                margin: '0 auto',
-                lineHeight: 1.6,
-                fontWeight: 300
-              }}
+            <motion.p 
+              className="section-subtitle"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.4, ease: [0.25, 0.4, 0.3, 1.0] }}
+              viewport={{ once: true }}
             >
               {t('practice.subtitle')}
-            </p>
+            </motion.p>
           </motion.div>
           
           <Row className="g-4">
             {antequeraConfig.practiceAreas.map((area, index) => (
               <Col md={6} lg={4} key={index}>
                 <motion.div 
-                  style={{
-                    background: '#fff',
-                    borderRadius: '16px',
-                    padding: '40px 30px',
-                    height: '100%',
-                    boxShadow: '0 10px 40px rgba(0,0,0,0.03)',
-                    border: '1px solid rgba(0,0,0,0.05)',
-                    transition: 'all 0.3s ease',
-                    overflow: 'hidden',
-                    position: 'relative',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    cursor: 'pointer'
-                  }}
-                  initial={{ opacity: 0, y: 30 }}
+                  className="area-card"
+                  initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  transition={{ 
+                    duration: 0.7, 
+                    delay: index * 0.1 + 0.2,
+                    ease: [0.25, 0.4, 0.3, 1.0]
+                  }}
                   viewport={{ once: true, amount: 0.2 }}
                   whileHover={{
-                    y: -5,
-                    boxShadow: '0 15px 50px rgba(0,0,0,0.08)'
+                    y: -12,
+                    boxShadow: '0 30px 70px rgba(0,0,0,0.08), 0 10px 30px rgba(0,0,0,0.05)',
+                    scale: 1.02
                   }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => handleShow(area)}
                 >
-                  <div 
-                    style={{
-                      width: '60px',
-                      height: '60px',
-                      borderRadius: '12px',
-                      background: getIconBackground(area.icon),
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginBottom: '24px'
+                  {/* Elemento decorativo de fondo */}
+                  <div className="decorative-circle" />
+                  
+                  <motion.div 
+                    className="icon-container"
+                    whileHover={{ 
+                      scale: 1.08,
+                      rotate: [0, 5, -5, 0],
+                      transition: { duration: 0.5, ease: "easeInOut" }
                     }}
                   >
-                    <div 
+                    <motion.div 
                       style={{
-                        width: '30px',
-                        height: '30px',
                         color: getIconColor(area.icon),
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontWeight: 300
+                        filter: 'drop-shadow(0 2px 4px rgba(196, 30, 58, 0.2))',
+                        fontSize: 36
                       }}
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
                     >
-                      {getIcon(area.icon)}
-                    </div>
-                  </div>
+                      {getIcon(area.icon, 36)}
+                    </motion.div>
+                  </motion.div>
                   
-                  <h3 
-                    style={{
-                      fontSize: '1.4rem',
-                      fontWeight: 600,
-                      marginBottom: '16px',
-                      color: '#000'
+                  <motion.h3 
+                    className="card-title"
+                    initial={{ opacity: 0.9 }}
+                    whileHover={{ 
+                      color: '#C41E3A',
+                      y: -2
                     }}
                   >
                     {getTranslatedTitle(area.title)}
-                  </h3>
+                  </motion.h3>
                   
-                  <p 
-                    style={{
-                      fontSize: '1rem',
-                      color: 'rgba(0,0,0,0.6)',
-                      marginBottom: '24px',
-                      lineHeight: 1.6,
-                      flex: 1,
-                      fontWeight: 300
+                  <motion.div 
+                    className="card-separator"
+                    whileHover={{
+                      scaleX: 1.5,
+                      width: 50,
+                      opacity: 1
                     }}
-                  >
+                  />
+                  
+                  <p className="card-text">
                     {getTranslatedDescription(area.description)}
                   </p>
                   
-                  <div 
-                    style={{
-                      fontSize: '0.9rem',
-                      color: getIconColor(area.icon),
-                      fontWeight: 500,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      padding: '8px 16px',
-                      borderRadius: '8px',
-                      background: `rgba(${getIconColor(area.icon).replace(/[^\d,]/g, '')}, 0.08)`,
-                      width: 'fit-content',
-                      margin: '0 auto',
-                      gap: '6px'
+                  <motion.div 
+                    className="read-more-btn"
+                    whileHover={{ 
+                      scale: 1.08,
+                      y: -2,
+                      background: `rgba(${getIconColor(area.icon).replace(/[^\d,]/g, '')}, 0.12)`,
+                      transition: {
+                        duration: 0.3,
+                        ease: "easeOut"
+                      }
                     }}
                   >
-                    {t('practice.readMore')} <ChevronRight size={14} />
-                  </div>
+                    {t('practice.readMore')} 
+                    <motion.span
+                      initial={{ x: 0 }}
+                      whileHover={{ x: 3 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                    >
+                      <ChevronRight size={16} />
+                    </motion.span>
+                  </motion.div>
                 </motion.div>
               </Col>
             ))}
@@ -420,17 +398,21 @@ The firm has experience in submitting requests to the Comptroller General of the
             dialogClassName="practice-area-modal"
             aria-labelledby="practice-area-modal"
             style={{ 
-              fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif'
+              fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, "Poppins", sans-serif'
             }}
             backdropClassName="practice-area-modal-backdrop"
             fullscreen="lg-down"
           >
             <motion.div
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
+              initial={{ opacity: 0, scale: 0.96, y: 30 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: 15 }}
+              transition={{ 
+                duration: 0.4, 
+                ease: [0.175, 0.885, 0.32, 1.275] 
+              }}
               className="modal-inner-container"
+              layoutId="modal-content"
             >
               {selectedArea && (
                 <>
@@ -440,26 +422,65 @@ The firm has experience in submitting requests to the Comptroller General of the
                     className="close-button"
                     aria-label="Close"
                   >
-                    <X size={20} />
+                    <motion.div
+                      whileHover={{ rotate: 90 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <X size={22} />
+                    </motion.div>
                   </Button>
                   
-                  <div className="modal-header">
-                    <div className="modal-icon-wrapper">
-                      {getIcon(selectedArea.icon, 36)}
-                    </div>
+                  <motion.div 
+                    className="modal-header"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                  >
+                    <motion.div 
+                      className="modal-icon-wrapper"
+                      whileHover={{ 
+                        scale: 1.05,
+                        rotate: [0, 5, -5, 0],
+                        transition: { duration: 0.5, ease: "easeInOut" }
+                      }}
+                    >
+                      <motion.div
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                      >
+                        {getIcon(selectedArea.icon, 45)}
+                      </motion.div>
+                    </motion.div>
                     
-                    <h2 className="modal-title">
+                    <motion.h2 
+                      className="modal-title"
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.25 }}
+                    >
                       {getTranslatedTitle(selectedArea.title)}
-                    </h2>
-                  </div>
+                    </motion.h2>
+                  </motion.div>
                   
                   <Modal.Body className="modal-body">
                     <div className="modal-content-wrapper">
-                      <div className="modal-description-container custom-scrollbar">
+                      <motion.div 
+                        className="modal-description-container custom-scrollbar"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.5, delay: 0.35 }}
+                      >
                         {formatDetailedDescription(getDetailedDescription(selectedArea)).map((paragraph, idx) => (
-                          <div 
+                          <motion.div 
                             key={idx}
                             className="modal-paragraph-container"
+                            initial={{ opacity: 0, y: 25 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ 
+                              duration: 0.5, 
+                              delay: 0.4 + (idx * 0.08),
+                              ease: [0.25, 0.4, 0.3, 1.0]
+                            }}
                           >
                             {paragraph.startsWith('**') && paragraph.endsWith('**') ? (
                               <h4 className="modal-subheading">
@@ -470,9 +491,9 @@ The firm has experience in submitting requests to the Comptroller General of the
                                 {paragraph}
                               </p>
                             )}
-                          </div>
+                          </motion.div>
                         ))}
-                      </div>
+                      </motion.div>
                     </div>
                   </Modal.Body>
                 </>
@@ -483,341 +504,10 @@ The firm has experience in submitting requests to the Comptroller General of the
       </AnimatePresence>
       
       <style jsx global>{`
-        /* Modal styling */
-        .practice-area-modal .modal-content {
-          border-radius: 24px;
-          border: none;
-          box-shadow: 0 25px 100px rgba(0,0,0,0.25);
-          overflow: hidden;
-          height: auto;
-          max-height: 90vh;
-          background: #fff;
-          position: relative;
-          will-change: transform, opacity;
-          padding: 0;
-          display: flex;
-          flex-direction: column;
-        }
-        
-        .modal-inner-container {
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-          overflow: hidden;
-        }
-        
-        .practice-area-modal .modal-dialog {
-          max-width: 1000px;
-          margin: 30px auto;
-          width: calc(100% - 40px);
-          height: auto;
-        }
-        
-        .practice-area-modal-backdrop {
-          background-color: rgba(0, 0, 0, 0.75);
-          backdrop-filter: blur(5px);
-        }
-        
-        .modal-header {
+        /* Estilos adicionales específicos */
+        .section-header {
           text-align: center;
-          padding: 40px 40px 20px;
-          position: relative;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          border: none;
-          background: #fff;
-        }
-        
-        .modal-icon-wrapper {
-          width: 100px;
-          height: 100px;
-          border-radius: 20px;
-          background: rgba(196, 30, 58, 0.08);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          margin-bottom: 25px;
-          position: relative;
-          z-index: 10;
-          transition: all 0.3s ease;
-        }
-        
-        .modal-icon {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          transform: scale(1.4);
-        }
-        
-        .close-button {
-          position: absolute;
-          top: 25px;
-          right: 25px;
-          z-index: 100;
-          color: rgba(0, 0, 0, 0.5);
-          background: rgba(255, 255, 255, 0.9);
-          border-radius: 50%;
-          width: 45px;
-          height: 45px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 0;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-          transition: all 0.25s ease;
-          border: none;
-        }
-        
-        .close-button:hover {
-          background: #fff;
-          transform: rotate(90deg) scale(1.1);
-          color: #C41E3A;
-          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-        }
-        
-        .modal-title {
-          font-size: 2.6rem;
-          font-weight: 600;
-          color: #000;
-          margin: 0 0 20px;
-          text-align: center;
-          letter-spacing: -0.5px;
-          line-height: 1.2;
-          max-width: 85%;
-        }
-        
-        .modal-body {
-          padding: 0 0 20px;
-          background: #fff;
-          position: relative;
-          overflow: visible;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-        }
-        
-        .modal-content-wrapper {
-          padding: 0 60px;
-          height: 100%;
-          display: flex;
-          flex-direction: column;
-          flex: 1;
-          overflow: visible;
-        }
-        
-        .modal-description-container {
-          height: auto;
-          overflow-y: auto;
-          padding-right: 35px;
-          padding-left: 10px;
-          padding-bottom: 40px;
-          scrollbar-width: thin;
-          margin-bottom: 0;
-          font-size: 1.1rem;
-          display: flex;
-          flex-direction: column;
-          gap: 25px;
-          flex: 1;
-          -webkit-overflow-scrolling: touch;
-          max-height: 50vh;
-          overscroll-behavior: contain;
-        }
-        
-        /* Estilo personalizado para scrollbar */
-        .custom-scrollbar::-webkit-scrollbar {
-          width: 8px;
-          height: 8px;
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar-track {
-          background: #f5f5f5;
-          border-radius: 10px;
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: #C41E3A;
-          border-radius: 10px;
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: #a81831;
-        }
-        
-        .modal-paragraph-container {
-          margin-bottom: 0;
-        }
-        
-        .modal-paragraph-container:last-child {
-          margin-bottom: 0;
-        }
-        
-        .modal-subheading {
-          font-size: 1.8rem;
-          font-weight: 600;
-          color: #000;
-          margin: 10px 0 20px;
-          letter-spacing: -0.3px;
-        }
-        
-        .modal-paragraph {
-          font-size: 1.25rem;
-          color: rgba(0, 0, 0, 0.75);
-          line-height: 1.7;
-          margin-bottom: 0;
-          font-weight: 400;
-          max-width: 95%;
-          letter-spacing: -0.2px;
-        }
-        
-        /* Responsive adjustments */
-        @media (max-width: 1200px) {
-          .practice-area-modal .modal-dialog {
-            max-width: 90%;
-          }
-          
-          .modal-content-wrapper {
-            padding: 0 60px;
-          }
-          
-          .modal-title {
-            font-size: 2.6rem;
-          }
-          
-          .modal-paragraph {
-            font-size: 1.2rem;
-            max-width: 100%;
-          }
-        }
-        
-        @media (max-width: 992px) {
-          .practice-area-modal .modal-dialog {
-            max-width: 90%;
-          }
-          
-          .modal-content-wrapper {
-            padding: 0 50px;
-          }
-          
-          .modal-title {
-            font-size: 2.4rem;
-          }
-          
-          .modal-paragraph {
-            font-size: 1.2rem;
-          }
-          
-          .modal-subheading {
-            font-size: 1.6rem;
-          }
-          
-          .modal-icon-wrapper {
-            width: 100px;
-            height: 100px;
-          }
-        }
-        
-        @media (max-width: 768px) {
-          .practice-area-modal .modal-dialog {
-            margin: 0;
-            max-width: 100%;
-            height: 100%;
-            width: 100%;
-          }
-          
-          .practice-area-modal .modal-content {
-            max-height: 100vh;
-            height: 100%;
-            border-radius: 0;
-          }
-          
-          .modal-content-wrapper {
-            padding: 0 30px;
-          }
-          
-          .modal-title {
-            font-size: 2.2rem;
-            max-width: 90%;
-          }
-          
-          .modal-header {
-            padding: 50px 30px 15px;
-          }
-          
-          .modal-description-container {
-            max-height: none !important;
-            height: calc(100vh - 250px) !important;
-            padding-right: 20px;
-            gap: 25px;
-          }
-          
-          .close-button {
-            top: 20px;
-            right: 20px;
-            width: 45px;
-            height: 45px;
-            position: fixed;
-          }
-          
-          .modal-paragraph {
-            font-size: 1.15rem;
-          }
-          
-          .modal-subheading {
-            font-size: 1.5rem;
-            margin: 5px 0 15px;
-          }
-          
-          .modal-icon-wrapper {
-            width: 90px;
-            height: 90px;
-          }
-        }
-        
-        @media (max-width: 480px) {
-          .practice-area-modal .modal-dialog {
-            margin: 0;
-            max-width: 100%;
-          }
-          
-          .modal-content-wrapper {
-            padding: 0 25px;
-          }
-          
-          .modal-icon-wrapper {
-            width: 80px;
-            height: 80px;
-          }
-          
-          .modal-title {
-            font-size: 2rem;
-            margin-bottom: 20px;
-          }
-          
-          .modal-header {
-            padding: 40px 20px 10px;
-          }
-          
-          .modal-description-container {
-            height: calc(100vh - 220px) !important;
-            gap: 20px;
-          }
-          
-          .close-button {
-            top: 15px;
-            right: 15px;
-            width: 40px;
-            height: 40px;
-          }
-          
-          .modal-paragraph {
-            font-size: 1.1rem;
-            max-width: 100%;
-          }
-          
-          .modal-subheading {
-            font-size: 1.4rem;
-          }
+          margin-bottom: 90px;
         }
       `}</style>
     </>
