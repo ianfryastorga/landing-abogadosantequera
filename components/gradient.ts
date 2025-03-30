@@ -1,6 +1,24 @@
 // El siguiente código es para la animación de gradiente fluido
 
+/**
+ * Clase Gradient que maneja la animación de gradiente fluido
+ */
 export class Gradient {
+  canvas: HTMLCanvasElement | null;
+  ctx: CanvasRenderingContext2D | null;
+  activeColors: number[];
+  amp: number;
+  seed: number;
+  freqX: number;
+  freqY: number;
+  freqDelta: number;
+  width: number;
+  height: number;
+  isRunning: boolean;
+  rafID: number | null;
+  isInit: boolean;
+  timeStart: number;
+
   constructor() {
     this.canvas = null;
     this.ctx = null;
@@ -19,6 +37,8 @@ export class Gradient {
   }
 
   reset() {
+    if (!this.canvas || !this.ctx) return;
+    
     this.width = window.innerWidth;
     this.height = window.innerHeight;
     this.canvas.width = this.width;
@@ -27,9 +47,14 @@ export class Gradient {
     this.ctx.fillRect(0, 0, this.width, this.height);
   }
 
-  initGradient(selector) {
+  initGradient(selector: string) {
     this.canvas = document.querySelector(selector);
-    this.ctx = this.canvas.getContext("2d");
+    if (!this.canvas) return;
+    
+    const ctx = this.canvas.getContext("2d");
+    if (!ctx) return;
+    
+    this.ctx = ctx;
     
     this.reset();
     this.connect();
@@ -45,7 +70,7 @@ export class Gradient {
   }
   
   renderGradient() {
-    if (!this.isRunning) return;
+    if (!this.isRunning || !this.ctx || !this.canvas) return;
 
     const cols = this.getColorArray();
     const yBase = this.height * 0.6;
@@ -88,7 +113,9 @@ export class Gradient {
     this.rafID = window.requestAnimationFrame(this.renderGradient.bind(this));
   }
   
-  getColorArray() {
+  getColorArray(): string[] {
+    if (!this.canvas) return ['#000000', '#000000', '#000000', '#000000'];
+    
     const colors = [
       getComputedStyle(this.canvas).getPropertyValue('--gradient-color-1').trim(),
       getComputedStyle(this.canvas).getPropertyValue('--gradient-color-2').trim(),
@@ -108,7 +135,9 @@ export class Gradient {
   }
   
   disconnect() {
-    window.cancelAnimationFrame(this.rafID);
-    this.isRunning = false;
+    if (this.rafID !== null) {
+      window.cancelAnimationFrame(this.rafID);
+      this.isRunning = false;
+    }
   }
 } 
