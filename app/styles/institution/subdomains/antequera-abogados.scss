@@ -2,21 +2,33 @@
 // Inspirado en principios de diseño de Steve Jobs: simplicidad, elegancia y claridad
 
 // Variables de colores (actualizadas según config.ts)
-$primary-color: #1A1A1A;     // Negro elegante
-$secondary-color: #0F0F0F;   // Negro más oscuro
+$primary-color: #000000;     // Negro elegante
+$secondary-color: #ffffff;   // Negro más oscuro
 $accent-color: #C41E3A;      // Rojo borgoña elegante
-$text-color: #333333;        // Negro suave para texto
+$text-color: #ff0000;        // Negro suave para texto
 $text-light: #777777;        // Gris para texto secundario
 $background-color: #FFFFFF;  // Fondo blanco puro
-$background-alt: #F7F7F7;    // Gris muy claro para secciones alternativas
+$background-alt: linear-gradient(135deg, rgba(18, 18, 18, 0.97) 0%, rgba(25, 25, 25, 0.95) 50%, rgba(30, 30, 30, 0.98) 100%);    // Degradado elegante oscuro con toque rojo sutil
 
-// Estilos para eliminar espacios blancos indeseados
-html, body {
-  margin: 0 !important;
-  padding: 0 !important;
-  overflow-x: hidden !important;
-  min-height: 100% !important;
-  width: 100% !important;
+// Variables adicionales para efectos Apple-style
+$apple-blur: 15px;           // Efecto de desenfoque estilo Apple
+$apple-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);  // Sombra sutil estilo Apple
+$apple-transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);  // Transición suave tipo Apple
+
+// Animaciones adicionales para efectos visuales
+@keyframes floating-dots {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes subtle-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 // Variables para el footer común
@@ -171,7 +183,7 @@ html, body {
   }
   
   .section-title {
-    color: $primary-color;
+    color: white;
     font-weight: 600;
     margin-bottom: 1.5rem;
     font-size: 2.6rem;
@@ -496,10 +508,116 @@ html, body {
 // Estilos de las Áreas de Práctica
 .practice-areas {
   padding: 120px 0 !important;
-  background-color: $background-alt !important;
+  background: $background-alt !important;
   margin-top: 0 !important;
   position: relative !important;
   z-index: 2 !important;
+  overflow: hidden !important; // Para contener los elementos decorativos
+  
+  // Patrón de fondo sutil
+  &::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c41e3a' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") !important;
+    opacity: 0.5 !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+  }
+  
+  // Burbujas decorativas flotantes
+  .bubble {
+    position: absolute !important;
+    border-radius: 50% !important;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0)) !important;
+    filter: blur(5px) !important;
+    opacity: 0.4 !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+    
+    &:nth-child(1) {
+      width: 600px !important;
+      height: 600px !important;
+      top: -200px !important;
+      right: -100px !important;
+      background: radial-gradient(circle at 30% 30%, rgba($accent-color, 0.05), rgba($accent-color, 0)) !important;
+      animation: bubble-float 30s infinite alternate ease-in-out !important;
+    }
+    
+    &:nth-child(2) {
+      width: 400px !important;
+      height: 400px !important;
+      bottom: -100px !important;
+      left: -50px !important;
+      background: radial-gradient(circle at 30% 30%, rgba($primary-color, 0.03), rgba($primary-color, 0)) !important;
+      animation: bubble-float 24s infinite alternate-reverse ease-in-out !important;
+    }
+    
+    &:nth-child(3) {
+      width: 300px !important;
+      height: 300px !important;
+      top: 30% !important;
+      left: 10% !important;
+      background: radial-gradient(circle at 30% 30%, rgba($accent-color, 0.03), rgba($accent-color, 0)) !important;
+      animation: bubble-float-alt 20s infinite alternate ease-in-out !important;
+      animation-delay: 5s !important;
+    }
+    
+    &:nth-child(4) {
+      width: 250px !important;
+      height: 250px !important;
+      bottom: 20% !important;
+      right: 15% !important;
+      background: radial-gradient(circle at 30% 30%, rgba($primary-color, 0.02), rgba($primary-color, 0)) !important;
+      animation: bubble-float-alt 18s infinite alternate-reverse ease-in-out !important;
+      animation-delay: 3s !important;
+    }
+  }
+  
+  // Partículas brillantes tipo Apple
+  .particle {
+    position: absolute !important;
+    border-radius: 50% !important;
+    background-color: rgba($accent-color, 0.5) !important;
+    filter: blur(3px) !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+    
+    @for $i from 1 through 20 {
+      &:nth-child(#{$i + 4}) {
+        $size: random(8) + 2 + px;
+        width: $size !important;
+        height: $size !important;
+        top: percentage(random(100) / 100) !important;
+        left: percentage(random(100) / 100) !important;
+        opacity: random(30) / 100 + 0.1 !important;
+        animation: particle-float #{random(10) + 15}s infinite alternate ease-in-out !important;
+        animation-delay: #{random(10)}s !important;
+      }
+    }
+  }
+  
+  // Efecto resplandor en movimiento
+  .glow-effect {
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    top: 0 !important;
+    left: 0 !important;
+    background: linear-gradient(120deg, 
+      rgba(255,255,255,0) 0%, 
+      rgba(255,255,255,0.03) 25%, 
+      rgba(255,255,255,0.08) 50%, 
+      rgba(255,255,255,0.03) 75%, 
+      rgba(255,255,255,0) 100%) !important;
+    background-size: 200% 200% !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+    animation: glow-move 15s infinite linear !important;
+  }
   
   .section-preheading {
     text-transform: uppercase !important;
@@ -509,14 +627,18 @@ html, body {
     color: $accent-color !important;
     margin-bottom: 1rem !important;
     opacity: 0.9;
+    position: relative !important;
+    z-index: 1 !important;
   }
   
   .section-title {
     font-size: 3rem !important;
     margin-bottom: 1.2rem !important;
-    color: $primary-color !important;
+    color: white !important;
     font-weight: 600 !important;
     letter-spacing: -1px !important;
+    position: relative !important;
+    z-index: 1 !important;
     
     @include mobile {
       font-size: 2.4rem !important;
@@ -529,6 +651,8 @@ html, body {
     background-color: $accent-color !important;
     margin: 0 auto 3rem !important;
     border-radius: 2px !important;
+    position: relative !important;
+    z-index: 1 !important;
   }
   
   .section-subtitle {
@@ -539,9 +663,13 @@ html, body {
     line-height: 1.8 !important;
     font-weight: 300 !important;
     letter-spacing: -0.1px !important;
+    position: relative !important;
+    z-index: 1 !important;
   }
   
   .area-card {
+    position: relative !important;
+    z-index: 1 !important;
     transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
     border: none !important;
     border-radius: 10px !important;
@@ -643,6 +771,58 @@ html, body {
       background-color: darken($accent-color, 5%) !important;
       box-shadow: 0 8px 25px rgba($accent-color, 0.3) !important;
     }
+  }
+}
+
+// Animaciones para los elementos decorativos
+@keyframes bubble-float {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-40px) translateX(20px) scale(1.05);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.4;
+  }
+}
+
+@keyframes bubble-float-alt {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(30px) translateX(-20px) scale(1.05);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.3;
+  }
+}
+
+@keyframes particle-float {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.5);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes glow-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
   }
 }
 

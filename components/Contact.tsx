@@ -5,9 +5,159 @@ import { antequeraConfig } from '@/config';
 import { GeoAlt, Telephone, Envelope, Clock, Whatsapp, Calendar2Check } from 'react-bootstrap-icons';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
+import { useEffect, useState, useRef } from 'react';
+import BlobAnimation from './BlobAnimation';
+
+// Componente para crear puntos flotantes con estela luminosa
+const FloatingParticle = ({ index, count }: { index: number, count: number }) => {
+  // Generar posiciones y características aleatorias
+  const size = Math.random() * 6 + 3;
+  const initialX = Math.random() * 100;
+  const initialY = Math.random() * 100;
+  const delay = Math.random() * 5;
+  const duration = Math.random() * 10 + 15;
+  const opacity = Math.random() * 0.4 + 0.3;
+  
+  // Calcular la posición final basada en el índice para crear un movimiento en espiral
+  const angle = (index / count) * Math.PI * 2;
+  const radius = Math.random() * 30 + 20;
+  
+  // Color basado en el índice
+  const hue = (index % 2 === 0) ? 0 : 355; // Variación entre blanco y rojo
+  const saturation = (index % 2 === 0) ? '0%' : '80%';
+  const lightness = (index % 2 === 0) ? '100%' : '40%';
+  const alpha = opacity;
+  
+  return (
+    <motion.div
+      style={{
+        position: 'absolute',
+        width: size,
+        height: size,
+        borderRadius: '50%',
+        backgroundColor: `hsla(${hue}, ${saturation}, ${lightness}, ${alpha})`,
+        left: `${initialX}%`,
+        top: `${initialY}%`,
+        filter: 'blur(1px)',
+        zIndex: 1,
+        boxShadow: index % 2 === 0 ? 
+          '0 0 8px rgba(255, 255, 255, 0.3)' : 
+          '0 0 12px rgba(196, 30, 58, 0.4)'
+      }}
+      animate={{
+        x: [0, Math.cos(angle) * radius],
+        y: [0, Math.sin(angle) * radius],
+        opacity: [0, opacity, 0],
+        scale: [0, 1, 0.8, 0]
+      }}
+      transition={{
+        duration,
+        delay,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }}
+    />
+  );
+};
+
+// Componente para crear el efecto de haz de luz que atraviesa la pantalla
+const LightBeam = ({ index }: { index: number }) => {
+  const width = index % 2 === 0 ? '200%' : '150%';
+  const height = (index % 3 === 0) ? '2px' : '1px';
+  const delay = index * 2;
+  const duration = (index % 2 === 0) ? 8 : 12;
+  const rotate = -15 + (index * 10);
+  const top = 20 + (index * 15) + '%';
+  
+  return (
+    <motion.div
+      style={{
+        position: 'absolute',
+        width,
+        height,
+        background: index % 2 === 0 ? 
+          'linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)' : 
+          'linear-gradient(90deg, transparent, rgba(196, 30, 58, 0.2), transparent)',
+        transform: `rotate(${rotate}deg)`,
+        top,
+        left: '-50%',
+        zIndex: 0,
+        pointerEvents: 'none'
+      }}
+      animate={{
+        left: ['-50%', '100%']
+      }}
+      transition={{
+        duration,
+        delay,
+        repeat: Infinity,
+        ease: "linear"
+      }}
+    />
+  );
+};
+
+// Componente para el efecto de nebulosa flotante
+const NebulaEffect = ({ index }: { index: number }) => {
+  const size = 300 + (index * 100);
+  const posX = index % 2 === 0 ? -size/3 : 100 - size/3;
+  const posY = 20 + (index * 30);
+  const delay = index * 0.5;
+  
+  return (
+    <motion.div
+      style={{
+        position: 'absolute',
+        width: size,
+        height: size,
+        borderRadius: '50%',
+        background: index % 2 === 0 ? 
+          'radial-gradient(circle, rgba(196, 30, 58, 0.12) 0%, rgba(196, 30, 58, 0) 70%)' : 
+          'radial-gradient(circle, rgba(30, 30, 30, 0.2) 0%, rgba(0, 0, 0, 0) 70%)',
+        left: `${posX}%`,
+        top: `${posY}%`,
+        filter: 'blur(60px)',
+        zIndex: 0,
+        opacity: 0.7
+      }}
+      animate={{
+        scale: [1, 1.2, 1],
+        opacity: [0.4, 0.7, 0.4],
+        x: [0, 20, 0],
+        y: [0, -20, 0]
+      }}
+      transition={{
+        duration: 20,
+        delay,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }}
+    />
+  );
+};
 
 export const Contact = () => {
   const { t } = useLanguage();
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Manejar movimiento del mouse para efectos de parallax
+  useEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      if (containerRef.current) {
+        const { left, top, width, height } = containerRef.current.getBoundingClientRect();
+        const x = (event.clientX - left) / width;
+        const y = (event.clientY - top) / height;
+        
+        setMousePosition({ x, y });
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
 
   // Variantes de animación
   const containerVariants = {
@@ -32,29 +182,120 @@ export const Contact = () => {
     }
   };
 
+  // Calcular valores para efectos de parallax
+  const moveX = (mousePosition.x - 0.5) * 40;
+  const moveY = (mousePosition.y - 0.5) * 40;
+  
+  // Generar arrays para elementos visuales
+  const particles = Array.from({ length: 30 }, (_, i) => i);
+  const lightBeams = Array.from({ length: 3 }, (_, i) => i);
+  const nebulas = Array.from({ length: 3 }, (_, i) => i);
+
   return (
     <section 
       id="contact" 
       style={{
         padding: '120px 0',
-        background: '#f9f9f9',
-        fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif',
         position: 'relative',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        color: '#fff',
+        fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif'
       }}
+      ref={containerRef}
     >
-      <div 
+      {/* Fondo animado de Blob */}
+      <BlobAnimation />
+      
+      {/* Fondo oscuro semi-transparente para mejorar legibilidad */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        background: 'linear-gradient(135deg, rgba(10, 10, 10, 0.9) 0%, rgba(20, 20, 20, 0.9) 50%, rgba(25, 25, 25, 0.9) 100%)',
+        zIndex: 0
+      }} />
+      
+      {/* Fondo de estrellas/partículas */}
+      {particles.map((i) => (
+        <FloatingParticle key={i} index={i} count={particles.length} />
+      ))}
+      
+      {/* Efectos de luz que atraviesan la pantalla */}
+      {lightBeams.map((i) => (
+        <LightBeam key={i} index={i} />
+      ))}
+      
+      {/* Efectos de nebulosa */}
+      {nebulas.map((i) => (
+        <NebulaEffect key={i} index={i} />
+      ))}
+      
+      {/* Elementos decorativos de fondo con movimiento parallax */}
+      <motion.div 
         style={{
           position: 'absolute',
-          bottom: '-300px',
-          left: '-300px',
           width: '600px',
           height: '600px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(196, 30, 58, 0.05) 0%, rgba(196, 30, 58, 0) 70%)',
-          zIndex: 1
+          background: 'radial-gradient(circle, rgba(196, 30, 58, 0.15) 0%, rgba(196, 30, 58, 0) 70%)',
+          right: '-200px',
+          top: '-100px',
+          filter: 'blur(90px)',
+          zIndex: 0,
+          x: moveX * -0.5,
+          y: moveY * -0.5
         }}
-      ></div>
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.6, 0.8, 0.6]
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+      
+      <motion.div 
+        style={{
+          position: 'absolute',
+          width: '500px',
+          height: '500px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(196, 30, 58, 0.08) 0%, rgba(196, 30, 58, 0) 70%)',
+          left: '-150px',
+          bottom: '0px',
+          filter: 'blur(70px)',
+          zIndex: 0,
+          x: moveX * 0.5,
+          y: moveY * 0.5
+        }}
+        animate={{
+          scale: [1, 1.1, 1],
+          opacity: [0.5, 0.7, 0.5]
+        }}
+        transition={{
+          duration: 15,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+      
+      {/* Efecto de desenfoque en movimiento (blur glow) */}
+      <motion.div
+        style={{
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+          background: 'radial-gradient(circle at 50% 50%, rgba(196, 30, 58, 0.05) 0%, rgba(0,0,0,0) 70%)',
+          zIndex: 0,
+          opacity: 0.8,
+          x: moveX,
+          y: moveY
+        }}
+      />
       
       <Container style={{ position: 'relative', zIndex: 5 }}>
         <motion.div 
@@ -67,54 +308,124 @@ export const Contact = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true, amount: 0.2 }}
         >
-          <div 
+          <motion.div 
             style={{
               display: 'inline-block',
               fontSize: '0.95rem',
               fontWeight: 500,
-              color: '#C41E3A',
+              color: 'rgba(196, 30, 58, 0.9)',
               marginBottom: '16px',
               letterSpacing: '1px',
-              textTransform: 'uppercase'
+              textTransform: 'uppercase',
+              position: 'relative'
             }}
+            whileHover={{ scale: 1.05 }}
           >
+            {/* Pequeño punto decorativo */}
+            <motion.div
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: '-15px',
+                width: '6px',
+                height: '6px',
+                borderRadius: '50%',
+                backgroundColor: 'rgba(196, 30, 58, 0.7)',
+                transform: 'translateY(-50%)',
+                boxShadow: '0 0 10px rgba(196, 30, 58, 0.5)'
+              }}
+              animate={{
+                scale: [1, 1.5, 1],
+                opacity: [0.5, 1, 0.5],
+                boxShadow: [
+                  '0 0 5px rgba(196, 30, 58, 0.3)',
+                  '0 0 10px rgba(196, 30, 58, 0.7)',
+                  '0 0 5px rgba(196, 30, 58, 0.3)'
+                ]
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
             {t('contact.title')}
-          </div>
+            {/* Pequeño punto decorativo */}
+            <motion.div
+              style={{
+                position: 'absolute',
+                top: '50%',
+                right: '-15px',
+                width: '6px',
+                height: '6px',
+                borderRadius: '50%',
+                backgroundColor: 'rgba(196, 30, 58, 0.7)',
+                transform: 'translateY(-50%)',
+                boxShadow: '0 0 10px rgba(196, 30, 58, 0.5)'
+              }}
+              animate={{
+                scale: [1, 1.5, 1],
+                opacity: [0.5, 1, 0.5],
+                boxShadow: [
+                  '0 0 5px rgba(196, 30, 58, 0.3)',
+                  '0 0 10px rgba(196, 30, 58, 0.7)',
+                  '0 0 5px rgba(196, 30, 58, 0.3)'
+                ]
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1
+              }}
+            />
+          </motion.div>
           
-          <h2 
+          <motion.h2 
             style={{
               fontSize: '2.8rem',
               fontWeight: 600,
-              color: '#000',
+              color: '#FFFFFF',
               marginBottom: '24px',
-              letterSpacing: '-0.5px'
+              letterSpacing: '-0.5px',
+              position: 'relative'
             }}
+            whileHover={{ scale: 1.02 }}
           >
             {t('contact.heading')}
-          </h2>
+          </motion.h2>
           
-          <div 
+          <motion.div 
             style={{
               width: '40px',
               height: '3px',
-              background: '#C41E3A',
+              background: 'rgba(196, 30, 58, 0.9)',
               margin: '0 auto 24px',
               borderRadius: '2px'
             }}
-          ></div>
+            whileInView={{
+              width: ['0px', '40px']
+            }}
+            transition={{
+              duration: 0.8,
+              ease: "easeOut"
+            }}
+            viewport={{ once: true }}
+          />
           
-          <p 
+          <motion.p 
             style={{
               fontSize: '1.2rem',
-              color: 'rgba(0,0,0,0.6)',
+              color: 'rgba(255, 255, 255, 0.7)',
               maxWidth: '700px',
               margin: '0 auto',
               lineHeight: 1.6,
               fontWeight: 300
             }}
+            whileHover={{ scale: 1.01 }}
           >
             {t('contact.description')}
-          </p>
+          </motion.p>
         </motion.div>
         
         <motion.div
@@ -128,16 +439,53 @@ export const Contact = () => {
               <motion.div 
                 variants={itemVariants}
                 style={{
-                  borderRadius: '16px',
+                  borderRadius: '24px',
                   padding: '60px 40px',
-                  background: '#000',
+                  background: 'rgba(40, 40, 40, 0.4)',
+                  backdropFilter: 'blur(12px)',
+                  WebkitBackdropFilter: 'blur(12px)',
                   color: '#fff',
                   position: 'relative',
                   overflow: 'hidden',
-                  textAlign: 'center'
+                  textAlign: 'center',
+                  boxShadow: '0 25px 50px rgba(0,0,0,0.2), 0 15px 40px rgba(196, 30, 58, 0.05)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)'
+                }}
+                whileHover={{
+                  boxShadow: '0 30px 60px rgba(0,0,0,0.3), 0 15px 40px rgba(196, 30, 58, 0.1)'
                 }}
               >
-                <div 
+                {/* Borde brillante animado */}
+                <motion.div
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    borderRadius: '24px',
+                    padding: '1px',
+                    background: 'linear-gradient(135deg, transparent, rgba(196, 30, 58, 0.3), transparent)',
+                    WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                    WebkitMaskComposite: 'xor',
+                    maskComposite: 'exclude',
+                    pointerEvents: 'none'
+                  }}
+                  animate={{
+                    background: [
+                      'linear-gradient(135deg, transparent, rgba(196, 30, 58, 0.3), transparent)',
+                      'linear-gradient(225deg, transparent, rgba(196, 30, 58, 0.3), transparent)',
+                      'linear-gradient(315deg, transparent, rgba(196, 30, 58, 0.3), transparent)',
+                      'linear-gradient(45deg, transparent, rgba(196, 30, 58, 0.3), transparent)',
+                      'linear-gradient(135deg, transparent, rgba(196, 30, 58, 0.3), transparent)'
+                    ]
+                  }}
+                  transition={{
+                    duration: 10,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                />
+                
+                {/* Efecto de círculo brillante */}
+                <motion.div 
                   style={{
                     position: 'absolute',
                     top: 0,
@@ -145,34 +493,108 @@ export const Contact = () => {
                     width: '300px',
                     height: '300px',
                     borderRadius: '0 0 0 300px',
-                    background: 'radial-gradient(circle at top right, rgba(196, 30, 58, 0.2), rgba(0,0,0,0) 70%)',
+                    background: 'radial-gradient(circle at top right, rgba(196, 30, 58, 0.3), rgba(0,0,0,0) 70%)',
+                    zIndex: 0,
+                    filter: 'blur(30px)'
+                  }}
+                  animate={{
+                    opacity: [0.6, 0.8, 0.6]
+                  }}
+                  transition={{
+                    duration: 5,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                
+                {/* Bruma colorida interior */}
+                <motion.div
+                  style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    background: 'radial-gradient(circle at bottom left, rgba(196, 30, 58, 0.1), transparent 70%)',
+                    zIndex: 0,
+                    opacity: 0.6
+                  }}
+                  animate={{
+                    opacity: [0.6, 0.8, 0.6]
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                
+                {/* Efecto de línea brillante horizontal */}
+                <motion.div
+                  style={{
+                    position: 'absolute',
+                    top: '30%',
+                    left: 0,
+                    width: '100%',
+                    height: '1px',
+                    background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent)',
                     zIndex: 0
                   }}
-                ></div>
+                  animate={{
+                    opacity: [0.3, 0.6, 0.3]
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
                 
-                <div
+                <motion.div
                   style={{
                     marginBottom: '30px',
                     position: 'relative',
                     zIndex: 1
                   }}
+                  whileHover={{ 
+                    scale: 1.1,
+                    rotate: [0, 5, -5, 0],
+                    transition: { duration: 0.6 }
+                  }}
                 >
-                  <Calendar2Check size={50} style={{ color: '#C41E3A' }} />
-                </div>
+                  <motion.div
+                    animate={{
+                      y: [0, -5, 0],
+                      scale: [1, 1.05, 1]
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <Calendar2Check size={50} style={{ 
+                      color: '#C41E3A', 
+                      filter: 'drop-shadow(0 0 10px rgba(196, 30, 58, 0.5))' 
+                    }} />
+                  </motion.div>
+                </motion.div>
                 
-                <h3 
+                <motion.h3 
                   style={{
                     fontSize: '2rem',
                     fontWeight: 600,
                     marginBottom: '20px',
                     position: 'relative',
-                    zIndex: 1
+                    zIndex: 1,
+                    color: '#FFFFFF'
                   }}
+                  whileHover={{ scale: 1.02, color: '#FFFFFF' }}
                 >
                   {t('contact.card.title')}
-                </h3>
+                </motion.h3>
                 
-                <p 
+                <motion.p 
                   style={{
                     fontSize: '1.1rem',
                     color: 'rgba(255,255,255,0.8)',
@@ -186,7 +608,7 @@ export const Contact = () => {
                   }}
                 >
                   {t('contact.card.description')}
-                </p>
+                </motion.p>
                 
                 <motion.a 
                   href={`https://wa.me/${antequeraConfig.contactInfo.phone.replace(/\D/g, '')}`}
@@ -196,42 +618,44 @@ export const Contact = () => {
                     justifyContent: 'center',
                     gap: '12px',
                     padding: '16px 32px',
-                    background: '#C41E3A',
+                    background: 'rgba(196, 30, 58, 0.9)',
                     borderRadius: '40px',
                     color: '#fff',
                     textDecoration: 'none',
                     fontSize: '1.1rem',
                     fontWeight: 500,
-                    boxShadow: '0 4px 15px rgba(196, 30, 58, 0.3)',
+                    boxShadow: '0 5px 15px rgba(196, 30, 58, 0.3)',
                     position: 'relative',
-                    zIndex: 1
+                    zIndex: 1,
+                    border: '1px solid rgba(196, 30, 58, 0.7)'
                   }}
                   whileHover={{ 
                     scale: 1.05,
-                    boxShadow: '0 4px 25px rgba(196, 30, 58, 0.4)'
+                    boxShadow: '0 5px 25px rgba(196, 30, 58, 0.4)'
                   }}
                   whileTap={{ scale: 0.97 }}
                 >
                   <Whatsapp size={22} /> {t('contact.card.button')}
                 </motion.a>
                 
-                <div 
+                <motion.div 
                   style={{
                     marginTop: '60px',
                     position: 'relative',
                     zIndex: 1
                   }}
                 >
-                  <h4 
+                  <motion.h4 
                     style={{
                       fontSize: '1.3rem',
                       fontWeight: 600,
                       marginBottom: '30px',
                       position: 'relative'
                     }}
+                    whileHover={{ scale: 1.02 }}
                   >
                     {t('contact.info.title')}
-                  </h4>
+                  </motion.h4>
                   
                   <div 
                     style={{
@@ -242,28 +666,35 @@ export const Contact = () => {
                       margin: '0 auto'
                     }}
                   >
-                    <div 
+                    <motion.div 
                       style={{
                         display: 'flex',
                         alignItems: 'center',
                         gap: '15px'
                       }}
+                      whileHover={{ scale: 1.03, x: 5 }}
                     >
-                      <div 
+                      <motion.div 
                         style={{
                           width: '40px',
                           height: '40px',
                           borderRadius: '50%',
-                          background: 'rgba(196, 30, 58, 0.1)',
+                          background: 'rgba(196, 30, 58, 0.15)',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
                           flexShrink: 0,
-                          color: '#C41E3A'
+                          color: '#C41E3A',
+                          boxShadow: '0 0 15px rgba(196, 30, 58, 0.2)'
+                        }}
+                        whileHover={{ 
+                          scale: 1.1,
+                          background: 'rgba(196, 30, 58, 0.2)',
+                          boxShadow: '0 0 20px rgba(196, 30, 58, 0.3)'
                         }}
                       >
                         <GeoAlt size={18} />
-                      </div>
+                      </motion.div>
                       <span 
                         style={{
                           fontSize: '1rem',
@@ -274,31 +705,38 @@ export const Contact = () => {
                       >
                         {antequeraConfig.contactInfo.address}
                       </span>
-                    </div>
+                    </motion.div>
                     
-                    <div 
+                    <motion.div 
                       style={{
                         display: 'flex',
                         alignItems: 'center',
                         gap: '15px'
                       }}
+                      whileHover={{ scale: 1.03, x: 5 }}
                     >
-                      <div 
+                      <motion.div 
                         style={{
                           width: '40px',
                           height: '40px',
                           borderRadius: '50%',
-                          background: 'rgba(196, 30, 58, 0.1)',
+                          background: 'rgba(196, 30, 58, 0.15)',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
                           flexShrink: 0,
-                          color: '#C41E3A'
+                          color: '#C41E3A',
+                          boxShadow: '0 0 15px rgba(196, 30, 58, 0.2)'
+                        }}
+                        whileHover={{ 
+                          scale: 1.1,
+                          background: 'rgba(196, 30, 58, 0.2)',
+                          boxShadow: '0 0 20px rgba(196, 30, 58, 0.3)'
                         }}
                       >
                         <Telephone size={18} />
-                      </div>
-                      <a 
+                      </motion.div>
+                      <motion.a 
                         href={`tel:${antequeraConfig.contactInfo.phone}`}
                         style={{
                           fontSize: '1rem',
@@ -307,36 +745,42 @@ export const Contact = () => {
                           transition: 'color 0.2s ease',
                           textAlign: 'left'
                         }}
-                        onMouseOver={(e) => e.currentTarget.style.color = '#fff'}
-                        onMouseOut={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.9)'}
+                        whileHover={{ color: '#fff', scale: 1.02 }}
                       >
                         {antequeraConfig.contactInfo.phone}
-                      </a>
-                    </div>
+                      </motion.a>
+                    </motion.div>
                     
-                    <div 
+                    <motion.div 
                       style={{
                         display: 'flex',
                         alignItems: 'center',
                         gap: '15px'
                       }}
+                      whileHover={{ scale: 1.03, x: 5 }}
                     >
-                      <div 
+                      <motion.div 
                         style={{
                           width: '40px',
                           height: '40px',
                           borderRadius: '50%',
-                          background: 'rgba(196, 30, 58, 0.1)',
+                          background: 'rgba(196, 30, 58, 0.15)',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
                           flexShrink: 0,
-                          color: '#C41E3A'
+                          color: '#C41E3A',
+                          boxShadow: '0 0 15px rgba(196, 30, 58, 0.2)'
+                        }}
+                        whileHover={{ 
+                          scale: 1.1,
+                          background: 'rgba(196, 30, 58, 0.2)',
+                          boxShadow: '0 0 20px rgba(196, 30, 58, 0.3)'
                         }}
                       >
                         <Envelope size={18} />
-                      </div>
-                      <a 
+                      </motion.div>
+                      <motion.a 
                         href={`mailto:${antequeraConfig.contactInfo.email}`}
                         style={{
                           fontSize: '1rem',
@@ -345,35 +789,41 @@ export const Contact = () => {
                           transition: 'color 0.2s ease',
                           textAlign: 'left'
                         }}
-                        onMouseOver={(e) => e.currentTarget.style.color = '#fff'}
-                        onMouseOut={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.9)'}
+                        whileHover={{ color: '#fff', scale: 1.02 }}
                       >
                         {antequeraConfig.contactInfo.email}
-                      </a>
-                    </div>
+                      </motion.a>
+                    </motion.div>
                     
-                    <div 
+                    <motion.div 
                       style={{
                         display: 'flex',
                         alignItems: 'center',
                         gap: '15px'
                       }}
+                      whileHover={{ scale: 1.03, x: 5 }}
                     >
-                      <div 
+                      <motion.div 
                         style={{
                           width: '40px',
                           height: '40px',
                           borderRadius: '50%',
-                          background: 'rgba(196, 30, 58, 0.1)',
+                          background: 'rgba(196, 30, 58, 0.15)',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
                           flexShrink: 0,
-                          color: '#C41E3A'
+                          color: '#C41E3A',
+                          boxShadow: '0 0 15px rgba(196, 30, 58, 0.2)'
+                        }}
+                        whileHover={{ 
+                          scale: 1.1,
+                          background: 'rgba(196, 30, 58, 0.2)',
+                          boxShadow: '0 0 20px rgba(196, 30, 58, 0.3)'
                         }}
                       >
                         <Clock size={18} />
-                      </div>
+                      </motion.div>
                       <span 
                         style={{
                           fontSize: '1rem',
@@ -385,9 +835,9 @@ export const Contact = () => {
                         {t('contact.schedule')}: {antequeraConfig.businessHours.weekdays}<br />
                   
                       </span>
-                    </div>
+                    </motion.div>
                   </div>
-                </div>
+                </motion.div>
               </motion.div>
             </Col>
           </Row>
