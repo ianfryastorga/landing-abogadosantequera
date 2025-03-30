@@ -835,7 +835,7 @@ The firm has experience in submitting requests to the Comptroller General of the
               fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, "Poppins", sans-serif'
             }}
             backdropClassName="practice-area-modal-backdrop"
-            fullscreen="lg-down"
+            scrollable={true}
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.96, y: 30 }}
@@ -847,6 +847,7 @@ The firm has experience in submitting requests to the Comptroller General of the
               }}
               className="modal-inner-container"
               layoutId="modal-content"
+              style={{ maxHeight: '85vh', overflowY: 'auto' }}
             >
               {selectedArea && (
                 <>
@@ -855,6 +856,12 @@ The firm has experience in submitting requests to the Comptroller General of the
                     onClick={handleClose} 
                     className="close-button"
                     aria-label="Close"
+                    style={{ 
+                      position: 'absolute', 
+                      top: '15px', 
+                      right: '15px',
+                      zIndex: 10
+                    }}
                   >
                     <motion.div
                       whileHover={{ rotate: 90 }}
@@ -869,6 +876,7 @@ The firm has experience in submitting requests to the Comptroller General of the
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.1 }}
+                    style={{ padding: '30px 30px 15px 30px' }}
                   >
                     <motion.div 
                       className="modal-icon-wrapper"
@@ -891,12 +899,13 @@ The firm has experience in submitting requests to the Comptroller General of the
                       initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: 0.25 }}
+                      style={{ margin: '20px 0' }}
                     >
                       {getTranslatedTitle(selectedArea.title)}
                     </motion.h2>
                   </motion.div>
                   
-                  <Modal.Body className="modal-body">
+                  <Modal.Body className="modal-body" style={{ overflowY: 'auto', maxHeight: 'calc(85vh - 150px)', padding: '0 30px 30px 30px' }}>
                     <div className="modal-content-wrapper">
                       <motion.div 
                         className="modal-description-container custom-scrollbar"
@@ -915,13 +924,14 @@ The firm has experience in submitting requests to the Comptroller General of the
                               delay: 0.4 + (idx * 0.08),
                               ease: [0.25, 0.4, 0.3, 1.0]
                             }}
+                            style={{ marginBottom: '20px' }}
                           >
                             {paragraph.startsWith('**') && paragraph.endsWith('**') ? (
-                              <h4 className="modal-subheading">
+                              <h4 className="modal-subheading" style={{ marginBottom: '15px', fontSize: '1.3rem', fontWeight: '600' }}>
                                 {paragraph.replace(/\*\*/g, '')}
                               </h4>
                             ) : (
-                              <p className="modal-paragraph">
+                              <p className="modal-paragraph" style={{ lineHeight: '1.8', fontSize: '1.05rem', marginBottom: '15px' }}>
                                 {paragraph}
                               </p>
                             )}
@@ -942,6 +952,70 @@ The firm has experience in submitting requests to the Comptroller General of the
         .section-header {
           text-align: center;
           margin-bottom: 90px;
+        }
+        
+        .practice-area-modal .modal-content {
+          border-radius: 20px;
+          border: none;
+          overflow: hidden;
+          padding: 15px;
+        }
+        
+        .practice-area-modal .modal-dialog {
+          max-width: 90%;
+          margin: 1.75rem auto;
+        }
+        
+        .practice-area-modal .modal-body {
+          padding: 0 30px 30px 30px;
+        }
+        
+        .modal-inner-container {
+          position: relative;
+          padding: 10px;
+        }
+        
+        .modal-paragraph-container {
+          margin-bottom: 20px;
+        }
+        
+        .modal-paragraph {
+          line-height: 1.8;
+          font-size: 1.05rem;
+          color: #333;
+        }
+        
+        .modal-subheading {
+          margin-bottom: 15px;
+          font-size: 1.3rem;
+          font-weight: 600;
+          color: #222;
+        }
+        
+        .close-button {
+          color: #333;
+        }
+        
+        @media (max-width: 768px) {
+          .practice-area-modal .modal-dialog {
+            margin: 0.5rem;
+            max-width: calc(100% - 1rem);
+            max-height: 90vh;
+          }
+          
+          .modal-inner-container {
+            max-height: 80vh !important;
+            padding: 10px 5px;
+          }
+          
+          .modal-body {
+            max-height: calc(80vh - 120px) !important;
+            padding: 0 20px 20px 20px !important;
+          }
+          
+          .modal-header {
+            padding: 20px 20px 10px 20px !important;
+          }
         }
       `}</style>
     </>
