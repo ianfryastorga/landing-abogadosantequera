@@ -835,7 +835,7 @@ Energy: We offer a comprehensive service that includes regulatory issues, projec
               fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, "Poppins", sans-serif'
             }}
             backdropClassName="practice-area-modal-backdrop"
-            scrollable={true}
+            scrollable={false}
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.96, y: 30 }}
@@ -847,7 +847,7 @@ Energy: We offer a comprehensive service that includes regulatory issues, projec
               }}
               className="modal-inner-container"
               layoutId="modal-content"
-              style={{ maxHeight: '85vh', overflowY: 'auto' }}
+              style={{ maxHeight: '85vh' }}
             >
               {selectedArea && (
                 <>
@@ -905,10 +905,10 @@ Energy: We offer a comprehensive service that includes regulatory issues, projec
                     </motion.h2>
                   </motion.div>
                   
-                  <Modal.Body className="modal-body" style={{ overflowY: 'auto', maxHeight: 'calc(85vh - 150px)', padding: '0 30px 30px 30px' }}>
+                  <Modal.Body className="modal-body" style={{ padding: '0 30px 30px 30px' }}>
                     <div className="modal-content-wrapper">
                       <motion.div 
-                        className="modal-description-container custom-scrollbar"
+                        className="modal-description-container"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.5, delay: 0.35 }}
@@ -968,6 +968,8 @@ Energy: We offer a comprehensive service that includes regulatory issues, projec
         
         .practice-area-modal .modal-body {
           padding: 0 30px 30px 30px;
+          overflow-y: auto;
+          max-height: calc(85vh - 150px);
         }
         
         .modal-inner-container {
@@ -994,6 +996,14 @@ Energy: We offer a comprehensive service that includes regulatory issues, projec
         
         .close-button {
           color: #333;
+        }
+        
+        .modal-content-wrapper {
+          overflow: visible;
+        }
+        
+        .modal-description-container {
+          overflow: visible;
         }
         
         @media (max-width: 768px) {
