@@ -10,12 +10,12 @@
   </defs>
   <g style="filter: url(#logoShadow);">
     <polygon 
-      points="50,0 80,50 50,100 20,50" 
+      points="50,0 70,50 50,100 30,50" 
       stroke="url(#logoGradientWhite)" 
       stroke-width="7" 
-      stroke-linecap="round" 
-      stroke-linejoin="round"
-      transform="rotate(-28 50 50)" 
+      stroke-linecap="butt" 
+      stroke-linejoin="miter"
+      transform="rotate(-20 50 50)" 
     />
   </g>
 </svg> 

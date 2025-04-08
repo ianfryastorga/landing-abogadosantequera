@@ -7,6 +7,7 @@ import { antequeraConfig } from '@/config';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 import { LanguageSwitcher } from './LanguageSwitcher';
+import Image from 'next/image';
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -170,7 +171,7 @@ export const Header = () => {
           backdropFilter: isScrolled || isExpanded ? 'blur(10px)' : 'none',
           boxShadow: isScrolled || isExpanded ? '0 1px 15px rgba(0,0,0,0.08)' : 'none',
           transition: 'all 0.3s ease',
-          padding: '15px 0',
+          padding: '10px 0',
           fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif',
         }} 
       >
@@ -179,32 +180,50 @@ export const Header = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
+            style={{ display: 'flex', alignItems: 'center' }}
           >
             <Navbar.Brand 
               href="#hero" 
               style={{
+                display: 'flex',
+                alignItems: 'center',
                 color: isScrolled || isExpanded ? '#000' : '#fff',
-                fontSize: '1.5rem',
+                fontSize: '1.4rem',
                 fontWeight: 500,
                 letterSpacing: '-0.5px',
                 transition: 'color 0.3s ease',
                 fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif',
+                marginRight: 'auto'
               }}
             >
+              <Image 
+                src="/logo.svg" 
+                alt="Logo" 
+                width={35} 
+                height={35} 
+                style={{ 
+                  marginRight: '10px',
+                  filter: isScrolled || isExpanded ? 'invert(1)' : 'none'
+                }} 
+              />
               {antequeraConfig.name}
             </Navbar.Brand>
           </motion.div>
-          
           <Navbar.Toggle 
-            aria-controls="navbar-nav" 
+            aria-controls="basic-navbar-nav" 
+            onClick={() => setIsExpanded(!isExpanded)}
             style={{ 
-              border: 'none',
-              padding: '0.4rem',
-              color: isScrolled || isExpanded ? '#000' : '#fff' 
+              borderColor: isScrolled || isExpanded ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.2)',
             }}
-          />
-          
-          <Navbar.Collapse id="navbar-nav">
+          >
+            <span 
+              className="navbar-toggler-icon"
+              style={{ 
+                backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='${isScrolled || isExpanded ? 'rgba(0, 0, 0, 0.55)' : 'rgba(255, 255, 255, 0.8)'}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")`
+              }}
+            ></span>
+          </Navbar.Toggle>
+          <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
             <motion.div
               className="ms-auto d-flex align-items-center"
               variants={navVariants}

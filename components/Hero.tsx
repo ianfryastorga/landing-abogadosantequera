@@ -214,7 +214,10 @@ export const Hero = () => {
               
               <motion.h1 
                 variants={itemVariants} 
-                style={{
+                style={{ 
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
                   fontSize: isMobile ? '2.5rem' : '4.5rem',
                   fontWeight: 700,
                   letterSpacing: '-1px',
@@ -223,23 +226,7 @@ export const Hero = () => {
                   fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif'
                 }}
               >
-                <motion.div
-                  variants={itemVariants}
-                >
-                  <Image 
-                    src="/logo.svg" 
-                    alt="Logo Antequera Abogados" 
-                    width={isMobile ? 40 : 60} 
-                    height={isMobile ? 40 : 60} 
-                    style={{ 
-                      display: 'inline-block',
-                      marginRight: '15px', 
-                      verticalAlign: 'middle', 
-                      marginTop: '-5px'
-                    }} 
-                  />
-                  <span style={{ verticalAlign: 'middle' }}>{antequeraConfig.name}</span>
-                </motion.div>
+                <span>{antequeraConfig.name}</span>
               </motion.h1>
               
               <motion.p 
