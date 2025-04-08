@@ -7,7 +7,6 @@ import { antequeraConfig } from '@/config';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 import { LanguageSwitcher } from './LanguageSwitcher';
-import Image from 'next/image';
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -77,9 +76,6 @@ export const Header = () => {
 
   return (
     <header className="header">
-      <div className="logo-container">
-        <Image src="/logo.svg" alt="Logo" width={50} height={50} />
-      </div>
       {/* Top Bar con información de contacto */}
       <motion.div 
         initial="hidden"
@@ -278,16 +274,4 @@ export const Header = () => {
       </Navbar>
     </header>
   );
-};
-
-<style jsx>{`
-  .header {
-    display: flex;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #fff;
-  }
-  .logo-container {
-    margin-right: 20px;
-  }
-`}</style> 
+}; 
