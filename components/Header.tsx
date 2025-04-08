@@ -165,6 +165,7 @@ export const Header = () => {
         fixed="top"
         expanded={isExpanded}
         onToggle={(expanded) => setIsExpanded(expanded)}
+        className={isScrolled || isExpanded ? 'navbar-scrolled' : ''}
         style={{ 
           marginTop: '36px',
           background: isScrolled || isExpanded ? 'rgba(255, 255, 255, 0.95)' : 'transparent',
@@ -187,7 +188,7 @@ export const Header = () => {
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                color: isScrolled || isExpanded ? '#000' : '#fff',
+                color: '#fff',
                 fontSize: '1.4rem',
                 fontWeight: 500,
                 letterSpacing: '-0.5px',
@@ -237,7 +238,7 @@ export const Header = () => {
                       href={link.url}
                       onClick={handleNavClick}
                       style={{
-                        color: isScrolled || isExpanded ? '#000' : 'rgba(255,255,255,0.8)',
+                        color: 'rgba(255,255,255,0.8)',
                         fontWeight: 400,
                         fontSize: '0.95rem',
                         padding: '0.5rem 1.2rem',
@@ -291,6 +292,25 @@ export const Header = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+
+      {/* Add global styles for the new class */}
+      <style jsx global>{`
+        .navbar-scrolled .navbar-brand {
+          color: #000 !important; /* Use !important initially for testing */
+        }
+        .navbar-scrolled .nav-link {
+          color: #000 !important; /* Use !important initially for testing */
+        }
+        /* Adjust hover/focus states if needed for the scrolled state */
+        .navbar-scrolled .nav-link:hover,
+        .navbar-scrolled .nav-link:focus {
+           color: #C41E3A !important; 
+        }
+        /* Ensure logo filter is applied correctly (already handled by inline style) */
+        /* .navbar-scrolled .navbar-brand img {
+          filter: invert(1);
+        } */
+      `}</style>
     </header>
   );
 }; 
