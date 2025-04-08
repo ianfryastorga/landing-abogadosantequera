@@ -6,6 +6,7 @@ import { Award, ShieldCheck } from 'react-bootstrap-icons';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
+import Image from 'next/image';
 
 export const Hero = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -222,7 +223,23 @@ export const Hero = () => {
                   fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif'
                 }}
               >
-                {antequeraConfig.name}
+                <motion.div
+                  variants={itemVariants}
+                >
+                  <Image 
+                    src="/logo.svg" 
+                    alt="Logo Antequera Abogados" 
+                    width={isMobile ? 40 : 60} 
+                    height={isMobile ? 40 : 60} 
+                    style={{ 
+                      display: 'inline-block',
+                      marginRight: '15px', 
+                      verticalAlign: 'middle', 
+                      marginTop: '-5px'
+                    }} 
+                  />
+                  <span style={{ verticalAlign: 'middle' }}>{antequeraConfig.name}</span>
+                </motion.div>
               </motion.h1>
               
               <motion.p 
