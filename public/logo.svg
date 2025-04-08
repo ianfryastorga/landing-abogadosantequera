@@ -10,7 +10,7 @@
   </defs>
   <g style="filter: url(#logoShadow);">
     <polygon 
-      points="50,5 90,50 50,95 10,50" 
+      points="50,0 80,50 50,100 20,50" 
       stroke="url(#logoGradientWhite)" 
       stroke-width="7" 
       stroke-linecap="round" 
