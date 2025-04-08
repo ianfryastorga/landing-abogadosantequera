@@ -237,7 +237,7 @@ export const Header = () => {
                       href={link.url}
                       onClick={handleNavClick}
                       style={{
-                        color: isScrolled || isExpanded ? 'rgba(0,0,0,0.8)' : 'rgba(255,255,255,0.8)',
+                        color: isScrolled || isExpanded ? '#000' : 'rgba(255,255,255,0.8)',
                         fontWeight: 400,
                         fontSize: '0.95rem',
                         padding: '0.5rem 1.2rem',
@@ -245,10 +245,10 @@ export const Header = () => {
                         letterSpacing: '0.2px'
                       }}
                       onMouseOver={(e) => {
-                        e.currentTarget.style.color = isScrolled || isExpanded ? '#000' : '#fff';
+                        e.currentTarget.style.color = isScrolled || isExpanded ? '#C41E3A' : '#fff';
                       }}
                       onMouseOut={(e) => {
-                        e.currentTarget.style.color = isScrolled || isExpanded ? 'rgba(0,0,0,0.8)' : 'rgba(255,255,255,0.8)';
+                        e.currentTarget.style.color = isScrolled || isExpanded ? '#000' : 'rgba(255,255,255,0.8)';
                       }}
                     >
                       {link.name}
