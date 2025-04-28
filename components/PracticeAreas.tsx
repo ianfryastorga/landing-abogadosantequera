@@ -28,25 +28,19 @@ interface AreaTranslations {
 
 // Componente para crear puntos flotantes con estela luminosa
 const FloatingParticle = ({ index, count }: { index: number, count: number }) => {
-  // Generar posiciones y características aleatorias
-  const size = Math.random() * 6 + 3;
-  const initialX = Math.random() * 100;
-  const initialY = Math.random() * 100;
-  const delay = Math.random() * 5;
-  const duration = Math.random() * 10 + 15;
-  const opacity = Math.random() * 0.4 + 0.3;
+  // Usar valores más simples y menos cálculos
+  const size = (index % 3) + 3; // Simplificar cálculo
+  const initialX = (index * 17) % 100; // Distribuir uniformemente
+  const initialY = (index * 13) % 100;
+  const delay = index * 0.2; // Retraso predecible
+  const duration = 15 + (index % 5); // Menos variación
   
-  // Calcular la posición final basada en el índice para crear un movimiento en espiral
+  // Simplificar cálculos angulares
   const angle = (index / count) * Math.PI * 2;
-  const radius = Math.random() * 30 + 20;
-  const finalX = initialX + Math.cos(angle) * radius;
-  const finalY = initialY + Math.sin(angle) * radius;
+  const radius = 25;
   
-  // Color basado en el índice
-  const hue = (index % 2 === 0) ? 0 : 355; // Variación entre blanco y rojo
-  const saturation = (index % 2 === 0) ? '0%' : '80%';
-  const lightness = (index % 2 === 0) ? '100%' : '40%';
-  const alpha = opacity;
+  // Solo dos colores alternativos en vez de cálculos complejos
+  const isWhite = index % 2 === 0;
   
   return (
     <motion.div
@@ -55,20 +49,17 @@ const FloatingParticle = ({ index, count }: { index: number, count: number }) =>
         width: size,
         height: size,
         borderRadius: '50%',
-        backgroundColor: `hsla(${hue}, ${saturation}, ${lightness}, ${alpha})`,
+        backgroundColor: isWhite ? 'rgba(255, 255, 255, 0.4)' : 'rgba(196, 30, 58, 0.4)',
         left: `${initialX}%`,
         top: `${initialY}%`,
         filter: 'blur(1px)',
         zIndex: 1,
-        boxShadow: index % 2 === 0 ? 
-          '0 0 8px rgba(255, 255, 255, 0.3)' : 
-          '0 0 12px rgba(196, 30, 58, 0.4)'
+        // Eliminar boxShadow para mejor rendimiento
       }}
       animate={{
         x: [0, Math.cos(angle) * radius],
         y: [0, Math.sin(angle) * radius],
-        opacity: [0, opacity, 0],
-        scale: [0, 1, 0.8, 0]
+        opacity: [0, 0.4, 0]
       }}
       transition={{
         duration,
@@ -82,12 +73,13 @@ const FloatingParticle = ({ index, count }: { index: number, count: number }) =>
 
 // Componente para crear el efecto de haz de luz que atraviesa la pantalla
 const LightBeam = ({ index }: { index: number }) => {
-  const width = index % 2 === 0 ? '200%' : '150%';
-  const height = (index % 3 === 0) ? '2px' : '1px';
-  const delay = index * 2;
-  const duration = (index % 2 === 0) ? 8 : 12;
-  const rotate = -15 + (index * 10);
-  const top = 20 + (index * 15) + '%';
+  // Simplificar cálculos
+  const width = index % 2 === 0 ? '150%' : '120%';
+  const height = '1px';
+  const delay = index * 3;
+  const duration = 10;
+  const rotate = index * 10;
+  const top = 20 + (index * 20) + '%';
   
   return (
     <motion.div
@@ -96,8 +88,8 @@ const LightBeam = ({ index }: { index: number }) => {
         width,
         height,
         background: index % 2 === 0 ? 
-          'linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)' : 
-          'linear-gradient(90deg, transparent, rgba(196, 30, 58, 0.2), transparent)',
+          'linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent)' : 
+          'linear-gradient(90deg, transparent, rgba(196, 30, 58, 0.15), transparent)',
         transform: `rotate(${rotate}deg)`,
         top,
         left: '-50%',
@@ -119,38 +111,25 @@ const LightBeam = ({ index }: { index: number }) => {
 
 // Componente para el efecto de nebulosa flotante
 const NebulaEffect = ({ index }: { index: number }) => {
-  const size = 300 + (index * 100);
+  const size = 300 + (index * 150);
   const posX = index % 2 === 0 ? -size/3 : 100 - size/3;
-  const posY = 20 + (index * 30);
-  const delay = index * 0.5;
+  const posY = 20 + (index * 40);
   
   return (
-    <motion.div
+    <div
       style={{
         position: 'absolute',
         width: size,
         height: size,
         borderRadius: '50%',
         background: index % 2 === 0 ? 
-          'radial-gradient(circle, rgba(196, 30, 58, 0.12) 0%, rgba(196, 30, 58, 0) 70%)' : 
-          'radial-gradient(circle, rgba(30, 30, 30, 0.2) 0%, rgba(0, 0, 0, 0) 70%)',
+          'radial-gradient(circle, rgba(196, 30, 58, 0.08) 0%, rgba(196, 30, 58, 0) 70%)' : 
+          'radial-gradient(circle, rgba(30, 30, 30, 0.15) 0%, rgba(0, 0, 0, 0) 70%)',
         left: `${posX}%`,
         top: `${posY}%`,
         filter: 'blur(60px)',
         zIndex: 0,
-        opacity: 0.7
-      }}
-      animate={{
-        scale: [1, 1.2, 1],
-        opacity: [0.4, 0.7, 0.4],
-        x: [0, 20, 0],
-        y: [0, -20, 0]
-      }}
-      transition={{
-        duration: 20,
-        delay,
-        repeat: Infinity,
-        ease: "easeInOut"
+        opacity: 0.6
       }}
     />
   );
@@ -287,10 +266,10 @@ export const PracticeAreas = () => {
     return descriptionTranslations[originalDesc]?.[language] || originalDesc;
   };
   
-  // Generar arrays para elementos visuales
-  const particles = Array.from({ length: 30 }, (_, i) => i);
-  const lightBeams = Array.from({ length: 3 }, (_, i) => i);
-  const nebulas = Array.from({ length: 3 }, (_, i) => i);
+  // Generar arrays más pequeños para elementos visuales
+  const particles = Array.from({ length: 15 }, (_, i) => i); // Reducir de 30 a 15
+  const lightBeams = Array.from({ length: 2 }, (_, i) => i); // Reducir de 3 a 2
+  const nebulas = Array.from({ length: 2 }, (_, i) => i); // Reducir de 3 a 2
   
   // Calcular valores para efectos de parallax
   const moveX = (mousePosition.x - 0.5) * 40;
@@ -433,7 +412,7 @@ Energy: We offer a comprehensive service that includes regulatory issues, projec
           zIndex: 0
         }} />
         
-        {/* Resto del código de partículas y efectos */}
+        {/* Mostrar menos partículas para mejor rendimiento */}
         {particles.map((i) => (
           <FloatingParticle key={i} index={i} count={particles.length} />
         ))}
@@ -443,7 +422,7 @@ Energy: We offer a comprehensive service that includes regulatory issues, projec
           <LightBeam key={i} index={i} />
         ))}
         
-        {/* Efectos de nebulosa */}
+        {/* Efectos de nebulosa estáticos */}
         {nebulas.map((i) => (
           <NebulaEffect key={i} index={i} />
         ))}
@@ -567,142 +546,31 @@ Energy: We offer a comprehensive service that includes regulatory issues, projec
           <Row className="g-4">
             {antequeraConfig.practiceAreas.map((area, index) => (
               <Col md={6} lg={4} key={index}>
-                <motion.div 
+                <div 
                   className="area-card"
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ 
-                    duration: 0.7, 
-                    delay: index * 0.1 + 0.2,
-                    ease: [0.25, 0.4, 0.3, 1.0]
-                  }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  whileHover={{
-                    y: -15,
-                    boxShadow: '0 30px 60px rgba(0,0,0,0.2), 0 15px 40px rgba(196, 30, 58, 0.1)',
-                    scale: 1.02
-                  }}
-                  whileTap={{ scale: 0.98 }}
                   onClick={() => handleShow(area)}
                   style={{
                     background: 'rgba(40, 40, 40, 0.4)',
-                    backdropFilter: 'blur(12px)',
-                    WebkitBackdropFilter: 'blur(12px)',
+                    backdropFilter: 'blur(8px)', // Reducido de 12px a 8px
+                    WebkitBackdropFilter: 'blur(8px)',
                     border: '1px solid rgba(255, 255, 255, 0.1)',
                     borderRadius: '16px',
                     padding: '35px 30px',
                     position: 'relative',
                     overflow: 'hidden',
-                    transition: 'all 0.4s cubic-bezier(0.42, 0, 0.58, 1)'
+                    transition: 'all 0.4s cubic-bezier(0.42, 0, 0.58, 1)',
+                    cursor: 'pointer',
+                    transform: `translateY(${animationComplete ? '0' : '50px'})`,
+                    opacity: animationComplete ? 1 : 0,
+                    transitionDelay: `${index * 0.1}s`
                   }}
                 >
-                  {/* Borde brillante animado */}
-                  <motion.div
-                    style={{
-                      position: 'absolute',
-                      inset: 0,
-                      borderRadius: '15px',
-                      padding: '1px',
-                      background: 'linear-gradient(135deg, transparent, rgba(196, 30, 58, 0.3), transparent)',
-                      WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-                      WebkitMaskComposite: 'xor',
-                      maskComposite: 'exclude',
-                      pointerEvents: 'none'
-                    }}
-                    animate={{
-                      background: [
-                        'linear-gradient(135deg, transparent, rgba(196, 30, 58, 0.3), transparent)',
-                        'linear-gradient(225deg, transparent, rgba(196, 30, 58, 0.3), transparent)',
-                        'linear-gradient(315deg, transparent, rgba(196, 30, 58, 0.3), transparent)',
-                        'linear-gradient(45deg, transparent, rgba(196, 30, 58, 0.3), transparent)',
-                        'linear-gradient(135deg, transparent, rgba(196, 30, 58, 0.3), transparent)'
-                      ]
-                    }}
-                    transition={{
-                      duration: 10,
-                      repeat: Infinity,
-                      ease: "linear"
-                    }}
-                  />
                   
-                  {/* Efecto de brillo en el borde superior */}
-                  <motion.div
-                    style={{
-                      position: 'absolute',
-                      top: 0,
-                      left: '5%',
-                      width: '90%',
-                      height: '1px',
-                      background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)',
-                      zIndex: 0
-                    }}
-                    animate={{
-                      opacity: [0.5, 1, 0.5],
-                      left: ['5%', '0%', '5%']
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  />
-                  
-                  {/* Bruma colorida interior */}
-                  <motion.div
-                    style={{
-                      position: 'absolute',
-                      bottom: 0,
-                      right: 0,
-                      width: '100%',
-                      height: '100%',
-                      background: 'radial-gradient(circle at bottom right, rgba(196, 30, 58, 0.1), transparent 70%)',
-                      zIndex: 0,
-                      opacity: 0.6
-                    }}
-                    animate={{
-                      opacity: [0.6, 0.8, 0.6]
-                    }}
-                    transition={{
-                      duration: 4,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  />
-                  
-                  {/* Pequeño punto decorativo en la esquina */}
-                  <motion.div
-                    style={{
-                      position: 'absolute',
-                      top: '15px',
-                      right: '15px',
-                      width: '6px',
-                      height: '6px',
-                      borderRadius: '50%',
-                      backgroundColor: 'rgba(196, 30, 58, 0.7)',
-                      boxShadow: '0 0 10px rgba(196, 30, 58, 0.5)',
-                      zIndex: 0
-                    }}
-                    animate={{
-                      opacity: [0.5, 1, 0.5],
-                      boxShadow: [
-                        '0 0 5px rgba(196, 30, 58, 0.3)',
-                        '0 0 10px rgba(196, 30, 58, 0.7)',
-                        '0 0 5px rgba(196, 30, 58, 0.3)'
-                      ]
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  />
-                  
-                  <motion.div 
+                  {/* Contenido de la tarjeta - simplificado */}
+                  <div 
                     className="icon-container"
                     style={{
                       backgroundColor: 'rgba(196, 30, 58, 0.1)',
-                      backdropFilter: 'blur(4px)',
-                      WebkitBackdropFilter: 'blur(4px)',
                       width: '80px',
                       height: '80px',
                       borderRadius: '20px',
@@ -710,37 +578,21 @@ Energy: We offer a comprehensive service that includes regulatory issues, projec
                       alignItems: 'center',
                       justifyContent: 'center',
                       marginBottom: '25px',
-                      transition: 'all 0.6s cubic-bezier(0.42, 0, 0.58, 1)',
-                      boxShadow: '0 5px 15px rgba(196, 30, 58, 0.1), inset 0 0 20px rgba(196, 30, 58, 0.05)'
-                    }}
-                    whileHover={{ 
-                      scale: 1.08,
-                      rotate: [0, 5, -3, 0],
-                      backgroundColor: 'rgba(196, 30, 58, 0.15)',
-                      boxShadow: '0 5px 20px rgba(196, 30, 58, 0.2), inset 0 0 25px rgba(196, 30, 58, 0.1)',
-                      transition: { duration: 0.5, ease: "easeInOut" }
+                      transition: 'all 0.3s ease',
                     }}
                   >
-                    <motion.div 
+                    <div 
                       style={{
                         color: '#C41E3A',
-                        filter: 'drop-shadow(0 0 8px rgba(196, 30, 58, 0.3))',
                         fontSize: 32
                       }}
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
                     >
                       {getIcon(area.icon, 32)}
-                    </motion.div>
-                  </motion.div>
+                    </div>
+                  </div>
                   
-                  <motion.h3 
+                  <h3 
                     className="card-title"
-                    initial={{ opacity: 0.9 }}
-                    whileHover={{ 
-                      color: '#C41E3A',
-                      y: -2
-                    }}
                     style={{
                       fontSize: '1.4rem',
                       fontWeight: '600',
@@ -750,15 +602,10 @@ Energy: We offer a comprehensive service that includes regulatory issues, projec
                     }}
                   >
                     {getTranslatedTitle(area.title)}
-                  </motion.h3>
+                  </h3>
                   
-                  <motion.div 
+                  <div 
                     className="card-separator"
-                    whileHover={{
-                      scaleX: 1.5,
-                      width: 50,
-                      opacity: 1
-                    }}
                     style={{
                       width: '30px',
                       height: '2px',
@@ -778,7 +625,7 @@ Energy: We offer a comprehensive service that includes regulatory issues, projec
                     {getTranslatedDescription(area.description)}
                   </p>
                   
-                  <motion.div 
+                  <div 
                     className="read-more-btn"
                     style={{
                       display: 'inline-flex',
@@ -790,32 +637,15 @@ Energy: We offer a comprehensive service that includes regulatory issues, projec
                       borderRadius: '20px',
                       background: 'rgba(255, 0, 43, 0.88)',
                       transition: 'all 0.3s ease',
-                      cursor: 'pointer',
                       border: '1px solid rgba(196, 30, 58, 0.3)'
-                    }}
-                    whileHover={{ 
-                      scale: 1.05,
-                      y: -2,
-                      background: 'rgba(196, 30, 58, 0.25)',
-                      boxShadow: '0 5px 15px rgba(196, 30, 58, 0.2)',
-                      border: '1px solid rgba(196, 30, 58, 0.5)',
-                      transition: {
-                        duration: 0.3,
-                        ease: "easeOut"
-                      }
                     }}
                   >
                     {t('practice.readMore')} 
-                    <motion.span
-                      initial={{ x: 0 }}
-                      whileHover={{ x: 3 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                      style={{ marginLeft: '4px' }}
-                    >
+                    <span style={{ marginLeft: '4px' }}>
                       <ChevronRight size={14} />
-                    </motion.span>
-                  </motion.div>
-                </motion.div>
+                    </span>
+                  </div>
+                </div>
               </Col>
             ))}
           </Row>
@@ -838,13 +668,10 @@ Energy: We offer a comprehensive service that includes regulatory issues, projec
             scrollable={false}
           >
             <motion.div
-              initial={{ opacity: 0, scale: 0.96, y: 30 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.96, y: 15 }}
-              transition={{ 
-                duration: 0.4, 
-                ease: [0.175, 0.885, 0.32, 1.275] 
-              }}
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
               className="modal-inner-container"
               layoutId="modal-content"
               style={{ maxHeight: '85vh' }}
@@ -1004,6 +831,32 @@ Energy: We offer a comprehensive service that includes regulatory issues, projec
         
         .modal-description-container {
           overflow: visible;
+        }
+        
+        /* Añadir efectos hover con CSS en lugar de JavaScript */
+        .area-card {
+          transform: translateY(0);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .area-card:hover {
+          transform: translateY(-15px);
+          box-shadow: 0 30px 60px rgba(0,0,0,0.2), 0 15px 40px rgba(196, 30, 58, 0.1);
+        }
+        
+        .area-card:hover .card-title {
+          color: #C41E3A;
+        }
+        
+        .area-card:hover .icon-container {
+          background-color: rgba(196, 30, 58, 0.15);
+          box-shadow: 0 5px 20px rgba(196, 30, 58, 0.2);
+        }
+        
+        .area-card:hover .read-more-btn {
+          background: rgba(196, 30, 58, 0.25);
+          border: 1px solid rgba(196, 30, 58, 0.5);
+          box-shadow: 0 5px 15px rgba(196, 30, 58, 0.2);
         }
         
         @media (max-width: 768px) {
