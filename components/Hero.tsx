@@ -214,7 +214,7 @@ export const Hero = () => {
               
               <motion.h1 
                 variants={itemVariants} 
-                style={{ 
+                style={{
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',

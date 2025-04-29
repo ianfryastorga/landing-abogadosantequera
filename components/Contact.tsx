@@ -572,7 +572,7 @@ export const Contact = () => {
                       repeat: Infinity,
                       ease: "easeInOut"
                     }}
-                  >
+                >
                     <Calendar2Check size={50} style={{ 
                       color: '#C41E3A', 
                       filter: 'drop-shadow(0 0 10px rgba(196, 30, 58, 0.5))' 

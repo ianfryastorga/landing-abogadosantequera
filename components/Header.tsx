@@ -69,7 +69,7 @@ export const Header = () => {
         variants={topBarVariants}
         style={{
           backgroundColor: '#000',
-          padding: '8px 0',
+          padding: isMobile ? '8px 0 65px 0' : '8px 0',
           fontSize: '0.85rem',
           position: 'fixed',
           top: 0,
@@ -179,7 +179,9 @@ export const Header = () => {
                 letterSpacing: '-0.5px',
                 transition: 'color 0.3s ease',
                 fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif',
-                marginRight: 'auto'
+                marginRight: 'auto',
+                padding: isMobile ? '15px 0' : '5px 0',
+                marginBottom: isMobile ? '15px' : '0'
               }}
             >
               <Image 
