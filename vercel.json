@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "antequeralegal.com" }],
+      "destination": "https://www.antequeralegal.com/$1",
+      "permanent": true
+    }
+  ]
+} 
