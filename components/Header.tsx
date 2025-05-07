@@ -311,6 +311,15 @@ export const Header = () => {
         .navbar-collapse.show .nav-link:hover {
           color: #C41E3A !important;
         }
+
+        /* Forzar enlaces en desktop al hacer scroll */
+        .navbar-scrolled .nav-link {
+          color: #000 !important;
+        }
+
+        .navbar-scrolled .nav-link:hover {
+          color: #C41E3A !important;
+        }
       `}</style>
     </header>
   );
