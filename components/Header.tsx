@@ -302,6 +302,15 @@ export const Header = () => {
           color: #fff;
           text-decoration: none;
         }
+
+        /* Forzar enlaces negros en menú expandido */
+        .navbar-collapse.show .nav-link {
+          color: #000 !important;
+        }
+
+        .navbar-collapse.show .nav-link:hover {
+          color: #C41E3A !important;
+        }
       `}</style>
     </header>
   );
