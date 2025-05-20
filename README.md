@@ -103,3 +103,5 @@ Para personalizar la landing page, puedes modificar la configuración en:
   - `team/`: Fotos del equipo
   - `testimonials/`: Fotos de testimonios
 - `sections/`: Secciones compartidas 
+
+hola
