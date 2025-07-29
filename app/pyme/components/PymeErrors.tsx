@@ -7,11 +7,11 @@ import {
   XCircle,
   CheckCircle,
   Building,
-  Chat,
+  Clock,
   CurrencyDollar
 } from 'react-bootstrap-icons';
 
-export const FamiliaErrors = () => {
+export const PymeErrors = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -50,39 +50,34 @@ export const FamiliaErrors = () => {
   const errorPoints = [
     {
       icon: <Building size={28} />,
-      text: 'Los estudios grandes son fríos, caros y distantes.'
+      text: 'Estudios grandes, son caros, lentos y llenos de tecnicismos.'
     },
     {
-      icon: <Chat size={28} />,
-      text: 'Los abogados suelen usar tecnicismos que confunden más.'
+      icon: <Clock size={28} />,
+      text: 'Indisponibilidad del abogado, para dudas en el proceso.'
     },
     {
       icon: <CurrencyDollar size={28} />,
-      text: 'Y muchas veces, nadie se da el tiempo de explicarte realmente qué está pasando.'
+      text: 'Honorarios poco claros.'
     }
   ];
 
   const solutionPoints = [
     {
       icon: <CheckCircle size={28} />,
-      text: 'Con nosotros: Hablas directo con el abogado.',
+      text: 'Lo que necesitas es alguien que responda hoy, sin vueltas.',
       highlight: true
     },
     {
       icon: <CheckCircle size={28} />,
-      text: 'Te hablamos claro, simple y con foco en darte tranquilidad.',
-      highlight: true
-    },
-    {
-      icon: <CheckCircle size={28} />,
-      text: 'Somos transparentes desde el principio con el valor del servicio.',
+      text: 'Que te hable claro y llegue con soluciones.',
       highlight: true
     }
   ];
 
   return (
     <section 
-      id="familia-errors"
+      id="pyme-errors"
       style={{
         padding: isMobile ? '80px 0' : '120px 0',
         background: '#FFFFFF',
@@ -94,13 +89,13 @@ export const FamiliaErrors = () => {
       <motion.div 
         style={{
           position: 'absolute',
-          width: '300px',
-          height: '300px',
+          width: '400px',
+          height: '400px',
           borderRadius: '50%',
           background: 'radial-gradient(circle, rgba(196, 30, 58, 0.05) 0%, rgba(196, 30, 58, 0) 70%)',
-          left: '-100px',
+          left: '-150px',
           top: '30%',
-          filter: 'blur(40px)',
+          filter: 'blur(60px)',
           zIndex: 0
         }}
         animate={{
@@ -132,7 +127,7 @@ export const FamiliaErrors = () => {
                 letterSpacing: '-0.8px'
               }}
             >
-              El error común
+              Por qué lo común no funciona
             </h2>
             
             <div 
@@ -140,11 +135,10 @@ export const FamiliaErrors = () => {
                 width: '60px',
                 height: '3px',
                 background: '#C41E3A',
-                margin: '0 auto 2rem',
+                margin: '0 auto 3rem',
                 borderRadius: '2px'
               }}
             />
-            
           </motion.div>
 
           <Row className="g-5">
@@ -161,7 +155,7 @@ export const FamiliaErrors = () => {
                     textAlign: 'center'
                   }}
                 >
-                  ❌ Lo que NO queremos para ti
+                  ❌ Lo que NO queremos para tu empresa
                 </h3>
                 
                 <div style={{ gap: '2rem' }}>
@@ -174,7 +168,7 @@ export const FamiliaErrors = () => {
                         alignItems: 'flex-start',
                         gap: '15px',
                         marginBottom: '2rem',
-                        padding: '20px',
+                        padding: '25px',
                         background: 'rgba(196, 30, 58, 0.05)',
                         borderRadius: '12px',
                         border: '1px solid rgba(196, 30, 58, 0.1)'
@@ -220,7 +214,7 @@ export const FamiliaErrors = () => {
                     textAlign: 'center'
                   }}
                 >
-                  ✅ Lo que SÍ hacemos por ti
+                  ✅ Lo que SÍ necesitas
                 </h3>
                 
                 <div style={{ gap: '2rem' }}>
@@ -233,7 +227,7 @@ export const FamiliaErrors = () => {
                         alignItems: 'flex-start',
                         gap: '15px',
                         marginBottom: '2rem',
-                        padding: '20px',
+                        padding: '25px',
                         background: 'rgba(37, 168, 85, 0.05)',
                         borderRadius: '12px',
                         border: '1px solid rgba(37, 168, 85, 0.1)'

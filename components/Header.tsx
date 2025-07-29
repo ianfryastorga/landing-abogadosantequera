@@ -35,10 +35,11 @@ export const Header = () => {
   }, []);
 
   const navLinks = [
-    { name: t('header.home'), url: '#hero' },
-    { name: t('header.services'), url: '#practice-areas' },
+    { name: t('header.home'), url: '/#hero' },
+    { name: t('header.services'), url: '/#practice-areas' },
     { name: 'Derecho de Familia', url: '/familia' },
-    { name: t('header.contact'), url: '#contact' }
+    { name: 'Asesoría PYME', url: '/pyme' },
+    { name: t('header.contact'), url: '/#contact' }
   ];
 
   const topBarVariants = {
@@ -170,7 +171,7 @@ export const Header = () => {
             style={{ display: 'flex', alignItems: 'center' }}
           >
             <Navbar.Brand 
-              href="#hero" 
+              href="/#hero" 
               style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -239,7 +240,7 @@ export const Header = () => {
               
               <div>
                 <a 
-                  href="#contact"
+                  href="/#contact"
                   onClick={handleNavClick}
                   className="consultation-button"
                 >
