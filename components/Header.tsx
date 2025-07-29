@@ -37,6 +37,7 @@ export const Header = () => {
   const navLinks = [
     { name: t('header.home'), url: '#hero' },
     { name: t('header.services'), url: '#practice-areas' },
+    { name: 'Derecho de Familia', url: '/familia' },
     { name: t('header.contact'), url: '#contact' }
   ];
 

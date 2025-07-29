@@ -18,6 +18,7 @@ import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-mo
 import { useLanguage } from '@/context/LanguageContext';
 import { useState, useEffect, useRef } from 'react';
 import BlobAnimation from './BlobAnimation';
+import Link from 'next/link';
 
 interface AreaTranslations {
   [key: string]: {
@@ -180,6 +181,11 @@ export const PracticeAreas = () => {
   const handleClose = () => setShowModal(false);
   
   const handleShow = (area: any) => {
+    // Si es derecho de familia, navegar a la página específica
+    if (area.title === 'Derecho de Familia') {
+      window.location.href = '/familia';
+      return;
+    }
     setSelectedArea(area);
     setShowModal(true);
   };
