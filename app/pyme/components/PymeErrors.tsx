@@ -72,6 +72,11 @@ export const PymeErrors = () => {
       icon: <CheckCircle size={28} />,
       text: 'Que te hable claro y llegue con soluciones.',
       highlight: true
+    },
+    {
+      icon: <CheckCircle size={28} />,
+      text: 'Honorarios claros desde el inicio.',
+      highlight: true
     }
   ];
 

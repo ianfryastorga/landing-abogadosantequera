@@ -52,14 +52,14 @@ export const PymeHero = () => {
       className="hero-section"
       style={{
         position: 'relative',
-        height: '90vh',
-        minHeight: isMobile ? '700px' : '90vh',
+        height: 'auto',
+        minHeight: isMobile ? '1000px' : '120vh',
         width: '100%',
         display: 'flex',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         justifyContent: 'center',
         margin: 0,
-        padding: 0,
+        padding: '80px 0 250px 0',
         overflow: 'hidden',
         background: '#000'
       }}
@@ -117,8 +117,8 @@ export const PymeHero = () => {
         }}
       />
       
-      <Container className="h-100 d-flex flex-column justify-content-center" style={{ position: 'relative', zIndex: 10 }}>
-        <Row className="justify-content-center align-items-center h-100 m-0">
+      <Container style={{ position: 'relative', zIndex: 10 }}>
+        <Row className="justify-content-center m-0">
           <Col lg={10} xl={8} className="text-center">
             <motion.div
               variants={containerVariants}
@@ -137,7 +137,7 @@ export const PymeHero = () => {
                   lineHeight: 1.2
                 }}
               >
-                ¿Tienes un problema legal urgente en tu empresa?
+                ¿Tienes un problema legal en tu empresa?
               </motion.h1>
               
               <motion.p 
@@ -156,27 +156,36 @@ export const PymeHero = () => {
                 Te ayudamos a resolverlo rápido con acompañamiento permanente de un abogado, para estar al tanto de cada detalle.
               </motion.p>
 
-              {/* Video placeholder */}
+              {/* Video de YouTube - Configuración optimizada */}
               <motion.div 
                 variants={itemVariants}
                 style={{
                   width: '100%',
                   maxWidth: '600px',
-                  height: isMobile ? '200px' : '300px',
                   margin: '0 auto 2rem',
-                  backgroundColor: 'rgba(40, 40, 40, 0.8)',
+                  position: 'relative',
+                  aspectRatio: '16/9',
                   borderRadius: '12px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
+                  overflow: 'hidden',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
-                  backdropFilter: 'blur(10px)'
+                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
                 }}
               >
-                <div style={{ textAlign: 'center', color: 'rgba(255, 255, 255, 0.7)' }}>
-                  <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📹</div>
-                  <p style={{ margin: 0, fontSize: '1rem' }}>Video</p>
-                </div>
+                <iframe
+                  src="https://www.youtube-nocookie.com/embed/Af_wWgwXVAg?autoplay=1&enablejsapi=1&rel=0&modestbranding=1&fs=1&cc_load_policy=0&iv_load_policy=3&autohide=1"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    border: 'none',
+                    borderRadius: '12px'
+                  }}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  frameBorder="0"
+                  title="Video explicativo para PYME - Antequera Abogados"
+                />
               </motion.div>
               
               <motion.div 
@@ -184,11 +193,12 @@ export const PymeHero = () => {
                 style={{
                   display: 'flex',
                   justifyContent: 'center',
-                  marginTop: '2rem'
+                  marginTop: isMobile ? '-20px' : '-20px',
+                  padding: '0 20px'
                 }}
               >
                 <WhatsAppButton
-                  text="✅ Habla hoy mismo con el abogado"
+                  text={isMobile ? "✅ Habla con el abogado" : "✅ Habla hoy mismo con el abogado"}
                   message="Hola, tengo un problema legal urgente en mi empresa. ¿Podríamos hablar hoy mismo?"
                   size={isMobile ? 'medium' : 'large'}
                   variant="primary"

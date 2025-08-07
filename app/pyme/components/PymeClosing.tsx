@@ -150,9 +150,9 @@ export const PymeClosing = () => {
                 lineHeight: 1.2
               }}
             >
-              No necesitas sólo un abogado,
+              Somos un partner que resuelve rápido y cuida tu negocio.
               <br />
-              necesitas un partner que resuelva rápido y cuide tu negocio.
+              Si es lo que necesitas, estaremos felices de ayudarte.
             </h2>
             
             <div 
@@ -176,7 +176,7 @@ export const PymeClosing = () => {
                 fontFamily: '"SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif'
               }}
             >
-              Si es lo que necesitas, conversemos sin compromisos.
+              Hablemos sin compromisos
             </p>
             
             <p 
@@ -219,7 +219,7 @@ export const PymeClosing = () => {
                 fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif'
               }}
             >
-              Agenda tu diagnóstico legal gratuito
+              Diagnóstico legal gratuito
             </h3>
             
             <motion.div
@@ -227,7 +227,7 @@ export const PymeClosing = () => {
               whileTap={{ scale: 0.95 }}
             >
               <WhatsAppButton
-                text="📲 WhatsApp - Diagnóstico Gratuito"
+                text="WhatsApp"
                 message="Hola, necesito un partner legal para mi empresa. Me gustaría agendar un diagnóstico legal gratuito."
                 size={isMobile ? 'medium' : 'large'}
                 variant="primary"
@@ -242,10 +242,8 @@ export const PymeClosing = () => {
                 fontFamily: '"SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif'
               }}
             >
-              Análisis sin compromiso • Respuesta inmediata • 100% confidencial
             </p>
           </motion.div>
-
 
           {/* Botón para volver a la landing principal */}
           <motion.div 

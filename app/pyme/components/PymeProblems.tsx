@@ -45,7 +45,7 @@ export const PymeProblems = () => {
     },
     {
       icon: <Building size={32} />,
-      title: 'Sociedades mal hechas',
+      title: 'Configuración y reorganización de sociedades',
       color: '#C41E3A'
     },
     {
@@ -127,7 +127,7 @@ export const PymeProblems = () => {
                 letterSpacing: '-0.8px'
               }}
             >
-              Tener una pyme es pelear mil batallas.
+              Tener una pyme es enfrentar mil batallas.
             </h2>
             
             <div 
@@ -165,7 +165,7 @@ export const PymeProblems = () => {
                 fontFamily: '"SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif'
               }}
             >
-              se vuelve algo que te quita tiempo, dinero y cabeza.
+              Te quita tiempo, dinero y cabeza.
             </p>
           </motion.div>
 

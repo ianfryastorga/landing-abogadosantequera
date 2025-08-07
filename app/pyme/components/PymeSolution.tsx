@@ -9,6 +9,7 @@ import {
   Eye,
   Award
 } from 'react-bootstrap-icons';
+import { WhatsAppButton } from '@/components/WhatsAppButton';
 
 export const PymeSolution = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -49,20 +50,20 @@ export const PymeSolution = () => {
   const solutions = [
     {
       icon: <Person size={32} />,
-      title: 'Trabajo directo contigo',
-      description: 'Sin intermediarios. Hablas directamente conmigo, no con terceros.',
+      title: 'Trabajamos directo contigo',
+      description: 'Sin intermediarios. Hablas directamente con un abogado, no con terceros.',
       color: '#C41E3A'
     },
     {
       icon: <ChatDots size={32} />,
-      title: 'Te explico las cosas como son',
+      title: 'Te explicamos las cosas como son',
       description: 'Sin tecnicismos confusos. En palabras que cualquier empresario entiende.',
       color: '#C41E3A'
     },
     {
       icon: <Eye size={32} />,
       title: 'Opciones claras para que tú decidas',
-      description: 'Te muestro todas las alternativas para que tomes la mejor decisión para tu negocio.',
+      description: 'Te mostramos todas las alternativas para que tomes la mejor decisión para tu negocio.',
       color: '#C41E3A'
     }
   ];
@@ -142,7 +143,7 @@ export const PymeSolution = () => {
                 letterSpacing: '-0.8px'
               }}
             >
-              Propuesta de valor
+              Nuestro servicio
             </h2>
             
             <div 
@@ -166,7 +167,7 @@ export const PymeSolution = () => {
                 fontFamily: '"SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif'
               }}
             >
-              Llevo 30 años ayudando a pymes a protegerse legalmente sin gastar de más.
+              Antequera Abogados tiene más de 30 años ayudando a pymes a protegerse legalmente sin gastar de más.
             </p>
           </motion.div>
 
@@ -265,6 +266,19 @@ export const PymeSolution = () => {
               maxWidth: '900px'
             }}
           >
+            <h3 
+              style={{
+                fontSize: isMobile ? '1.8rem' : '2.2rem',
+                fontWeight: 600,
+                color: '#fff',
+                marginBottom: '2rem',
+                fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif',
+                textAlign: 'center'
+              }}
+            >
+              Asesoría
+            </h3>
+            
             <motion.div
               style={{
                 width: '70px',
@@ -290,11 +304,18 @@ export const PymeSolution = () => {
                 lineHeight: 1.6,
                 fontFamily: '"SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif',
                 fontStyle: 'italic',
-                margin: '0 0 20px 0'
+                margin: '0 0 25px 0'
               }}
             >
-              🎯 "Legal para tu día a día. Sin tecnicismos. Con experiencia que da confianza."
+              🎯 "Asesoría legal para tu día a día. Sin tecnicismos. Con experiencia que da confianza."
             </p>
+            
+            <WhatsAppButton
+              text="Diagnóstico Legal Gratuito"
+              message="Hola, necesito un partner legal para mi empresa. Me gustaría agendar un diagnóstico legal gratuito."
+              size={isMobile ? 'medium' : 'large'}
+              variant="primary"
+            />
           </motion.div>
         </motion.div>
       </Container>

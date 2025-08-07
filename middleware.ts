@@ -25,7 +25,7 @@ export function middleware(request: NextRequest) {
       img-src 'self' data: https: blob:;
       font-src 'self' https://fonts.gstatic.com;
       connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://stats.g.doubleclick.net;
-      frame-src 'self' https://www.google.com https://tpc.googlesyndication.com https://googleads.g.doubleclick.net;
+      frame-src 'self' https://www.google.com https://tpc.googlesyndication.com https://googleads.g.doubleclick.net https://www.youtube-nocookie.com;
       object-src 'none';
       base-uri 'none';
     `.replace(/\s+/g, ' ').trim()

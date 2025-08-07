@@ -128,7 +128,7 @@ export const PymeTestimonials = () => {
                 letterSpacing: '-0.8px'
               }}
             >
-              Casos reales / Testimonios
+              Testimonios de asesorías de PYMEs
             </h2>
             
             <div 

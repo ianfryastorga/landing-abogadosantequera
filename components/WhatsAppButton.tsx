@@ -78,7 +78,8 @@ export const WhatsAppButton = ({
         return {
           ...base,
           color: '#fff',
-          border: 'none'
+          border: 'none',
+          hoverColor: '#fff'
         };
     }
   };
