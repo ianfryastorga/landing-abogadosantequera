@@ -198,7 +198,6 @@ export const FamiliaHero = () => {
                   padding: isMobile ? '0 15px' : 0
                 }}
               >
-                Hablemos hoy. Estaremos felices de poder ayudarte.
               </motion.p>
               
               <motion.div 
