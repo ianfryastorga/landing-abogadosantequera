@@ -152,7 +152,6 @@ export const PymeClosing = () => {
             >
               Somos un partner que resuelve rápido y cuida tu negocio.
               <br />
-              Si es lo que necesitas, estaremos felices de ayudarte.
             </h2>
             
             <div 
