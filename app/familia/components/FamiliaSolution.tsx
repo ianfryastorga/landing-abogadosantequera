@@ -1,6 +1,8 @@
 'use client';
 
 import { Container, Row, Col } from 'react-bootstrap';
+import { antequeraConfig } from '@/config';
+import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { 
@@ -26,6 +28,7 @@ export const FamiliaSolution = () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -149,7 +152,7 @@ export const FamiliaSolution = () => {
                 letterSpacing: '-0.8px'
               }}
             >
-              Nuestra solución clara
+              Nuestro servicio
             </h2>
             
             <div 
@@ -173,7 +176,7 @@ export const FamiliaSolution = () => {
                 fontFamily: '"SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif'
               }}
             >
-              En nuestro estudio, llevamos 30 años ayudando a familias como la tuya.
+              Antequera Abogados lleva más de 30 años ayudando a familias como la tuya.
             </p>
             
             <p 
@@ -311,11 +314,18 @@ export const FamiliaSolution = () => {
                 lineHeight: 1.6,
                 fontFamily: '"SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif',
                 fontStyle: 'italic',
-                margin: 0
+                margin: '0 0 25px 0'
               }}
             >
               "Cada persona tiene una historia y una familia que cuidar. Nuestra misión es ayudarte a lograrlo."
             </p>
+            
+            <WhatsAppButton
+              text="Diagnóstico Legal Gratuito"
+              message="Hola, necesito ayuda legal familiar. Me gustaría agendar un diagnóstico legal gratuito."
+              size={isMobile ? 'medium' : 'large'}
+              variant="primary"
+            />
           </motion.div>
         </motion.div>
       </Container>

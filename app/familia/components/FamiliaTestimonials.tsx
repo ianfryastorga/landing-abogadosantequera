@@ -128,7 +128,7 @@ export const FamiliaTestimonials = () => {
                 letterSpacing: '-0.8px'
               }}
             >
-              Prueba social
+              Testimonios de nuestros clientes
             </h2>
             
             <div 

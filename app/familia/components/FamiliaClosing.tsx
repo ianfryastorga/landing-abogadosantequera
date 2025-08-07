@@ -4,12 +4,11 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { 
-  Chat,
   Heart,
-  ArrowLeft,
-  Telephone
+  ArrowLeft
 } from 'react-bootstrap-icons';
 import { antequeraConfig } from '@/config';
+import { WhatsAppButton } from '@/components/WhatsAppButton';
 import Link from 'next/link';
 
 export const FamiliaClosing = () => {
@@ -28,10 +27,6 @@ export const FamiliaClosing = () => {
     };
   }, []);
 
-  const openWhatsApp = () => {
-    const message = encodeURIComponent('Hola, necesito asesoría legal familiar. Me gustaría coordinar una consulta gratuita para discutir mi situación.');
-    window.open(`https://wa.me/${antequeraConfig.contactInfo.whatsapp.replace(/\s+/g, '')}?text=${message}`, '_blank');
-  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -181,7 +176,7 @@ export const FamiliaClosing = () => {
                 fontFamily: '"SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif'
               }}
             >
-              Es tu tranquilidad y la de tu familia.
+              Es tu tranquilidad y la de tu familia. Una conversación puede ayudar.
             </p>
             
             <p 
@@ -195,7 +190,7 @@ export const FamiliaClosing = () => {
                 fontFamily: '"SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif'
               }}
             >
-              Hablemos sin compromiso. Una conversación puede ayudar.
+              Hablemos sin compromiso. 
             </p>
           </motion.div>
 
@@ -224,35 +219,15 @@ export const FamiliaClosing = () => {
                 fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif'
               }}
             >
-              Escríbenos para coordinar tu consulta gratuita
+              Diagnóstico Legal Gratuito
             </h3>
             
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Button 
-                onClick={openWhatsApp}
-                style={{
-                  background: '#25D366',
-                  color: '#fff',
-                  border: 'none',
-                  padding: isMobile ? '15px 30px' : '18px 40px',
-                  fontSize: isMobile ? '1.1rem' : '1.2rem',
-                  fontWeight: 600,
-                  borderRadius: '50px',
-                  boxShadow: '0 6px 20px rgba(37, 211, 102, 0.4)',
-                  transition: 'all 0.3s ease',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px',
-                  margin: '0 auto'
-                }}
-              >
-                <Chat size={24} />
-                📲 WhatsApp - Consulta Gratuita
-              </Button>
-            </motion.div>
+            <WhatsAppButton
+              text="WhatsApp"
+              message="Hola, necesito asesoría legal familiar. Me gustaría coordinar una consulta gratuita para discutir mi situación."
+              size={isMobile ? 'medium' : 'large'}
+              variant="primary"
+            />
 
             <p 
               style={{
@@ -262,85 +237,9 @@ export const FamiliaClosing = () => {
                 fontFamily: '"SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif'
               }}
             >
-              Respuesta inmediata • Sin compromiso • Completamente confidencial
             </p>
           </motion.div>
 
-          {/* Información de contacto adicional */}
-          <motion.div 
-            variants={itemVariants}
-            style={{
-              textAlign: 'center',
-              marginBottom: '4rem',
-              marginTop: '3rem'
-            }}
-          >
-            <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <motion.a
-                href={`tel:${antequeraConfig.contactInfo.phone}`}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '12px',
-                  background: 'linear-gradient(135deg, #C41E3A 0%, #A01729 100%)',
-                  color: '#fff',
-                  padding: '16px 28px',
-                  borderRadius: '50px',
-                  textDecoration: 'none',
-                  fontSize: '1rem',
-                  fontWeight: 600,
-                  fontFamily: '"SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif',
-                  boxShadow: '0 8px 25px rgba(196, 30, 58, 0.25)',
-                  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                  border: 'none',
-                  cursor: 'pointer',
-                  minWidth: '180px',
-                  justifyContent: 'center'
-                }}
-                whileHover={{ 
-                  scale: 1.05,
-                  y: -3,
-                  boxShadow: '0 12px 35px rgba(196, 30, 58, 0.35)'
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Telephone size={18} />
-                Llamar ahora
-              </motion.a>
-              
-              <motion.a
-                href={`mailto:${antequeraConfig.contactInfo.email}`}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '12px',
-                  background: 'transparent',
-                  color: '#fff',
-                  padding: '16px 28px',
-                  borderRadius: '50px',
-                  textDecoration: 'none',
-                  fontSize: '1rem',
-                  fontWeight: 600,
-                  fontFamily: '"SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif',
-                  border: '2px solid rgba(255, 255, 255, 0.3)',
-                  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                  cursor: 'pointer',
-                  minWidth: '180px',
-                  justifyContent: 'center'
-                }}
-                whileHover={{ 
-                  scale: 1.05,
-                  y: -3,
-                  borderColor: 'rgba(255, 255, 255, 0.6)',
-                  background: 'rgba(255, 255, 255, 0.05)'
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span style={{ fontSize: '18px' }}>📧</span>
-                Enviar email
-              </motion.a>
-            </div>
-          </motion.div>
 
           {/* Botón para volver a la landing principal */}
           <motion.div 

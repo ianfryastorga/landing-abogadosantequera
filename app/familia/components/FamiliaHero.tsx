@@ -2,7 +2,8 @@
 
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { antequeraConfig } from '@/config';
-import { Calendar, Chat } from 'react-bootstrap-icons';
+import { Calendar } from 'react-bootstrap-icons';
+import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
@@ -28,10 +29,6 @@ export const FamiliaHero = () => {
     document.getElementById('familia-closing')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const openWhatsApp = () => {
-    const message = encodeURIComponent('Hola, necesito asesoría legal familiar. ¿Podríamos agendar una consulta gratuita?');
-    window.open(`https://wa.me/${antequeraConfig.contactInfo.whatsapp.replace(/\s+/g, '')}?text=${message}`, '_blank');
-  };
 
   // Animaciones con variantes para un código más limpio
   const containerVariants = {
@@ -60,14 +57,15 @@ export const FamiliaHero = () => {
       className="hero-section"
       style={{
         position: 'relative',
-        height: '90vh',
-        minHeight: isMobile ? '700px' : '90vh',
+        height: 'auto',
+        minHeight: '100vh',
         width: '100%',
         display: 'flex',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         justifyContent: 'center',
         margin: 0,
-        padding: 0,
+        paddingTop: '100px',
+        paddingBottom: '80px',
         overflow: 'hidden',
         background: '#000'
       }}
@@ -125,8 +123,8 @@ export const FamiliaHero = () => {
         }}
       />
       
-      <Container className="h-100 d-flex flex-column justify-content-center" style={{ position: 'relative', zIndex: 10 }}>
-        <Row className="justify-content-center align-items-center h-100 m-0">
+      <Container style={{ position: 'relative', zIndex: 10 }}>
+        <Row className="justify-content-center align-items-center m-0">
           <Col lg={10} xl={8} className="text-center">
             <motion.div
               variants={containerVariants}
@@ -145,7 +143,7 @@ export const FamiliaHero = () => {
                   lineHeight: 1.2
                 }}
               >
-                ¿Estás enfrentando un conflicto familiar y no sabes por dónde empezar?
+                ¿Estás con un conflicto familiar y no sabes qué hacer?
               </motion.h1>
               
               <motion.p 
@@ -209,34 +207,16 @@ export const FamiliaHero = () => {
                   display: 'flex',
                   justifyContent: 'center',
                   gap: isMobile ? '1rem' : '1.5rem',
-                  flexWrap: 'wrap'
+                  flexWrap: 'wrap',
+                  marginTop: isMobile ? '-20px' : '-20px'
                 }}
               >
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Button 
-                    onClick={openWhatsApp}
-                    style={{
-                      background: '#25D366',
-                      color: '#fff',
-                      border: 'none',
-                      padding: isMobile ? '12px 24px' : '14px 28px',
-                      fontSize: isMobile ? '1rem' : '1.1rem',
-                      fontWeight: 600,
-                      borderRadius: '30px',
-                      boxShadow: '0 4px 15px rgba(37, 211, 102, 0.3)',
-                      transition: 'all 0.3s ease',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px'
-                    }}
-                  >
-                    <Chat size={20} />
-                    Agendar consulta gratuita
-                  </Button>
-                </motion.div>
+                <WhatsAppButton
+                  text="Agendar consulta gratuita"
+                  message="Hola, necesito asesoría legal familiar. ¿Podríamos agendar una consulta gratuita?"
+                  size={isMobile ? 'medium' : 'large'}
+                  variant="primary"
+                />
                 
                 <motion.div
                   whileHover={{ scale: 1.05 }}

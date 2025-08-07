@@ -65,7 +65,7 @@ export const FamiliaErrors = () => {
   const solutionPoints = [
     {
       icon: <CheckCircle size={28} />,
-      text: 'Con nosotros: Hablas directo con el abogado.',
+      text: 'Somos transparentes desde el principio con el valor del servicio.',
       highlight: true
     },
     {
@@ -75,7 +75,7 @@ export const FamiliaErrors = () => {
     },
     {
       icon: <CheckCircle size={28} />,
-      text: 'Somos transparentes desde el principio con el valor del servicio.',
+      text: 'Con nosotros: Hablas directo con el abogado.',
       highlight: true
     }
   ];
@@ -132,7 +132,7 @@ export const FamiliaErrors = () => {
                 letterSpacing: '-0.8px'
               }}
             >
-              El error común
+              Evita las dificultades comunes
             </h2>
             
             <div 
@@ -148,65 +148,6 @@ export const FamiliaErrors = () => {
           </motion.div>
 
           <Row className="g-5">
-            {/* Columna de errores comunes */}
-            <Col lg={6}>
-              <motion.div variants={itemVariants}>
-                <h3 
-                  style={{
-                    fontSize: isMobile ? '1.5rem' : '1.8rem',
-                    fontWeight: 600,
-                    color: '#C41E3A',
-                    marginBottom: '2rem',
-                    fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif',
-                    textAlign: 'center'
-                  }}
-                >
-                  ❌ Lo que NO queremos para ti
-                </h3>
-                
-                <div style={{ gap: '2rem' }}>
-                  {errorPoints.map((point, index) => (
-                    <motion.div
-                      key={index}
-                      variants={itemVariants}
-                      style={{
-                        display: 'flex',
-                        alignItems: 'flex-start',
-                        gap: '15px',
-                        marginBottom: '2rem',
-                        padding: '20px',
-                        background: 'rgba(196, 30, 58, 0.05)',
-                        borderRadius: '12px',
-                        border: '1px solid rgba(196, 30, 58, 0.1)'
-                      }}
-                    >
-                      <div 
-                        style={{
-                          color: '#C41E3A',
-                          flexShrink: 0,
-                          marginTop: '2px'
-                        }}
-                      >
-                        <XCircle size={24} />
-                      </div>
-                      <p 
-                        style={{
-                          fontSize: isMobile ? '1rem' : '1.1rem',
-                          color: '#333',
-                          margin: 0,
-                          lineHeight: 1.6,
-                          fontWeight: 400,
-                          fontFamily: '"SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif'
-                        }}
-                      >
-                        {point.text}
-                      </p>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            </Col>
-
             {/* Columna de nuestras soluciones */}
             <Col lg={6}>
               <motion.div variants={itemVariants}>
@@ -214,7 +155,7 @@ export const FamiliaErrors = () => {
                   style={{
                     fontSize: isMobile ? '1.5rem' : '1.8rem',
                     fontWeight: 600,
-                    color: '#25A855',
+                    color: '#1A1A1A',
                     marginBottom: '2rem',
                     fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif',
                     textAlign: 'center'
@@ -255,6 +196,65 @@ export const FamiliaErrors = () => {
                           margin: 0,
                           lineHeight: 1.6,
                           fontWeight: point.highlight ? 500 : 400,
+                          fontFamily: '"SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif'
+                        }}
+                      >
+                        {point.text}
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </Col>
+
+            {/* Columna de errores comunes */}
+            <Col lg={6}>
+              <motion.div variants={itemVariants}>
+                <h3 
+                  style={{
+                    fontSize: isMobile ? '1.5rem' : '1.8rem',
+                    fontWeight: 600,
+                    color: '#1A1A1A',
+                    marginBottom: '2rem',
+                    fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif',
+                    textAlign: 'center'
+                  }}
+                >
+                  ❌ Lo que NO queremos para ti
+                </h3>
+                
+                <div style={{ gap: '2rem' }}>
+                  {errorPoints.map((point, index) => (
+                    <motion.div
+                      key={index}
+                      variants={itemVariants}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'flex-start',
+                        gap: '15px',
+                        marginBottom: '2rem',
+                        padding: '20px',
+                        background: 'rgba(196, 30, 58, 0.05)',
+                        borderRadius: '12px',
+                        border: '1px solid rgba(196, 30, 58, 0.1)'
+                      }}
+                    >
+                      <div 
+                        style={{
+                          color: '#C41E3A',
+                          flexShrink: 0,
+                          marginTop: '2px'
+                        }}
+                      >
+                        <XCircle size={24} />
+                      </div>
+                      <p 
+                        style={{
+                          fontSize: isMobile ? '1rem' : '1.1rem',
+                          color: '#333',
+                          margin: 0,
+                          lineHeight: 1.6,
+                          fontWeight: 400,
                           fontFamily: '"SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif'
                         }}
                       >

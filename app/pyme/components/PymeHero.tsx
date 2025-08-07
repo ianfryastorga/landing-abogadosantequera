@@ -2,7 +2,7 @@
 
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { antequeraConfig } from '@/config';
-import { Chat } from 'react-bootstrap-icons';
+import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
@@ -24,10 +24,6 @@ export const PymeHero = () => {
     };
   }, []);
 
-  const openWhatsApp = () => {
-    const message = encodeURIComponent('Hola, tengo un problema legal urgente en mi empresa. ¿Podríamos hablar hoy mismo?');
-    window.open(`https://wa.me/${antequeraConfig.contactInfo.whatsapp.replace(/\s+/g, '')}?text=${message}`, '_blank');
-  };
 
   // Animaciones con variantes para un código más limpio
   const containerVariants = {
@@ -191,31 +187,12 @@ export const PymeHero = () => {
                   marginTop: '2rem'
                 }}
               >
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Button 
-                    onClick={openWhatsApp}
-                    style={{
-                      background: 'linear-gradient(135deg, #C41E3A 0%, #A01729 100%)',
-                      color: '#fff',
-                      border: 'none',
-                      padding: isMobile ? '16px 32px' : '18px 40px',
-                      fontSize: isMobile ? '1.1rem' : '1.2rem',
-                      fontWeight: 600,
-                      borderRadius: '50px',
-                      boxShadow: '0 8px 25px rgba(196, 30, 58, 0.3)',
-                      transition: 'all 0.3s ease',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '12px'
-                    }}
-                  >
-                    <Chat size={22} />
-                    ✅ Habla hoy mismo con el abogado
-                  </Button>
-                </motion.div>
+                <WhatsAppButton
+                  text="✅ Habla hoy mismo con el abogado"
+                  message="Hola, tengo un problema legal urgente en mi empresa. ¿Podríamos hablar hoy mismo?"
+                  size={isMobile ? 'medium' : 'large'}
+                  variant="primary"
+                />
               </motion.div>
             </motion.div>
           </Col>
