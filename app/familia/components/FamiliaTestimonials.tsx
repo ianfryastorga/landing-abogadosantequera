@@ -45,21 +45,36 @@ export const FamiliaTestimonials = () => {
     }
   };
 
-  // Testimonios placeholders como se especificó que están pendientes
   const testimonials = [
     {
-      quote: "Sentí que, por primera vez, alguien entendía lo que estaba viviendo.",
-      author: "María González",
-      case: "Divorcio y custodia compartida",
+      quote: "Conozco a don Rodrigo Antequera, un excelente abogado y profesional. Lo conozco desde el 2021, trabaja con profesionalismo y honestidad. Estoy muy agradecida con su trabajo.",
+      author: "Claudia Luna",
       rating: 5,
-      image: "👩‍💼" // Emoji placeholder mientras llegan las fotos reales
+      image: "👩"
     },
     {
-      quote: "No me sentí juzgada. Me explicaron todo con calma y logré un acuerdo justo.",
-      author: "Carmen Silva",
-      case: "Pensión alimenticia",
+      quote: "Don Rodrigo Antequera atendió mi causa familiar, permitiéndome hoy, gracias a las negociaciones realizadas por él, tener una casa a mi nombre, ratificada ante los Tribunales de Justicia.",
+      author: "Ibbse Rojas",
       rating: 5,
-      image: "👩‍⚖️"
+      image: "👨"
+    },
+    {
+      quote: "Mi marido y yo estaremos siempre muy agradecidos con el compromiso profesional de don Rodrigo Antequera, quien pudo comprender nuestra angustia frente a difíciles situaciones que nos tocó enfrentar.",
+      author: "Marjorie Ocaranza",
+      rating: 5,
+      image: "👩"
+    },
+    {
+      quote: "Estoy profundamente agradecido por las gestiones que realizó don Rodrigo Antequera, gracias a su accionar como abogado mi causa se resolvió de manera favorable para mí.",
+      author: "Cristian Lecaros",
+      rating: 5,
+      image: "👨"
+    },
+    {
+      quote: "Excelente profesional, me apoyó y resolvió varias demandas civiles y de familia, siempre con diligencia, rapidez y manteniéndome claramente informada de todos los procesos.",
+      author: "Yolanda Araya",
+      rating: 5,
+      image: "👩"
     }
   ];
 
@@ -145,7 +160,7 @@ export const FamiliaTestimonials = () => {
 
           <Row className="g-4 justify-content-center">
             {testimonials.map((testimonial, index) => (
-              <Col xs={12} md={6} lg={5} key={index}>
+              <Col xs={12} md={6} lg={4} key={index}>
                 <motion.div
                   variants={itemVariants}
                   whileHover={{ 
@@ -200,7 +215,7 @@ export const FamiliaTestimonials = () => {
                   {/* Testimonio */}
                   <blockquote 
                     style={{
-                      fontSize: isMobile ? '1.1rem' : '1.2rem',
+                      fontSize: isMobile ? '1rem' : '1.1rem',
                       color: '#333',
                       lineHeight: 1.6,
                       fontWeight: 400,
@@ -243,22 +258,12 @@ export const FamiliaTestimonials = () => {
                           fontSize: '1rem',
                           fontWeight: 600,
                           color: '#1A1A1A',
-                          margin: '0 0 5px 0',
+                          margin: 0,
                           fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif'
                         }}
                       >
                         {testimonial.author}
                       </h5>
-                      <p 
-                        style={{
-                          fontSize: '0.9rem',
-                          color: '#666',
-                          margin: 0,
-                          fontFamily: '"SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif'
-                        }}
-                      >
-                        {testimonial.case}
-                      </p>
                     </div>
                   </div>
                 </motion.div>
