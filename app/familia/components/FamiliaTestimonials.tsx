@@ -56,7 +56,7 @@ export const FamiliaTestimonials = () => {
       quote: "Don Rodrigo Antequera atendió mi causa familiar, permitiéndome hoy, gracias a las negociaciones realizadas por él, tener una casa a mi nombre, ratificada ante los Tribunales de Justicia.",
       author: "Ibbse Rojas",
       rating: 5,
-      image: "👨"
+      image: "👩"
     },
     {
       quote: "Mi marido y yo estaremos siempre muy agradecidos con el compromiso profesional de don Rodrigo Antequera, quien pudo comprender nuestra angustia frente a difíciles situaciones que nos tocó enfrentar.",
