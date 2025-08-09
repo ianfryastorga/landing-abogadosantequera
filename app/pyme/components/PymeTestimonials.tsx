@@ -45,7 +45,7 @@ export const PymeTestimonials = () => {
 
   const testimonials = [
     {
-      quote: "Rodrigo Antequera es un abogado que demuestra amplia experiencia, ser responsable, dedicado y empático con sus clientes, en las distintas situaciones en que lo he necesitado. Lo conocí hace 15 años, como profesor de Derecho Tributario, y luego, como abogado de cabecera de mi empresa de muebles. Siempre que lo recomiendo a cercanos, cumple fielmente y con profesionalismo.",
+      quote: "Rodrigo Antequera tiene experiencia, es responsable, dedicado y empático. Lo conocí hace 15 años, como profesor de Derecho Tributario, y luego, como abogado de cabecera de mi empresa de muebles. Siempre cumple fielmente y con profesionalismo.",
       author: "Luis Vargas M.",
       rating: 5,
       image: "👨"
