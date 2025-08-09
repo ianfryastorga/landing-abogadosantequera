@@ -43,23 +43,36 @@ export const PymeTestimonials = () => {
     }
   };
 
-  // Testimonios según el contenido proporcionado
   const testimonials = [
     {
-      quote: "Antes de trabajar con este abogado, perdí $3 millones en un mal cobro. Hoy tengo a alguien que me responde por WhatsApp al tiro.",
-      author: "Carlos Mendoza",
-      company: "Distribuidora del Norte",
-      case: "Recuperación de deudas",
+      quote: "Rodrigo Antequera es un abogado que demuestra amplia experiencia, ser responsable, dedicado y empático con sus clientes, en las distintas situaciones en que lo he necesitado. Lo conocí hace 15 años, como profesor de Derecho Tributario, y luego, como abogado de cabecera de mi empresa de muebles. Siempre que lo recomiendo a cercanos, cumple fielmente y con profesionalismo.",
+      author: "Luis Vargas M.",
       rating: 5,
-      image: "👨‍💼"
+      image: "👨"
     },
     {
-      quote: "Me explicó lo que ningún abogado me había dicho. Y por fin entendí qué tipo de sociedad me convenía.",
-      author: "María Elena Castro",
-      company: "Textiles MC",
-      case: "Constitución de sociedad",
+      quote: "Don Rodrigo Antequera no solo es un excelente abogado, sino que también un ser humano empático con las dificultades de sus clientes. En mi empresa de construcción, siempre me he sentido seguro y apoyado en sus capacidades profesionales.",
+      author: "Claudio Abarca",
       rating: 5,
-      image: "👩‍💼"
+      image: "👨"
+    },
+    {
+      quote: "Conozco a Rodrigo Antequera hace más de 20 años, siempre he contado con su asesoría legal, en mi empresa de Head Hunter, porque siempre he obtenido excelentes resultados en las diversas áreas legales.",
+      author: "Sergio Araya",
+      rating: 5,
+      image: "👨"
+    },
+    {
+      quote: "He quedado muy agradecido de los servicios profesionales prestados por el abogado don Rodrigo Antequera a mi empresa de Corredores de Seguros. Gracias a su asesoría hemos podido solucionar varios problemas legales.",
+      author: "Mauricio Vargas O.",
+      rating: 5,
+      image: "👨"
+    },
+    {
+      quote: "Hace algún tiempo don Rodrigo Antequera, me ayudó frente a un despido injustificado, tomó mi caso, logró resolverlo con resultados totalmente satisfactorios y muy poco tiempo.",
+      author: "Marco Figueroa",
+      rating: 5,
+      image: "👨"
     }
   ];
 
@@ -144,7 +157,7 @@ export const PymeTestimonials = () => {
 
           <Row className="g-4 justify-content-center">
             {testimonials.map((testimonial, index) => (
-              <Col xs={12} md={6} lg={5} key={index}>
+              <Col xs={12} md={6} lg={4} key={index}>
                 <motion.div
                   variants={itemVariants}
                   whileHover={{ 
@@ -200,7 +213,7 @@ export const PymeTestimonials = () => {
                   {/* Testimonio */}
                   <blockquote 
                     style={{
-                      fontSize: isMobile ? '1.1rem' : '1.2rem',
+                      fontSize: isMobile ? '1rem' : '1.1rem',
                       color: '#333',
                       lineHeight: 1.6,
                       fontWeight: 400,
@@ -243,33 +256,12 @@ export const PymeTestimonials = () => {
                           fontSize: '1.1rem',
                           fontWeight: 600,
                           color: '#1A1A1A',
-                          margin: '0 0 5px 0',
+                          margin: 0,
                           fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif'
                         }}
                       >
                         {testimonial.author}
                       </h5>
-                      <p 
-                        style={{
-                          fontSize: '0.95rem',
-                          color: '#666',
-                          margin: '0 0 3px 0',
-                          fontFamily: '"SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif',
-                          fontWeight: 500
-                        }}
-                      >
-                        {testimonial.company}
-                      </p>
-                      <p 
-                        style={{
-                          fontSize: '0.9rem',
-                          color: '#999',
-                          margin: 0,
-                          fontFamily: '"SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif'
-                        }}
-                      >
-                        {testimonial.case}
-                      </p>
                     </div>
                   </div>
                 </motion.div>
