@@ -69,7 +69,7 @@ export const PymeTestimonials = () => {
       image: "👨"
     },
     {
-      quote: "Hace algún tiempo don Rodrigo Antequera, me ayudó frente a un despido injustificado, tomó mi caso, logró resolverlo con resultados totalmente satisfactorios y muy poco tiempo.",
+      quote: "Hace algún tiempo don Rodrigo Antequera, me ayudó frente a un despido injustificado, tomó mi caso, logró resolverlo con resultados totalmente satisfactorios y en muy poco tiempo.",
       author: "Marco Figueroa",
       rating: 5,
       image: "👨"
